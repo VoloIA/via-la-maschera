@@ -22,6 +22,7 @@ Expo e una piattaforma che semplifica la creazione di app mobile. Ci permette di
 8. Check 8: sostituire la schermata demo di Expo con una base iniziale nostra. Completato.
 9. Check 9: scegliere lo scopo vero della app. Completato.
 10. Check 10: costruire il primo rituale di Via la Maschera. Completato.
+11. Check 11: rendere il salvataggio locale compatibile con telefono. Completato.
 
 ## Percentuale progetto
 
@@ -40,7 +41,7 @@ In questa scala, 100% significa:
 Stato attuale:
 
 ```text
-25%
+30%
 ```
 
 ## Regole semplici
@@ -64,3 +65,4 @@ Stato attuale:
 - `08-check-9-scelta-app.md`: scheda per decidere scopo, utenti e prima versione della app.
 - `09-analisi-mercato-via-la-maschera.md`: analisi mercato e posizionamento della app.
 - `10-check-10-primo-rituale.md`: riepilogo del primo rituale giornaliero funzionante.
+- `11-check-11-salvataggio-mobile.md`: riepilogo del salvataggio locale persistente su telefono.

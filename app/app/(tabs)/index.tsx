@@ -5,6 +5,7 @@ import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { maskQuestions } from '@/data/mask-questions';
+import { getLocalItem, removeLocalItem, setLocalItem } from '@/lib/local-storage';
 
 const REFLECTION_DELAY_MS = 24 * 60 * 60 * 1000;
 const STORAGE_KEY = 'via-la-maschera:digital-ritual:v1';
@@ -26,14 +27,6 @@ function getQuestionIndex(dateKey: string) {
   const dayNumber = Math.floor(new Date(`${dateKey}T00:00:00`).getTime() / REFLECTION_DELAY_MS);
 
   return dayNumber % maskQuestions.length;
-}
-
-function getStorage() {
-  if (typeof window === 'undefined' || !window.localStorage) {
-    return null;
-  }
-
-  return window.localStorage;
 }
 
 function buildReflection(answer: string, question: string) {
@@ -68,26 +61,45 @@ export default function HomeScreen() {
   const question = useMemo(() => maskQuestions[getQuestionIndex(todayKey)], [todayKey]);
   const [answer, setAnswer] = useState('');
   const [entry, setEntry] = useState<DailyEntry | null>(null);
+  const [isLoadingEntry, setIsLoadingEntry] = useState(true);
   const [now, setNow] = useState(Date.now());
 
   useEffect(() => {
-    const storage = getStorage();
-    const savedEntry = storage?.getItem(STORAGE_KEY);
+    let isMounted = true;
 
-    if (!savedEntry) {
-      return;
-    }
+    async function loadEntry() {
+      const savedEntry = await getLocalItem(STORAGE_KEY);
 
-    try {
-      const parsedEntry = JSON.parse(savedEntry) as DailyEntry;
-
-      if (parsedEntry.dateKey === todayKey) {
-        setEntry(parsedEntry);
-        setAnswer(parsedEntry.answer);
+      if (!isMounted) {
+        return;
       }
-    } catch {
-      storage?.removeItem(STORAGE_KEY);
+
+      if (!savedEntry) {
+        setIsLoadingEntry(false);
+        return;
+      }
+
+      try {
+        const parsedEntry = JSON.parse(savedEntry) as DailyEntry;
+
+        if (parsedEntry.dateKey === todayKey) {
+          setEntry(parsedEntry);
+          setAnswer(parsedEntry.answer);
+        }
+      } catch {
+        await removeLocalItem(STORAGE_KEY);
+      } finally {
+        if (isMounted) {
+          setIsLoadingEntry(false);
+        }
+      }
     }
+
+    loadEntry();
+
+    return () => {
+      isMounted = false;
+    };
   }, [todayKey]);
 
   useEffect(() => {
@@ -100,7 +112,7 @@ export default function HomeScreen() {
   const isReflectionReady = entry ? now >= entry.reflectionReadyAt : false;
   const remainingTime = entry ? formatRemainingTime(entry.reflectionReadyAt - now) : null;
 
-  const saveAnswer = () => {
+  const saveAnswer = async () => {
     if (!isAnswerReady) {
       return;
     }
@@ -116,7 +128,7 @@ export default function HomeScreen() {
     };
 
     setEntry(nextEntry);
-    getStorage()?.setItem(STORAGE_KEY, JSON.stringify(nextEntry));
+    await setLocalItem(STORAGE_KEY, JSON.stringify(nextEntry));
   };
 
   return (
@@ -148,7 +160,9 @@ export default function HomeScreen() {
         </ThemedText>
 
         <ThemedText style={styles.smallText}>
-          Intrattenimento introspettivo, non terapia. Scrivi senza fare bella figura.
+          {isLoadingEntry
+            ? 'Sto riaprendo il sigillo di oggi...'
+            : 'Intrattenimento introspettivo, non terapia. Scrivi senza fare bella figura.'}
         </ThemedText>
 
         <TextInput
@@ -165,9 +179,12 @@ export default function HomeScreen() {
         {!entry ? (
           <Pressable
             accessibilityRole="button"
-            disabled={!isAnswerReady}
+            disabled={!isAnswerReady || isLoadingEntry}
             onPress={saveAnswer}
-            style={[styles.primaryButton, !isAnswerReady ? styles.primaryButtonDisabled : undefined]}>
+            style={[
+              styles.primaryButton,
+              !isAnswerReady || isLoadingEntry ? styles.primaryButtonDisabled : undefined,
+            ]}>
             <ThemedText lightColor="#FFFFFF" darkColor="#FFFFFF" style={styles.primaryButtonText}>
               Sigilla la risposta
             </ThemedText>

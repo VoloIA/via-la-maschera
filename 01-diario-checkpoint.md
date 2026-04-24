@@ -587,3 +587,65 @@ Percentuale progetto:
 Motivo:
 
 Ora esiste una prima meccanica reale, non solo una schermata statica.
+
+## Check 11: salvataggio locale mobile
+
+Stato:
+
+Superato.
+
+Obiettivo:
+
+Passare da un salvataggio adatto soprattutto al browser a un salvataggio persistente compatibile con Android, iOS e web.
+
+Decisione tecnica:
+
+Abbiamo installato:
+
+```text
+@react-native-async-storage/async-storage
+```
+
+Motivo:
+
+Expo documenta AsyncStorage come soluzione persistente locale, asincrona e multi-piattaforma.
+
+File creato:
+
+```text
+C:\Users\intel i7 11700\Desktop\AppMobile\app\lib\local-storage.ts
+```
+
+File aggiornato:
+
+```text
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\index.tsx
+```
+
+Cosa cambia:
+
+- la risposta giornaliera viene salvata con AsyncStorage;
+- il codice funziona meglio anche su telefono;
+- il rituale mantiene ancora costo API pari a zero;
+- la Home mostra uno stato di caricamento del sigillo.
+
+Verifiche tecniche:
+
+```powershell
+npm.cmd run lint
+npx.cmd tsc --noEmit
+```
+
+Risultato:
+
+Nessun errore segnalato.
+
+Percentuale progetto:
+
+```text
+30%
+```
+
+Motivo:
+
+Il rituale non e piu solo web-first: ora ha una base di persistenza locale piu adatta a una app mobile reale.
