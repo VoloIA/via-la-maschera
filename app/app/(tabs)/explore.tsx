@@ -3,74 +3,62 @@ import { StyleSheet, View } from 'react-native';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { maskQuestions } from '@/data/mask-questions';
+import { maskPaths } from '@/data/mask-paths';
 
-const productLoop = [
-  'Domanda giornaliera',
-  'Risposta sigillata',
-  'Riflessione dopo 24 ore',
-  'Archivio personale',
-  'Serie di maschere sbloccabili',
-];
-
-const monetization = [
-  'Gratis: una domanda al giorno',
-  'Premium futuro: percorsi tematici',
-  'Premium futuro: riflessioni AI piu profonde',
-  'Premium futuro: archivio avanzato',
-];
-
-export default function JourneyScreen() {
+export default function PathsScreen() {
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#331A42', dark: '#170D20' }}
       headerImage={
         <View style={styles.headerContent}>
           <ThemedText lightColor="#F4E8FF" darkColor="#F4E8FF" style={styles.kicker}>
-            Dietro il rito
+            Percorsi
           </ThemedText>
           <ThemedText type="title" lightColor="#FFFFFF" darkColor="#FFFFFF" style={styles.headerTitle}>
-            Perche torna in mente
+            Scegli quale maschera sfiorare
           </ThemedText>
           <ThemedText lightColor="#E8D8F6" darkColor="#E8D8F6" style={styles.headerText}>
-            Via la Maschera usa attesa, scarsita e domande intime per creare ritorno quotidiano.
+            Ogni percorso raccoglie domande con lo stesso odore emotivo.
           </ThemedText>
         </View>
       }>
-      <ThemedView style={styles.section}>
-        <ThemedText type="subtitle">Loop magnetico</ThemedText>
-        {productLoop.map((phase, index) => (
-          <View key={phase} style={styles.phaseRow}>
-            <ThemedText type="defaultSemiBold" style={styles.phaseNumber}>
-              {index + 1}
-            </ThemedText>
-            <ThemedText>{phase}</ThemedText>
-          </View>
-        ))}
-      </ThemedView>
-
-      <ThemedView style={styles.notePanel}>
-        <ThemedText type="subtitle">Basso costo API</ThemedText>
+      <ThemedView style={styles.featuredPanel}>
+        <ThemedText type="defaultSemiBold" style={styles.featuredLabel}>
+          Percorso attivo
+        </ThemedText>
+        <ThemedText type="title" style={styles.featuredTitle}>
+          Una domanda al giorno
+        </ThemedText>
         <ThemedText>
-          La prima versione usa domande pre-caricate e riflessioni locali. L AI puo arrivare dopo,
-          solo una volta per risposta e solo per utenti premium o test selezionati.
+          Le maschere non si aprono tutte insieme. Tornano una alla volta, quando hai abbastanza
+          silenzio per riconoscerle.
         </ThemedText>
       </ThemedView>
 
-      <ThemedView style={styles.section}>
-        <ThemedText type="subtitle">Monetizzazione futura</ThemedText>
-        {monetization.map((item) => (
-          <View key={item} style={styles.bulletRow}>
-            <View style={styles.dot} />
-            <ThemedText>{item}</ThemedText>
-          </View>
+      <View style={styles.pathsGrid}>
+        {maskPaths.map((path) => (
+          <ThemedView key={path.id} style={[styles.pathCard, path.locked ? styles.lockedCard : undefined]}>
+            <View style={styles.pathHeader}>
+              <View style={[styles.pathMark, { backgroundColor: path.accent }]} />
+              <ThemedText style={path.locked ? styles.lockedBadge : styles.openBadge}>
+                {path.locked ? 'Presto' : `${path.questionCount} domande`}
+              </ThemedText>
+            </View>
+
+            <ThemedText type="subtitle">{path.title}</ThemedText>
+            <ThemedText style={styles.pathDescription}>{path.description}</ThemedText>
+            <ThemedText type="defaultSemiBold" style={[styles.pathSignal, { color: path.accent }]}>
+              {path.signal}
+            </ThemedText>
+          </ThemedView>
         ))}
-      </ThemedView>
+      </View>
 
       <ThemedView style={styles.notePanel}>
-        <ThemedText type="defaultSemiBold">Domande caricate: {maskQuestions.length}</ThemedText>
+        <ThemedText type="subtitle">Perche vale</ThemedText>
         <ThemedText>
-          Questo basta per quasi due mesi di rituale giornaliero senza generare contenuti via API.
+          I percorsi trasformano le domande in una collezione emotiva. In futuro potranno diventare
+          pacchetti premium senza aumentare i costi API della versione gratuita.
         </ThemedText>
       </ThemedView>
     </ParallaxScrollView>
@@ -100,39 +88,72 @@ const styles = StyleSheet.create({
     fontSize: 17,
     lineHeight: 25,
   },
-  section: {
-    gap: 14,
-  },
-  phaseRow: {
-    alignItems: 'center',
-    flexDirection: 'row',
-    gap: 12,
-  },
-  phaseNumber: {
-    backgroundColor: '#EFE4F7',
-    borderRadius: 8,
-    color: '#5A2D82',
-    height: 32,
-    lineHeight: 32,
-    textAlign: 'center',
-    width: 32,
-  },
-  notePanel: {
+  featuredPanel: {
     borderColor: '#5A2D82',
     borderRadius: 8,
     borderWidth: 1,
     gap: 8,
+    padding: 18,
+  },
+  featuredLabel: {
+    color: '#7B3FB2',
+    textTransform: 'uppercase',
+  },
+  featuredTitle: {
+    lineHeight: 38,
+  },
+  pathsGrid: {
+    gap: 12,
+  },
+  pathCard: {
+    borderColor: '#D9C6E8',
+    borderRadius: 8,
+    borderWidth: 1,
+    gap: 10,
     padding: 16,
   },
-  bulletRow: {
+  lockedCard: {
+    opacity: 0.72,
+  },
+  pathHeader: {
     alignItems: 'center',
     flexDirection: 'row',
-    gap: 10,
+    justifyContent: 'space-between',
   },
-  dot: {
-    backgroundColor: '#5A2D82',
-    borderRadius: 5,
-    height: 10,
-    width: 10,
+  pathMark: {
+    borderRadius: 999,
+    height: 14,
+    width: 44,
+  },
+  openBadge: {
+    backgroundColor: '#EFE4F7',
+    borderRadius: 999,
+    color: '#5A2D82',
+    fontWeight: '700',
+    overflow: 'hidden',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+  },
+  lockedBadge: {
+    backgroundColor: '#F1F1F1',
+    borderRadius: 999,
+    color: '#6F6478',
+    fontWeight: '700',
+    overflow: 'hidden',
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+  },
+  pathDescription: {
+    color: '#6F6478',
+  },
+  pathSignal: {
+    marginTop: 2,
+  },
+  notePanel: {
+    borderColor: '#D9C6E8',
+    borderRadius: 8,
+    borderWidth: 1,
+    gap: 8,
+    padding: 16,
   },
 });

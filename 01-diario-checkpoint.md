@@ -705,3 +705,66 @@ Percentuale progetto:
 Motivo:
 
 La app ora ha memoria personale. Questo aumenta retention, valore percepito e senso di continuita.
+
+## Check 13: Percorsi di Maschera
+
+Stato:
+
+Superato.
+
+Obiettivo:
+
+Trasformare le domande in percorsi emotivi riconoscibili, piu magnetici e piu facili da monetizzare in futuro.
+
+File creato:
+
+```text
+C:\Users\intel i7 11700\Desktop\AppMobile\app\data\mask-paths.ts
+```
+
+File aggiornati:
+
+```text
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\explore.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\_layout.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\index.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\13-check-13-percorsi.md
+```
+
+Percorsi creati:
+
+- Amore
+- Paura
+- Successo
+- Solitudine
+- Senso
+- Ombra, bloccato per uso futuro
+
+Cosa cambia:
+
+- la tab `Rito` diventa `Percorsi`;
+- spariscono le note tecniche dall'interfaccia utente;
+- l'app ora mostra categorie emotive;
+- la struttura e pronta per pacchetti futuri senza nuove API;
+- la percentuale visibile passa a 40%.
+
+Verifiche tecniche:
+
+```powershell
+npm.cmd run lint
+npx.cmd tsc --noEmit
+```
+
+Risultato:
+
+Nessun errore segnalato.
+
+Percentuale progetto:
+
+```text
+40%
+```
+
+Motivo:
+
+Ora l'app non ha solo rituale e archivio, ma anche una struttura di prodotto ampliabile e monetizzabile.

@@ -92,7 +92,7 @@ export default function HomeScreen() {
           <ThemedText type="defaultSemiBold" style={styles.eyebrow}>
             Domanda del giorno
           </ThemedText>
-          <ThemedText style={styles.badge}>35%</ThemedText>
+          <ThemedText style={styles.badge}>40%</ThemedText>
         </View>
 
         <ThemedText type="title" style={styles.question}>
