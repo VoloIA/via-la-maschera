@@ -1,112 +1,136 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import { Collapsible } from '@/components/ui/collapsible';
-import { ExternalLink } from '@/components/external-link';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Fonts } from '@/constants/theme';
 
-export default function TabTwoScreen() {
+const checkpoints = [
+  { label: 'Check 1-2', text: 'Cartella pronta, Node.js e npm verificati.' },
+  { label: 'Check 3-5', text: 'Progetto Expo creato, avviato e visto nel browser.' },
+  { label: 'Check 6-7', text: 'Prima modifica fatta e primo salvataggio Git creato.' },
+  { label: 'Check 8', text: 'Schermata demo sostituita con una base iniziale nostra.' },
+];
+
+const nextPhases = [
+  "Scegliere lo scopo dell'app",
+  'Disegnare le schermate principali',
+  'Costruire le prime funzioni',
+  'Preparare icona, nome, privacy e build store',
+];
+
+export default function JourneyScreen() {
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
+      headerBackgroundColor={{ light: '#1E3A5F', dark: '#172334' }}
       headerImage={
-        <IconSymbol
-          size={310}
-          color="#808080"
-          name="chevron.left.forwardslash.chevron.right"
-          style={styles.headerImage}
-        />
+        <View style={styles.headerContent}>
+          <ThemedText lightColor="#FFFFFF" darkColor="#FFFFFF" style={styles.kicker}>
+            Percorso
+          </ThemedText>
+          <ThemedText type="title" lightColor="#FFFFFF" darkColor="#FFFFFF" style={styles.headerTitle}>
+            La ricetta della app
+          </ThemedText>
+          <ThemedText lightColor="#DCEBFF" darkColor="#DCEBFF" style={styles.headerText}>
+            Ogni checkpoint chiude un passaggio e rende il progetto piu stabile.
+          </ThemedText>
+        </View>
       }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText
-          type="title"
-          style={{
-            fontFamily: Fonts.rounded,
-          }}>
-          Explore
+      <ThemedView style={styles.section}>
+        <ThemedText type="subtitle">Checkpoint completati</ThemedText>
+        {checkpoints.map((checkpoint) => (
+          <View key={checkpoint.label} style={styles.timelineRow}>
+            <View style={styles.timelineMarker} />
+            <View style={styles.timelineText}>
+              <ThemedText type="defaultSemiBold">{checkpoint.label}</ThemedText>
+              <ThemedText>{checkpoint.text}</ThemedText>
+            </View>
+          </View>
+        ))}
+      </ThemedView>
+
+      <ThemedView style={styles.section}>
+        <ThemedText type="subtitle">Prossime fasi</ThemedText>
+        {nextPhases.map((phase, index) => (
+          <View key={phase} style={styles.phaseRow}>
+            <ThemedText type="defaultSemiBold" style={styles.phaseNumber}>
+              {index + 1}
+            </ThemedText>
+            <ThemedText>{phase}</ThemedText>
+          </View>
+        ))}
+      </ThemedView>
+
+      <ThemedView style={styles.notePanel}>
+        <ThemedText type="defaultSemiBold">Percentuale attuale: 15%</ThemedText>
+        <ThemedText>
+          La base tecnica esiste. Per arrivare al 100% servono ancora idea definitiva, funzioni,
+          test, build e pubblicazione negli store.
         </ThemedText>
       </ThemedView>
-      <ThemedText>This app includes example code to help you get started.</ThemedText>
-      <Collapsible title="File-based routing">
-        <ThemedText>
-          This app has two screens:{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">app/(tabs)/explore.tsx</ThemedText>
-        </ThemedText>
-        <ThemedText>
-          The layout file in <ThemedText type="defaultSemiBold">app/(tabs)/_layout.tsx</ThemedText>{' '}
-          sets up the tab navigator.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/router/introduction">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Android, iOS, and web support">
-        <ThemedText>
-          You can open this project on Android, iOS, and the web. To open the web version, press{' '}
-          <ThemedText type="defaultSemiBold">w</ThemedText> in the terminal running this project.
-        </ThemedText>
-      </Collapsible>
-      <Collapsible title="Images">
-        <ThemedText>
-          For static images, you can use the <ThemedText type="defaultSemiBold">@2x</ThemedText> and{' '}
-          <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
-          different screen densities
-        </ThemedText>
-        <Image
-          source={require('@/assets/images/react-logo.png')}
-          style={{ width: 100, height: 100, alignSelf: 'center' }}
-        />
-        <ExternalLink href="https://reactnative.dev/docs/images">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Light and dark mode components">
-        <ThemedText>
-          This template has light and dark mode support. The{' '}
-          <ThemedText type="defaultSemiBold">useColorScheme()</ThemedText> hook lets you inspect
-          what the user&apos;s current color scheme is, and so you can adjust UI colors accordingly.
-        </ThemedText>
-        <ExternalLink href="https://docs.expo.dev/develop/user-interface/color-themes/">
-          <ThemedText type="link">Learn more</ThemedText>
-        </ExternalLink>
-      </Collapsible>
-      <Collapsible title="Animations">
-        <ThemedText>
-          This template includes an example of an animated component. The{' '}
-          <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
-          the powerful{' '}
-          <ThemedText type="defaultSemiBold" style={{ fontFamily: Fonts.mono }}>
-            react-native-reanimated
-          </ThemedText>{' '}
-          library to create a waving hand animation.
-        </ThemedText>
-        {Platform.select({
-          ios: (
-            <ThemedText>
-              The <ThemedText type="defaultSemiBold">components/ParallaxScrollView.tsx</ThemedText>{' '}
-              component provides a parallax effect for the header image.
-            </ThemedText>
-          ),
-        })}
-      </Collapsible>
     </ParallaxScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  headerImage: {
-    color: '#808080',
-    bottom: -90,
-    left: -35,
+  headerContent: {
+    bottom: 28,
+    left: 28,
+    maxWidth: 520,
     position: 'absolute',
+    right: 28,
   },
-  titleContainer: {
+  kicker: {
+    fontSize: 14,
+    fontWeight: '700',
+    letterSpacing: 0,
+    marginBottom: 10,
+    textTransform: 'uppercase',
+  },
+  headerTitle: {
+    lineHeight: 38,
+    marginBottom: 12,
+  },
+  headerText: {
+    fontSize: 17,
+    lineHeight: 25,
+  },
+  section: {
+    gap: 14,
+  },
+  timelineRow: {
     flexDirection: 'row',
+    gap: 12,
+  },
+  timelineMarker: {
+    backgroundColor: '#1E3A5F',
+    borderRadius: 6,
+    height: 12,
+    marginTop: 6,
+    width: 12,
+  },
+  timelineText: {
+    flex: 1,
+    gap: 2,
+  },
+  phaseRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 12,
+  },
+  phaseNumber: {
+    backgroundColor: '#DCEBFF',
+    borderRadius: 8,
+    color: '#1E3A5F',
+    height: 32,
+    lineHeight: 32,
+    textAlign: 'center',
+    width: 32,
+  },
+  notePanel: {
+    borderColor: '#1E3A5F',
+    borderRadius: 8,
+    borderWidth: 1,
     gap: 8,
+    padding: 16,
   },
 });

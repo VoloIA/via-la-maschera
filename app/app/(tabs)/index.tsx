@@ -1,77 +1,66 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
-import { HelloWave } from '@/components/hello-wave';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { Link } from 'expo-router';
+
+const projectSteps = [
+  'Ambiente installato',
+  'Progetto Expo creato',
+  'App avviata nel browser',
+  'Primo salvataggio Git completato',
+];
 
 export default function HomeScreen() {
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
+      headerBackgroundColor={{ light: '#0F766E', dark: '#12312F' }}
       headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
+        <View style={styles.headerContent}>
+          <ThemedText lightColor="#FFFFFF" darkColor="#FFFFFF" style={styles.kicker}>
+            AppMobile
+          </ThemedText>
+          <ThemedText type="title" lightColor="#FFFFFF" darkColor="#FFFFFF" style={styles.headerTitle}>
+            La mia prima app
+          </ThemedText>
+          <ThemedText lightColor="#D9FFFB" darkColor="#D9FFFB" style={styles.headerText}>
+            Base iniziale pronta: ora possiamo decidere funzioni, utenti e schermate.
+          </ThemedText>
+        </View>
       }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">La mia prima app</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
+      <ThemedView style={styles.section}>
+        <ThemedText type="subtitle">Stato progetto</ThemedText>
         <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
+          Siamo nella fase in cui il progetto funziona, e abbiamo iniziato a sostituire la demo
+          di Expo con contenuti nostri.
         </ThemedText>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert('Action pressed')} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert('Share pressed')}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert('Delete pressed')}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
 
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
+      <ThemedView style={styles.progressPanel}>
+        <ThemedText type="defaultSemiBold">Avanzamento verso pubblicazione store</ThemedText>
+        <View style={styles.progressTrack}>
+          <View style={styles.progressFill} />
+        </View>
+        <ThemedText type="title" style={styles.progressNumber}>
+          15%
         </ThemedText>
       </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
+
+      <ThemedView style={styles.section}>
+        <ThemedText type="subtitle">Fatto finora</ThemedText>
+        {projectSteps.map((step) => (
+          <View key={step} style={styles.stepRow}>
+            <View style={styles.stepDot} />
+            <ThemedText>{step}</ThemedText>
+          </View>
+        ))}
+      </ThemedView>
+
+      <ThemedView style={styles.section}>
+        <ThemedText type="subtitle">Prossima decisione</ThemedText>
         <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
+          Il prossimo checkpoint serve a scegliere che problema deve risolvere la app. Da quella
+          scelta nasceranno schermate e funzioni vere.
         </ThemedText>
       </ThemedView>
     </ParallaxScrollView>
@@ -79,20 +68,61 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
-  },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
+  headerContent: {
+    bottom: 28,
+    left: 28,
+    maxWidth: 520,
     position: 'absolute',
+    right: 28,
+  },
+  kicker: {
+    fontSize: 14,
+    fontWeight: '700',
+    letterSpacing: 0,
+    marginBottom: 10,
+    textTransform: 'uppercase',
+  },
+  headerTitle: {
+    lineHeight: 38,
+    marginBottom: 12,
+  },
+  headerText: {
+    fontSize: 17,
+    lineHeight: 25,
+  },
+  section: {
+    gap: 10,
+  },
+  progressPanel: {
+    borderColor: '#0F766E',
+    borderRadius: 8,
+    borderWidth: 1,
+    gap: 12,
+    padding: 16,
+  },
+  progressTrack: {
+    backgroundColor: '#CFEDEA',
+    borderRadius: 999,
+    height: 10,
+    overflow: 'hidden',
+  },
+  progressFill: {
+    backgroundColor: '#0F766E',
+    height: '100%',
+    width: '15%',
+  },
+  progressNumber: {
+    color: '#0F766E',
+  },
+  stepRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 10,
+  },
+  stepDot: {
+    backgroundColor: '#0F766E',
+    borderRadius: 5,
+    height: 10,
+    width: 10,
   },
 });

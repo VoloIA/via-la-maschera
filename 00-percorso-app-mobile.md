@@ -19,6 +19,27 @@ Expo e una piattaforma che semplifica la creazione di app mobile. Ci permette di
 5. Check 5: provarla su telefono o browser. Completato.
 6. Check 6: fare la prima modifica semplice. Completato.
 7. Check 7: salvare le modifiche importanti e continuare in modo ordinato. Completato.
+8. Check 8: sostituire la schermata demo di Expo con una base iniziale nostra. Completato.
+
+## Percentuale progetto
+
+Da ora in poi, alla fine di ogni fase indicheremo una percentuale su 100%.
+
+In questa scala, 100% significa:
+
+- app funzionante;
+- funzioni principali completate;
+- test di base superati;
+- icona e nome definitivi;
+- build Android/iOS generata;
+- materiale store pronto;
+- app pronta per Play Store o App Store.
+
+Stato attuale:
+
+```text
+15%
+```
 
 ## Regole semplici
 
@@ -37,3 +58,4 @@ Expo e una piattaforma che semplifica la creazione di app mobile. Ci permette di
 - `04-check-5-prova-app.md`: istruzioni operative per provare l'app su web o telefono.
 - `05-check-6-prima-modifica.md`: istruzioni per fare la prima modifica semplice.
 - `06-check-7-salvataggio-git.md`: istruzioni per installare Git e salvare il primo stato del progetto.
+- `07-check-8-base-app.md`: riepilogo della prima base app senza schermata demo Expo.

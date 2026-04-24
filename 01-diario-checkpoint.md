@@ -431,3 +431,54 @@ Primo salvataggio creato:
 ```powershell
 git commit -m "Primo salvataggio app Expo"
 ```
+
+## Check 8: base iniziale app
+
+Stato:
+
+Superato.
+
+Obiettivo:
+
+Togliere la sensazione di template Expo e creare una base iniziale nostra.
+
+File modificati:
+
+```text
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\index.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\explore.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\_layout.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app.json
+```
+
+Cambiamenti:
+
+- Home trasformata in schermata stato progetto.
+- Tab `Explore` rinominata in `Percorso`.
+- Seconda schermata trasformata in riepilogo checkpoint.
+- Nome Expo cambiato da `app` a `AppMobile`.
+- Slug cambiato da `app` a `appmobile`.
+
+Verifica tecnica:
+
+```powershell
+npm.cmd run lint
+```
+
+Risultato:
+
+Nessun errore segnalato.
+
+Percentuale progetto:
+
+```text
+15%
+```
+
+Significato:
+
+La base tecnica funziona, ma non abbiamo ancora deciso lo scopo vero della app, le funzioni principali, il design finale, i test, le build e la pubblicazione store.
+
+Prossimo checkpoint:
+
+Check 9: scegliere lo scopo della app.
