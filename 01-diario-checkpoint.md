@@ -649,3 +649,59 @@ Percentuale progetto:
 Motivo:
 
 Il rituale non e piu solo web-first: ora ha una base di persistenza locale piu adatta a una app mobile reale.
+
+## Check 12: Archivio
+
+Stato:
+
+Superato.
+
+Obiettivo:
+
+Creare una sezione dove l'utente possa rivedere le risposte sigillate e le riflessioni sbloccate.
+
+File creati:
+
+```text
+C:\Users\intel i7 11700\Desktop\AppMobile\app\lib\daily-ritual.ts
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\archive.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\12-check-12-archivio.md
+```
+
+File aggiornati:
+
+```text
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\index.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\_layout.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\components\ui\icon-symbol.tsx
+```
+
+Cosa funziona ora:
+
+- le risposte non sono piu salvate come singola voce isolata;
+- esiste uno storico locale di risposte;
+- la Home legge la risposta del giorno dallo storico;
+- la tab `Archivio` mostra numero risposte e specchi aperti;
+- ogni risposta puo essere `Sigillata` o `Aperta`;
+- il vecchio salvataggio singolo viene migrato automaticamente.
+
+Verifiche tecniche:
+
+```powershell
+npm.cmd run lint
+npx.cmd tsc --noEmit
+```
+
+Risultato:
+
+Nessun errore segnalato.
+
+Percentuale progetto:
+
+```text
+35%
+```
+
+Motivo:
+
+La app ora ha memoria personale. Questo aumenta retention, valore percepito e senso di continuita.

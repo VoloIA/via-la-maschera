@@ -4,61 +4,20 @@ import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
-import { maskQuestions } from '@/data/mask-questions';
-import { getLocalItem, removeLocalItem, setLocalItem } from '@/lib/local-storage';
-
-const REFLECTION_DELAY_MS = 24 * 60 * 60 * 1000;
-const STORAGE_KEY = 'via-la-maschera:digital-ritual:v1';
-
-type DailyEntry = {
-  answer: string;
-  createdAt: number;
-  dateKey: string;
-  question: string;
-  reflection: string;
-  reflectionReadyAt: number;
-};
-
-function getDateKey(date = new Date()) {
-  return date.toISOString().slice(0, 10);
-}
-
-function getQuestionIndex(dateKey: string) {
-  const dayNumber = Math.floor(new Date(`${dateKey}T00:00:00`).getTime() / REFLECTION_DELAY_MS);
-
-  return dayNumber % maskQuestions.length;
-}
-
-function buildReflection(answer: string, question: string) {
-  const trimmedAnswer = answer.trim();
-  const sentence =
-    trimmedAnswer.length > 130
-      ? 'Hai risposto senza restare in superficie, e questo di solito accade quando una domanda ha toccato qualcosa che meritava spazio.'
-      : 'Hai lasciato una traccia breve, ma anche le risposte brevi a volte proteggono qualcosa di preciso.';
-
-  return [
-    sentence,
-    `La domanda era: "${question}"`,
-    'Il punto non e giudicare la risposta. Il punto e notare dove hai esitato, cosa hai scelto di dire e cosa hai lasciato appena fuori dalla porta.',
-    'Per oggi basta questo: hai tolto un millimetro di maschera. Non serve strappare tutto insieme.',
-  ].join('\n\n');
-}
-
-function formatRemainingTime(milliseconds: number) {
-  const safeMilliseconds = Math.max(milliseconds, 0);
-  const hours = Math.floor(safeMilliseconds / (60 * 60 * 1000));
-  const minutes = Math.ceil((safeMilliseconds % (60 * 60 * 1000)) / (60 * 1000));
-
-  if (hours <= 0) {
-    return `${minutes} min`;
-  }
-
-  return `${hours} h ${minutes} min`;
-}
+import {
+  type DailyEntry,
+  createDailyEntry,
+  formatRemainingTime,
+  getDateKey,
+  getEntryForDate,
+  getQuestionForDate,
+  loadDailyEntries,
+  saveDailyEntry,
+} from '@/lib/daily-ritual';
 
 export default function HomeScreen() {
   const todayKey = getDateKey();
-  const question = useMemo(() => maskQuestions[getQuestionIndex(todayKey)], [todayKey]);
+  const question = useMemo(() => getQuestionForDate(todayKey), [todayKey]);
   const [answer, setAnswer] = useState('');
   const [entry, setEntry] = useState<DailyEntry | null>(null);
   const [isLoadingEntry, setIsLoadingEntry] = useState(true);
@@ -68,31 +27,20 @@ export default function HomeScreen() {
     let isMounted = true;
 
     async function loadEntry() {
-      const savedEntry = await getLocalItem(STORAGE_KEY);
+      const savedEntries = await loadDailyEntries();
 
       if (!isMounted) {
         return;
       }
 
-      if (!savedEntry) {
-        setIsLoadingEntry(false);
-        return;
+      const todayEntry = getEntryForDate(savedEntries, todayKey);
+
+      if (todayEntry) {
+        setEntry(todayEntry);
+        setAnswer(todayEntry.answer);
       }
 
-      try {
-        const parsedEntry = JSON.parse(savedEntry) as DailyEntry;
-
-        if (parsedEntry.dateKey === todayKey) {
-          setEntry(parsedEntry);
-          setAnswer(parsedEntry.answer);
-        }
-      } catch {
-        await removeLocalItem(STORAGE_KEY);
-      } finally {
-        if (isMounted) {
-          setIsLoadingEntry(false);
-        }
-      }
+      setIsLoadingEntry(false);
     }
 
     loadEntry();
@@ -117,18 +65,10 @@ export default function HomeScreen() {
       return;
     }
 
-    const createdAt = Date.now();
-    const nextEntry: DailyEntry = {
-      answer: answer.trim(),
-      createdAt,
-      dateKey: todayKey,
-      question,
-      reflection: buildReflection(answer, question),
-      reflectionReadyAt: createdAt + REFLECTION_DELAY_MS,
-    };
+    const nextEntry = createDailyEntry(answer, question, todayKey);
 
     setEntry(nextEntry);
-    await setLocalItem(STORAGE_KEY, JSON.stringify(nextEntry));
+    await saveDailyEntry(nextEntry);
   };
 
   return (
@@ -152,7 +92,7 @@ export default function HomeScreen() {
           <ThemedText type="defaultSemiBold" style={styles.eyebrow}>
             Domanda del giorno
           </ThemedText>
-          <ThemedText style={styles.badge}>25%</ThemedText>
+          <ThemedText style={styles.badge}>35%</ThemedText>
         </View>
 
         <ThemedText type="title" style={styles.question}>
