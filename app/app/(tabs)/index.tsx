@@ -9,6 +9,7 @@ const projectSteps = [
   'Progetto Expo creato',
   'App avviata nel browser',
   'Primo salvataggio Git completato',
+  'Idea misteriosa scelta',
 ];
 
 export default function HomeScreen() {
@@ -18,21 +19,21 @@ export default function HomeScreen() {
       headerImage={
         <View style={styles.headerContent}>
           <ThemedText lightColor="#FFFFFF" darkColor="#FFFFFF" style={styles.kicker}>
-            AppMobile
+            Soglia
           </ThemedText>
           <ThemedText type="title" lightColor="#FFFFFF" darkColor="#FFFFFF" style={styles.headerTitle}>
-            La mia prima app
+            Il segnale di oggi
           </ThemedText>
           <ThemedText lightColor="#D9FFFB" darkColor="#D9FFFB" style={styles.headerText}>
-            Base iniziale pronta: ora possiamo decidere funzioni, utenti e schermate.
+            Una piccola traccia quotidiana. Sottile, ambigua, forse solo una coincidenza.
           </ThemedText>
         </View>
       }>
       <ThemedView style={styles.section}>
         <ThemedText type="subtitle">Stato progetto</ThemedText>
         <ThemedText>
-          Siamo nella fase in cui il progetto funziona, e abbiamo iniziato a sostituire la demo
-          di Expo con contenuti nostri.
+          Soglia sara una app di intrattenimento misterioso: ogni giorno rivela un segnale da
+          interpretare, conservare e collegare agli altri frammenti.
         </ThemedText>
       </ThemedView>
 
@@ -42,7 +43,7 @@ export default function HomeScreen() {
           <View style={styles.progressFill} />
         </View>
         <ThemedText type="title" style={styles.progressNumber}>
-          15%
+          20%
         </ThemedText>
       </ThemedView>
 
@@ -57,10 +58,10 @@ export default function HomeScreen() {
       </ThemedView>
 
       <ThemedView style={styles.section}>
-        <ThemedText type="subtitle">Prossima decisione</ThemedText>
+        <ThemedText type="subtitle">Primo rituale</ThemedText>
         <ThemedText>
-          Il prossimo checkpoint serve a scegliere che problema deve risolvere la app. Da quella
-          scelta nasceranno schermate e funzioni vere.
+          Il prossimo checkpoint costruira il primo gesto di Soglia: toccare, rivelare il segnale
+          del giorno e salvarlo in archivio.
         </ThemedText>
       </ThemedView>
     </ParallaxScrollView>
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
   progressFill: {
     backgroundColor: '#0F766E',
     height: '100%',
-    width: '15%',
+    width: '20%',
   },
   progressNumber: {
     color: '#0F766E',

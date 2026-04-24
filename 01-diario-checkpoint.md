@@ -482,3 +482,41 @@ La base tecnica funziona, ma non abbiamo ancora deciso lo scopo vero della app, 
 Prossimo checkpoint:
 
 Check 9: scegliere lo scopo della app.
+
+## Check 9: scelta dello scopo della app
+
+Stato:
+
+Superato.
+
+Obiettivo:
+
+Decidere che app vogliamo costruire davvero.
+
+Perche questo passaggio e importante:
+
+Prima di aggiungere funzioni, schermate o grafica, dobbiamo sapere quale problema deve risolvere la app.
+
+Decisioni prese:
+
+- Nome provvisorio: `Soglia`.
+- Categoria: intrattenimento misterioso, sottile, quotidiano.
+- Pubblico: persone curiose, Gen Z/millennial, utenti attratti da mistero, rituali digitali, enigmi leggeri, estetica liminale.
+- Promessa: ogni giorno la app mostra un piccolo segnale inspiegabile, una traccia narrativa o una coincidenza da interpretare.
+- Prime funzioni: segnale giornaliero, archivio anomalie, serie/streak di frammenti.
+- Login: no nella prima versione.
+- Dati: salvataggio locale nella prima versione.
+
+Percentuale progetto:
+
+```text
+20%
+```
+
+Motivo:
+
+Abbiamo scelto una direzione di prodotto precisa e coerente con intrattenimento, retention e sviluppo semplice.
+
+Prossimo checkpoint:
+
+Check 10: costruire la prima schermata interattiva di Soglia.

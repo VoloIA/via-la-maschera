@@ -9,12 +9,13 @@ const checkpoints = [
   { label: 'Check 3-5', text: 'Progetto Expo creato, avviato e visto nel browser.' },
   { label: 'Check 6-7', text: 'Prima modifica fatta e primo salvataggio Git creato.' },
   { label: 'Check 8', text: 'Schermata demo sostituita con una base iniziale nostra.' },
+  { label: 'Check 9', text: 'Scelta app: Soglia, intrattenimento misterioso quotidiano.' },
 ];
 
 const nextPhases = [
-  "Scegliere lo scopo dell'app",
-  'Disegnare le schermate principali',
-  'Costruire le prime funzioni',
+  'Costruire il segnale giornaliero',
+  'Creare archivio anomalie',
+  'Aggiungere frammenti rari',
   'Preparare icona, nome, privacy e build store',
 ];
 
@@ -28,7 +29,7 @@ export default function JourneyScreen() {
             Percorso
           </ThemedText>
           <ThemedText type="title" lightColor="#FFFFFF" darkColor="#FFFFFF" style={styles.headerTitle}>
-            La ricetta della app
+            La ricetta di Soglia
           </ThemedText>
           <ThemedText lightColor="#DCEBFF" darkColor="#DCEBFF" style={styles.headerText}>
             Ogni checkpoint chiude un passaggio e rende il progetto piu stabile.
@@ -61,10 +62,10 @@ export default function JourneyScreen() {
       </ThemedView>
 
       <ThemedView style={styles.notePanel}>
-        <ThemedText type="defaultSemiBold">Percentuale attuale: 15%</ThemedText>
+        <ThemedText type="defaultSemiBold">Percentuale attuale: 20%</ThemedText>
         <ThemedText>
-          La base tecnica esiste. Per arrivare al 100% servono ancora idea definitiva, funzioni,
-          test, build e pubblicazione negli store.
+          La base tecnica esiste e ora abbiamo scelto un prodotto di intrattenimento. Per arrivare
+          al 100% servono funzioni reali, atmosfera, test, build e pubblicazione negli store.
         </ThemedText>
       </ThemedView>
     </ParallaxScrollView>

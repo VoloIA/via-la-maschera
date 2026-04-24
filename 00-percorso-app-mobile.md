@@ -20,6 +20,7 @@ Expo e una piattaforma che semplifica la creazione di app mobile. Ci permette di
 6. Check 6: fare la prima modifica semplice. Completato.
 7. Check 7: salvare le modifiche importanti e continuare in modo ordinato. Completato.
 8. Check 8: sostituire la schermata demo di Expo con una base iniziale nostra. Completato.
+9. Check 9: scegliere lo scopo vero della app. Completato.
 
 ## Percentuale progetto
 
@@ -38,7 +39,7 @@ In questa scala, 100% significa:
 Stato attuale:
 
 ```text
-15%
+20%
 ```
 
 ## Regole semplici
@@ -59,3 +60,5 @@ Stato attuale:
 - `05-check-6-prima-modifica.md`: istruzioni per fare la prima modifica semplice.
 - `06-check-7-salvataggio-git.md`: istruzioni per installare Git e salvare il primo stato del progetto.
 - `07-check-8-base-app.md`: riepilogo della prima base app senza schermata demo Expo.
+- `08-check-9-scelta-app.md`: scheda per decidere scopo, utenti e prima versione della app.
+- `09-analisi-mercato-soglia.md`: analisi mercato e scelta della app di intrattenimento misteriosa.
