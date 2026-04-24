@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "Soglia",
-    "slug": "soglia",
+    "name": "Via la Maschera",
+    "slug": "via-la-maschera",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "soglia",
+    "scheme": "vialamaschera",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {

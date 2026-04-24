@@ -3,55 +3,43 @@ import { StyleSheet, View } from 'react-native';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { maskQuestions } from '@/data/mask-questions';
 
-const checkpoints = [
-  { label: 'Check 1-2', text: 'Cartella pronta, Node.js e npm verificati.' },
-  { label: 'Check 3-5', text: 'Progetto Expo creato, avviato e visto nel browser.' },
-  { label: 'Check 6-7', text: 'Prima modifica fatta e primo salvataggio Git creato.' },
-  { label: 'Check 8', text: 'Schermata demo sostituita con una base iniziale nostra.' },
-  { label: 'Check 9', text: 'Scelta app: Soglia, intrattenimento misterioso quotidiano.' },
+const productLoop = [
+  'Domanda giornaliera',
+  'Risposta sigillata',
+  'Riflessione dopo 24 ore',
+  'Archivio personale',
+  'Serie di maschere sbloccabili',
 ];
 
-const nextPhases = [
-  'Costruire il segnale giornaliero',
-  'Creare archivio anomalie',
-  'Aggiungere frammenti rari',
-  'Preparare icona, nome, privacy e build store',
+const monetization = [
+  'Gratis: una domanda al giorno',
+  'Premium futuro: percorsi tematici',
+  'Premium futuro: riflessioni AI piu profonde',
+  'Premium futuro: archivio avanzato',
 ];
 
 export default function JourneyScreen() {
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#1E3A5F', dark: '#172334' }}
+      headerBackgroundColor={{ light: '#331A42', dark: '#170D20' }}
       headerImage={
         <View style={styles.headerContent}>
-          <ThemedText lightColor="#FFFFFF" darkColor="#FFFFFF" style={styles.kicker}>
-            Percorso
+          <ThemedText lightColor="#F4E8FF" darkColor="#F4E8FF" style={styles.kicker}>
+            Dietro il rito
           </ThemedText>
           <ThemedText type="title" lightColor="#FFFFFF" darkColor="#FFFFFF" style={styles.headerTitle}>
-            La ricetta di Soglia
+            Perche torna in mente
           </ThemedText>
-          <ThemedText lightColor="#DCEBFF" darkColor="#DCEBFF" style={styles.headerText}>
-            Ogni checkpoint chiude un passaggio e rende il progetto piu stabile.
+          <ThemedText lightColor="#E8D8F6" darkColor="#E8D8F6" style={styles.headerText}>
+            Via la Maschera usa attesa, scarsita e domande intime per creare ritorno quotidiano.
           </ThemedText>
         </View>
       }>
       <ThemedView style={styles.section}>
-        <ThemedText type="subtitle">Checkpoint completati</ThemedText>
-        {checkpoints.map((checkpoint) => (
-          <View key={checkpoint.label} style={styles.timelineRow}>
-            <View style={styles.timelineMarker} />
-            <View style={styles.timelineText}>
-              <ThemedText type="defaultSemiBold">{checkpoint.label}</ThemedText>
-              <ThemedText>{checkpoint.text}</ThemedText>
-            </View>
-          </View>
-        ))}
-      </ThemedView>
-
-      <ThemedView style={styles.section}>
-        <ThemedText type="subtitle">Prossime fasi</ThemedText>
-        {nextPhases.map((phase, index) => (
+        <ThemedText type="subtitle">Loop magnetico</ThemedText>
+        {productLoop.map((phase, index) => (
           <View key={phase} style={styles.phaseRow}>
             <ThemedText type="defaultSemiBold" style={styles.phaseNumber}>
               {index + 1}
@@ -62,10 +50,27 @@ export default function JourneyScreen() {
       </ThemedView>
 
       <ThemedView style={styles.notePanel}>
-        <ThemedText type="defaultSemiBold">Percentuale attuale: 20%</ThemedText>
+        <ThemedText type="subtitle">Basso costo API</ThemedText>
         <ThemedText>
-          La base tecnica esiste e ora abbiamo scelto un prodotto di intrattenimento. Per arrivare
-          al 100% servono funzioni reali, atmosfera, test, build e pubblicazione negli store.
+          La prima versione usa domande pre-caricate e riflessioni locali. L AI puo arrivare dopo,
+          solo una volta per risposta e solo per utenti premium o test selezionati.
+        </ThemedText>
+      </ThemedView>
+
+      <ThemedView style={styles.section}>
+        <ThemedText type="subtitle">Monetizzazione futura</ThemedText>
+        {monetization.map((item) => (
+          <View key={item} style={styles.bulletRow}>
+            <View style={styles.dot} />
+            <ThemedText>{item}</ThemedText>
+          </View>
+        ))}
+      </ThemedView>
+
+      <ThemedView style={styles.notePanel}>
+        <ThemedText type="defaultSemiBold">Domande caricate: {maskQuestions.length}</ThemedText>
+        <ThemedText>
+          Questo basta per quasi due mesi di rituale giornaliero senza generare contenuti via API.
         </ThemedText>
       </ThemedView>
     </ParallaxScrollView>
@@ -76,7 +81,7 @@ const styles = StyleSheet.create({
   headerContent: {
     bottom: 28,
     left: 28,
-    maxWidth: 520,
+    maxWidth: 560,
     position: 'absolute',
     right: 28,
   },
@@ -98,40 +103,36 @@ const styles = StyleSheet.create({
   section: {
     gap: 14,
   },
-  timelineRow: {
-    flexDirection: 'row',
-    gap: 12,
-  },
-  timelineMarker: {
-    backgroundColor: '#1E3A5F',
-    borderRadius: 6,
-    height: 12,
-    marginTop: 6,
-    width: 12,
-  },
-  timelineText: {
-    flex: 1,
-    gap: 2,
-  },
   phaseRow: {
     alignItems: 'center',
     flexDirection: 'row',
     gap: 12,
   },
   phaseNumber: {
-    backgroundColor: '#DCEBFF',
+    backgroundColor: '#EFE4F7',
     borderRadius: 8,
-    color: '#1E3A5F',
+    color: '#5A2D82',
     height: 32,
     lineHeight: 32,
     textAlign: 'center',
     width: 32,
   },
   notePanel: {
-    borderColor: '#1E3A5F',
+    borderColor: '#5A2D82',
     borderRadius: 8,
     borderWidth: 1,
     gap: 8,
     padding: 16,
+  },
+  bulletRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 10,
+  },
+  dot: {
+    backgroundColor: '#5A2D82',
+    borderRadius: 5,
+    height: 10,
+    width: 10,
   },
 });

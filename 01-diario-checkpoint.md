@@ -499,11 +499,11 @@ Prima di aggiungere funzioni, schermate o grafica, dobbiamo sapere quale problem
 
 Decisioni prese:
 
-- Nome provvisorio: `Soglia`.
-- Categoria: intrattenimento misterioso, sottile, quotidiano.
-- Pubblico: persone curiose, Gen Z/millennial, utenti attratti da mistero, rituali digitali, enigmi leggeri, estetica liminale.
-- Promessa: ogni giorno la app mostra un piccolo segnale inspiegabile, una traccia narrativa o una coincidenza da interpretare.
-- Prime funzioni: segnale giornaliero, archivio anomalie, serie/streak di frammenti.
+- Nome: `Via la Maschera`.
+- Categoria: intrattenimento introspettivo, misterioso, quotidiano.
+- Pubblico: persone curiose, utenti attratti da domande psicologiche, rituali digitali, auto-riflessione e contenuti intimi ma leggeri.
+- Promessa: ogni giorno la app fa una domanda personale; dopo 24 ore restituisce una riflessione incoraggiante e sottile.
+- Prime funzioni: domanda giornaliera, risposta sigillata, riflessione posticipata, archivio futuro.
 - Login: no nella prima versione.
 - Dati: salvataggio locale nella prima versione.
 
@@ -519,4 +519,71 @@ Abbiamo scelto una direzione di prodotto precisa e coerente con intrattenimento,
 
 Prossimo checkpoint:
 
-Check 10: costruire la prima schermata interattiva di Soglia.
+Check 10: costruire il primo rituale di Via la Maschera.
+
+## Check 10: primo rituale Via la Maschera
+
+Stato:
+
+Superato.
+
+Obiettivo:
+
+Costruire una prima esperienza reale:
+
+```text
+Domanda del giorno -> risposta -> attesa 24 ore -> riflessione incoraggiante
+```
+
+File principali modificati:
+
+```text
+C:\Users\intel i7 11700\Desktop\AppMobile\app\data\mask-questions.ts
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\index.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\explore.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\_layout.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app.json
+```
+
+Cosa funziona ora:
+
+- la app si chiama `Via la Maschera`;
+- contiene le domande fornite dall'utente;
+- mostra una domanda giornaliera;
+- permette di scrivere una risposta;
+- sigilla la risposta;
+- prepara una riflessione locale;
+- mostra la riflessione solo dopo 24 ore;
+- evita costi API nella prima versione.
+
+Strategia API:
+
+Nella prima versione non usiamo API AI a pagamento.
+
+In futuro potremo usare AI solo per:
+
+- utenti premium;
+- una sola riflessione per risposta;
+- contenuti salvati in cache;
+- test controllati.
+
+Verifiche tecniche:
+
+```powershell
+npm.cmd run lint
+npx.cmd tsc --noEmit
+```
+
+Risultato:
+
+Nessun errore segnalato.
+
+Percentuale progetto:
+
+```text
+25%
+```
+
+Motivo:
+
+Ora esiste una prima meccanica reale, non solo una schermata statica.
