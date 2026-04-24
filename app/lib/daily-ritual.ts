@@ -1,4 +1,6 @@
 import { maskQuestions } from '@/data/mask-questions';
+import { type MaskPathId } from '@/data/mask-paths';
+import { getMaskPathForQuestionIndex } from '@/data/question-paths';
 import { getLocalItem, removeLocalItem, setLocalItem } from '@/lib/local-storage';
 
 export const REFLECTION_DELAY_MS = 24 * 60 * 60 * 1000;
@@ -11,12 +13,13 @@ export type DailyEntry = {
   createdAt: number;
   dateKey: string;
   id: string;
+  pathId: MaskPathId;
   question: string;
   reflection: string;
   reflectionReadyAt: number;
 };
 
-type LegacyDailyEntry = Omit<DailyEntry, 'id'>;
+type LegacyDailyEntry = Omit<DailyEntry, 'id' | 'pathId'> & Partial<Pick<DailyEntry, 'pathId'>>;
 
 export function getDateKey(date = new Date()) {
   return date.toISOString().slice(0, 10);
@@ -30,6 +33,10 @@ export function getQuestionIndex(dateKey: string) {
 
 export function getQuestionForDate(dateKey: string) {
   return maskQuestions[getQuestionIndex(dateKey)];
+}
+
+export function getMaskPathForDate(dateKey: string) {
+  return getMaskPathForQuestionIndex(getQuestionIndex(dateKey));
 }
 
 export function buildReflection(answer: string, question: string) {
@@ -67,6 +74,7 @@ function normalizeEntry(entry: DailyEntry | LegacyDailyEntry): DailyEntry {
   return {
     ...entry,
     id: `${entry.dateKey}-${entry.createdAt}`,
+    pathId: entry.pathId ?? getMaskPathForDate(entry.dateKey).id,
   };
 }
 
@@ -129,6 +137,7 @@ export function createDailyEntry(answer: string, question: string, dateKey: stri
     createdAt,
     dateKey,
     id: `${dateKey}-${createdAt}`,
+    pathId: getMaskPathForDate(dateKey).id,
     question,
     reflection: buildReflection(answer, question),
     reflectionReadyAt: createdAt + REFLECTION_DELAY_MS,

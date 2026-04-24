@@ -5,6 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { getMaskPathById } from '@/data/question-paths';
 import { type DailyEntry, formatRemainingTime, loadDailyEntries } from '@/lib/daily-ritual';
 
 function formatDate(dateKey: string) {
@@ -95,6 +96,7 @@ export default function ArchiveScreen() {
 
       {entries.map((entry) => {
         const isReflectionReady = now >= entry.reflectionReadyAt;
+        const maskPath = getMaskPathById(entry.pathId);
 
         return (
           <ThemedView key={entry.id} style={styles.entryCard}>
@@ -102,6 +104,15 @@ export default function ArchiveScreen() {
               <ThemedText type="defaultSemiBold">{formatDate(entry.dateKey)}</ThemedText>
               <ThemedText style={isReflectionReady ? styles.openBadge : styles.lockedBadge}>
                 {isReflectionReady ? 'Aperta' : 'Sigillata'}
+              </ThemedText>
+            </View>
+
+            <View style={styles.pathRow}>
+              <View style={[styles.pathMark, { backgroundColor: maskPath.accent }]} />
+              <ThemedText
+                type="defaultSemiBold"
+                style={[styles.pathTitle, { color: maskPath.accent }]}>
+                Maschera {maskPath.title}
               </ThemedText>
             </View>
 
@@ -210,6 +221,19 @@ const styles = StyleSheet.create({
   },
   answerPreview: {
     color: '#6F6478',
+  },
+  pathRow: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 10,
+  },
+  pathMark: {
+    borderRadius: 999,
+    height: 10,
+    width: 36,
+  },
+  pathTitle: {
+    flex: 1,
   },
   reflectionPanel: {
     borderColor: '#BFE6D4',

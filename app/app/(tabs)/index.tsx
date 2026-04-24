@@ -10,6 +10,7 @@ import {
   formatRemainingTime,
   getDateKey,
   getEntryForDate,
+  getMaskPathForDate,
   getQuestionForDate,
   loadDailyEntries,
   saveDailyEntry,
@@ -18,6 +19,7 @@ import {
 export default function HomeScreen() {
   const todayKey = getDateKey();
   const question = useMemo(() => getQuestionForDate(todayKey), [todayKey]);
+  const maskPath = useMemo(() => getMaskPathForDate(todayKey), [todayKey]);
   const [answer, setAnswer] = useState('');
   const [entry, setEntry] = useState<DailyEntry | null>(null);
   const [isLoadingEntry, setIsLoadingEntry] = useState(true);
@@ -90,9 +92,16 @@ export default function HomeScreen() {
       <ThemedView style={styles.ritualCard}>
         <View style={styles.cardHeader}>
           <ThemedText type="defaultSemiBold" style={styles.eyebrow}>
-            Domanda del giorno
+            Maschera {maskPath.title}
           </ThemedText>
-          <ThemedText style={styles.badge}>40%</ThemedText>
+          <ThemedText style={styles.badge}>45%</ThemedText>
+        </View>
+
+        <View style={styles.pathStrip}>
+          <View style={[styles.pathMark, { backgroundColor: maskPath.accent }]} />
+          <ThemedText type="defaultSemiBold" style={[styles.pathSignal, { color: maskPath.accent }]}>
+            {maskPath.signal}
+          </ThemedText>
         </View>
 
         <ThemedText type="title" style={styles.question}>
@@ -216,6 +225,19 @@ const styles = StyleSheet.create({
   },
   question: {
     lineHeight: 38,
+  },
+  pathStrip: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    gap: 10,
+  },
+  pathMark: {
+    borderRadius: 999,
+    height: 12,
+    width: 40,
+  },
+  pathSignal: {
+    flex: 1,
   },
   smallText: {
     color: '#6F6478',

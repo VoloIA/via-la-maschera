@@ -768,3 +768,59 @@ Percentuale progetto:
 Motivo:
 
 Ora l'app non ha solo rituale e archivio, ma anche una struttura di prodotto ampliabile e monetizzabile.
+
+## Check 14: domande collegate alle maschere
+
+Stato:
+
+Superato.
+
+Obiettivo:
+
+Collegare ogni domanda a una maschera emotiva, cosi Home e Archivio diventano piu personali.
+
+File creato:
+
+```text
+C:\Users\intel i7 11700\Desktop\AppMobile\app\data\question-paths.ts
+```
+
+File aggiornati:
+
+```text
+C:\Users\intel i7 11700\Desktop\AppMobile\app\data\mask-paths.ts
+C:\Users\intel i7 11700\Desktop\AppMobile\app\lib\daily-ritual.ts
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\index.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\archive.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\explore.tsx
+```
+
+Cosa funziona ora:
+
+- ogni domanda ha un percorso emotivo;
+- ogni risposta salvata contiene `pathId`;
+- la Home mostra la maschera del giorno;
+- l'Archivio mostra la maschera di ogni risposta;
+- le vecchie risposte vengono normalizzate automaticamente;
+- la tab Percorsi conta le domande dalla mappa reale.
+
+Verifiche tecniche:
+
+```powershell
+npm.cmd run lint
+npx.cmd tsc --noEmit
+```
+
+Risultato:
+
+Nessun errore segnalato.
+
+Percentuale progetto:
+
+```text
+45%
+```
+
+Motivo:
+
+Ora l'app ha una tassonomia emotiva reale: le risposte non sono solo archiviate, ma classificate.

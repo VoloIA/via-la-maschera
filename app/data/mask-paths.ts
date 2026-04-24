@@ -1,7 +1,9 @@
+export type MaskPathId = 'amore' | 'paura' | 'successo' | 'solitudine' | 'senso' | 'ombra';
+
 export type MaskPath = {
   accent: string;
   description: string;
-  id: string;
+  id: MaskPathId;
   locked?: boolean;
   questionCount: number;
   signal: string;

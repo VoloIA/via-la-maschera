@@ -4,6 +4,11 @@ import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { maskPaths } from '@/data/mask-paths';
+import { questionPathIds } from '@/data/question-paths';
+
+function getQuestionCount(pathId: string) {
+  return questionPathIds.filter((questionPathId) => questionPathId === pathId).length;
+}
 
 export default function PathsScreen() {
   return (
@@ -41,7 +46,7 @@ export default function PathsScreen() {
             <View style={styles.pathHeader}>
               <View style={[styles.pathMark, { backgroundColor: path.accent }]} />
               <ThemedText style={path.locked ? styles.lockedBadge : styles.openBadge}>
-                {path.locked ? 'Presto' : `${path.questionCount} domande`}
+                {path.locked ? 'Presto' : `${getQuestionCount(path.id)} domande`}
               </ThemedText>
             </View>
 
