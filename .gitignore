@@ -1,0 +1,29 @@
+# dependencies
+app/node_modules/
+
+# Expo and build output
+app/.expo/
+app/dist/
+app/web-build/
+app/expo-env.d.ts
+
+# local caches
+.npm-cache/
+
+# logs
+*.log
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# local environment files
+.env
+.env.*
+
+# screenshots and local notes
+Screenshot *.png
+
+# operating system files
+.DS_Store
+Thumbs.db
+
