@@ -26,6 +26,7 @@ Expo e una piattaforma che semplifica la creazione di app mobile. Ci permette di
 12. Check 12: creare l'Archivio delle risposte e riflessioni. Completato.
 13. Check 13: creare i Percorsi di Maschera. Completato.
 14. Check 14: collegare ogni domanda a una maschera emotiva. Completato.
+15. Check 15: integrare logo e identita visiva. Completato.
 
 ## Percentuale progetto
 
@@ -44,7 +45,7 @@ In questa scala, 100% significa:
 Stato attuale:
 
 ```text
-45%
+50%
 ```
 
 ## Regole semplici
@@ -72,3 +73,4 @@ Stato attuale:
 - `12-check-12-archivio.md`: riepilogo dell'Archivio e dello storico risposte.
 - `13-check-13-percorsi.md`: riepilogo dei Percorsi di Maschera e della struttura premium futura.
 - `14-check-14-domande-maschere.md`: riepilogo della mappatura domande-percorsi emotivi.
+- `15-check-15-logo-branding.md`: riepilogo del logo, icone e identita visiva.

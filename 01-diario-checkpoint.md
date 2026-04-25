@@ -824,3 +824,77 @@ Percentuale progetto:
 Motivo:
 
 Ora l'app ha una tassonomia emotiva reale: le risposte non sono solo archiviate, ma classificate.
+
+## Check 15: logo e identita visiva
+
+Stato:
+
+Superato.
+
+Obiettivo:
+
+Integrare il logo fornito dall'utente e sostituire gli asset visuali principali del template Expo.
+
+File sorgente ricevuto:
+
+```text
+C:\Users\intel i7 11700\Desktop\AppMobile\logo3.svg
+```
+
+Asset generati:
+
+```text
+C:\Users\intel i7 11700\Desktop\AppMobile\app\assets\images\via-la-maschera-logo.png
+C:\Users\intel i7 11700\Desktop\AppMobile\app\assets\images\via-la-maschera-logo-light.png
+C:\Users\intel i7 11700\Desktop\AppMobile\app\assets\images\via-la-maschera-logo.svg
+C:\Users\intel i7 11700\Desktop\AppMobile\app\assets\images\icon.png
+C:\Users\intel i7 11700\Desktop\AppMobile\app\assets\images\splash-icon.png
+C:\Users\intel i7 11700\Desktop\AppMobile\app\assets\images\favicon.png
+C:\Users\intel i7 11700\Desktop\AppMobile\app\assets\images\android-icon-background.png
+C:\Users\intel i7 11700\Desktop\AppMobile\app\assets\images\android-icon-foreground.png
+C:\Users\intel i7 11700\Desktop\AppMobile\app\assets\images\android-icon-monochrome.png
+```
+
+File aggiornati:
+
+```text
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app.json
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\index.tsx
+```
+
+Script creato:
+
+```text
+C:\Users\intel i7 11700\Desktop\AppMobile\app\scripts\generate-brand-assets.mjs
+```
+
+Cosa cambia:
+
+- la Home mostra il logo;
+- icona app sostituita;
+- splash icon sostituita;
+- favicon sostituita;
+- adaptive icon Android aggiornata;
+- colore splash aggiornato al viola scuro del brand;
+- percentuale visibile portata a 50%.
+
+Verifiche tecniche:
+
+```powershell
+npm.cmd run lint
+npx.cmd tsc --noEmit
+```
+
+Risultato:
+
+Nessun errore segnalato.
+
+Percentuale progetto:
+
+```text
+50%
+```
+
+Motivo:
+
+La app ora ha una identita visiva riconoscibile, non solo funzionalita.

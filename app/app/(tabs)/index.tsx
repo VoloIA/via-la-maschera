@@ -1,3 +1,4 @@
+import { Image } from 'expo-image';
 import { useEffect, useMemo, useState } from 'react';
 import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 
@@ -78,6 +79,10 @@ export default function HomeScreen() {
       headerBackgroundColor={{ light: '#251433', dark: '#160D22' }}
       headerImage={
         <View style={styles.headerContent}>
+          <Image
+            source={require('@/assets/images/via-la-maschera-logo-light.png')}
+            style={styles.headerLogo}
+          />
           <ThemedText lightColor="#F4E8FF" darkColor="#F4E8FF" style={styles.kicker}>
             Via la Maschera
           </ThemedText>
@@ -94,7 +99,7 @@ export default function HomeScreen() {
           <ThemedText type="defaultSemiBold" style={styles.eyebrow}>
             Maschera {maskPath.title}
           </ThemedText>
-          <ThemedText style={styles.badge}>45%</ThemedText>
+          <ThemedText style={styles.badge}>50%</ThemedText>
         </View>
 
         <View style={styles.pathStrip}>
@@ -182,6 +187,11 @@ const styles = StyleSheet.create({
     maxWidth: 560,
     position: 'absolute',
     right: 28,
+  },
+  headerLogo: {
+    height: 76,
+    marginBottom: 12,
+    width: 76,
   },
   kicker: {
     fontSize: 14,
