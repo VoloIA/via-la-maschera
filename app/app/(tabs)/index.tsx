@@ -5,6 +5,7 @@ import { Pressable, StyleSheet, TextInput, View } from 'react-native';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { BrandColors, BrandCopy } from '@/constants/brand';
 import {
   type DailyEntry,
   createDailyEntry,
@@ -76,7 +77,7 @@ export default function HomeScreen() {
 
   return (
     <ParallaxScrollView
-      headerBackgroundColor={{ light: '#251433', dark: '#160D22' }}
+      headerBackgroundColor={{ light: BrandColors.primaryDark, dark: '#160D22' }}
       headerImage={
         <View style={styles.headerContent}>
           <Image
@@ -84,10 +85,10 @@ export default function HomeScreen() {
             style={styles.headerLogo}
           />
           <ThemedText lightColor="#F4E8FF" darkColor="#F4E8FF" style={styles.kicker}>
-            Via la Maschera
+            {BrandCopy.projectName}
           </ThemedText>
           <ThemedText type="title" lightColor="#FFFFFF" darkColor="#FFFFFF" style={styles.headerTitle}>
-            Una domanda. Poi silenzio.
+            {BrandCopy.promise}
           </ThemedText>
           <ThemedText lightColor="#E8D8F6" darkColor="#E8D8F6" style={styles.headerText}>
             Rispondi oggi. Domani la app ti restituisce uno specchio gentile.
@@ -99,7 +100,7 @@ export default function HomeScreen() {
           <ThemedText type="defaultSemiBold" style={styles.eyebrow}>
             Maschera {maskPath.title}
           </ThemedText>
-          <ThemedText style={styles.badge}>50%</ThemedText>
+          <ThemedText style={styles.badge}>Sigillo</ThemedText>
         </View>
 
         <View style={styles.pathStrip}>
@@ -116,7 +117,7 @@ export default function HomeScreen() {
         <ThemedText style={styles.smallText}>
           {isLoadingEntry
             ? 'Sto riaprendo il sigillo di oggi...'
-            : 'Intrattenimento introspettivo, non terapia. Scrivi senza fare bella figura.'}
+            : 'Non serve scrivere bene. Serve scrivere vero, anche poco.'}
         </ThemedText>
 
         <TextInput
@@ -148,7 +149,7 @@ export default function HomeScreen() {
             <ThemedText type="defaultSemiBold">Risposta sigillata</ThemedText>
             <ThemedText>
               La riflessione si apre tra {remainingTime}. Questo ritardo e parte del rituale:
-              impedisce alla app di diventare una gratificazione immediata qualsiasi.
+              lascia alla risposta il tempo di cambiare temperatura.
             </ThemedText>
           </ThemedView>
         )}
@@ -161,18 +162,18 @@ export default function HomeScreen() {
         </ThemedView>
       ) : (
         <ThemedView style={styles.section}>
-          <ThemedText type="subtitle">Come trattiene le persone</ThemedText>
+          <ThemedText type="subtitle">Il rito</ThemedText>
           <View style={styles.stepRow}>
             <View style={styles.stepDot} />
-            <ThemedText>Una sola domanda al giorno: scarsita e attesa.</ThemedText>
+            <ThemedText>Una sola domanda al giorno.</ThemedText>
           </View>
           <View style={styles.stepRow}>
             <View style={styles.stepDot} />
-            <ThemedText>La risposta viene riletta dopo 24 ore, quando fa meno rumore.</ThemedText>
+            <ThemedText>La risposta resta chiusa per 24 ore.</ThemedText>
           </View>
           <View style={styles.stepRow}>
             <View style={styles.stepDot} />
-            <ThemedText>Le riflessioni partono locali: poche API, costi bassi.</ThemedText>
+            <ThemedText>Domani torna come uno specchio gentile.</ThemedText>
           </View>
         </ThemedView>
       )}
@@ -209,7 +210,8 @@ const styles = StyleSheet.create({
     lineHeight: 25,
   },
   ritualCard: {
-    borderColor: '#5A2D82',
+    backgroundColor: BrandColors.surface,
+    borderColor: BrandColors.primary,
     borderRadius: 8,
     borderWidth: 1,
     gap: 16,
@@ -221,13 +223,13 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   eyebrow: {
-    color: '#7B3FB2',
+    color: BrandColors.violet,
     textTransform: 'uppercase',
   },
   badge: {
-    backgroundColor: '#EFE4F7',
+    backgroundColor: BrandColors.primarySoft,
     borderRadius: 999,
-    color: '#5A2D82',
+    color: BrandColors.primary,
     fontWeight: '700',
     overflow: 'hidden',
     paddingHorizontal: 10,
@@ -250,24 +252,25 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   smallText: {
-    color: '#6F6478',
+    color: BrandColors.muted,
   },
   input: {
+    backgroundColor: '#FCFAFD',
     borderColor: '#C9B6D8',
     borderRadius: 8,
     borderWidth: 1,
-    color: '#24152E',
+    color: BrandColors.ink,
     fontSize: 16,
     lineHeight: 24,
     minHeight: 150,
     padding: 14,
   },
   inputLocked: {
-    backgroundColor: '#F7F1FA',
+    backgroundColor: BrandColors.primarySoft,
   },
   primaryButton: {
     alignItems: 'center',
-    backgroundColor: '#5A2D82',
+    backgroundColor: BrandColors.primary,
     borderRadius: 8,
     minHeight: 48,
     justifyContent: 'center',
@@ -280,14 +283,15 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   lockedPanel: {
-    borderColor: '#D9C6E8',
+    borderColor: BrandColors.border,
     borderRadius: 8,
     borderWidth: 1,
     gap: 8,
     padding: 14,
   },
   reflectionCard: {
-    borderColor: '#2F765C',
+    backgroundColor: BrandColors.surface,
+    borderColor: BrandColors.teal,
     borderRadius: 8,
     borderWidth: 1,
     gap: 12,
@@ -302,7 +306,7 @@ const styles = StyleSheet.create({
     gap: 10,
   },
   stepDot: {
-    backgroundColor: '#5A2D82',
+    backgroundColor: BrandColors.primary,
     borderRadius: 5,
     height: 10,
     width: 10,

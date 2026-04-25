@@ -5,6 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { BrandColors } from '@/constants/brand';
 import { getMaskPathById } from '@/data/question-paths';
 import { type DailyEntry, formatRemainingTime, loadDailyEntries } from '@/lib/daily-ritual';
 
@@ -88,7 +89,7 @@ export default function ArchiveScreen() {
         <ThemedView style={styles.emptyPanel}>
           <ThemedText type="subtitle">Ancora nessuna maschera</ThemedText>
           <ThemedText>
-            Rispondi alla domanda del giorno nella Home. Da quel momento l archivio iniziera a
+            Rispondi alla domanda del giorno nella Home. Da quel momento questo spazio iniziera a
             ricordare.
           </ThemedText>
         </ThemedView>
@@ -162,7 +163,8 @@ const styles = StyleSheet.create({
     lineHeight: 25,
   },
   statsPanel: {
-    borderColor: '#5A2D82',
+    backgroundColor: BrandColors.surface,
+    borderColor: BrandColors.primary,
     borderRadius: 8,
     borderWidth: 1,
     flexDirection: 'row',
@@ -174,23 +176,26 @@ const styles = StyleSheet.create({
     gap: 2,
   },
   statNumber: {
-    color: '#5A2D82',
+    color: BrandColors.primary,
   },
   notePanel: {
-    borderColor: '#D9C6E8',
+    backgroundColor: BrandColors.surface,
+    borderColor: BrandColors.border,
     borderRadius: 8,
     borderWidth: 1,
     padding: 16,
   },
   emptyPanel: {
-    borderColor: '#D9C6E8',
+    backgroundColor: BrandColors.surface,
+    borderColor: BrandColors.border,
     borderRadius: 8,
     borderWidth: 1,
     gap: 10,
     padding: 18,
   },
   entryCard: {
-    borderColor: '#D9C6E8',
+    backgroundColor: BrandColors.surface,
+    borderColor: BrandColors.border,
     borderRadius: 8,
     borderWidth: 1,
     gap: 12,
@@ -202,25 +207,25 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   openBadge: {
-    backgroundColor: '#E1F4EC',
+    backgroundColor: BrandColors.tealSoft,
     borderRadius: 999,
-    color: '#2F765C',
+    color: BrandColors.teal,
     fontWeight: '700',
     overflow: 'hidden',
     paddingHorizontal: 10,
     paddingVertical: 4,
   },
   lockedBadge: {
-    backgroundColor: '#EFE4F7',
+    backgroundColor: BrandColors.primarySoft,
     borderRadius: 999,
-    color: '#5A2D82',
+    color: BrandColors.primary,
     fontWeight: '700',
     overflow: 'hidden',
     paddingHorizontal: 10,
     paddingVertical: 4,
   },
   answerPreview: {
-    color: '#6F6478',
+    color: BrandColors.muted,
   },
   pathRow: {
     alignItems: 'center',
@@ -236,6 +241,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   reflectionPanel: {
+    backgroundColor: '#F1FBF6',
     borderColor: '#BFE6D4',
     borderRadius: 8,
     borderWidth: 1,
@@ -243,7 +249,8 @@ const styles = StyleSheet.create({
     padding: 12,
   },
   lockedPanel: {
-    borderColor: '#D9C6E8',
+    backgroundColor: '#FCFAFD',
+    borderColor: BrandColors.border,
     borderRadius: 8,
     borderWidth: 1,
     padding: 12,

@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { BrandColors } from '@/constants/brand';
 import { maskPaths } from '@/data/mask-paths';
 import { questionPathIds } from '@/data/question-paths';
 
@@ -29,7 +30,7 @@ export default function PathsScreen() {
       }>
       <ThemedView style={styles.featuredPanel}>
         <ThemedText type="defaultSemiBold" style={styles.featuredLabel}>
-          Percorso attivo
+          Percorso aperto
         </ThemedText>
         <ThemedText type="title" style={styles.featuredTitle}>
           Una domanda al giorno
@@ -60,10 +61,10 @@ export default function PathsScreen() {
       </View>
 
       <ThemedView style={styles.notePanel}>
-        <ThemedText type="subtitle">Perche vale</ThemedText>
+        <ThemedText type="subtitle">La stanza chiusa</ThemedText>
         <ThemedText>
-          I percorsi trasformano le domande in una collezione emotiva. In futuro potranno diventare
-          pacchetti premium senza aumentare i costi API della versione gratuita.
+          Alcune maschere restano in attesa. Non tutto deve aprirsi subito: certe porte funzionano
+          proprio perche non rispondono quando le tocchi.
         </ThemedText>
       </ThemedView>
     </ParallaxScrollView>
@@ -94,14 +95,15 @@ const styles = StyleSheet.create({
     lineHeight: 25,
   },
   featuredPanel: {
-    borderColor: '#5A2D82',
+    backgroundColor: BrandColors.surface,
+    borderColor: BrandColors.primary,
     borderRadius: 8,
     borderWidth: 1,
     gap: 8,
     padding: 18,
   },
   featuredLabel: {
-    color: '#7B3FB2',
+    color: BrandColors.violet,
     textTransform: 'uppercase',
   },
   featuredTitle: {
@@ -111,7 +113,8 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   pathCard: {
-    borderColor: '#D9C6E8',
+    backgroundColor: BrandColors.surface,
+    borderColor: BrandColors.border,
     borderRadius: 8,
     borderWidth: 1,
     gap: 10,
@@ -131,9 +134,9 @@ const styles = StyleSheet.create({
     width: 44,
   },
   openBadge: {
-    backgroundColor: '#EFE4F7',
+    backgroundColor: BrandColors.primarySoft,
     borderRadius: 999,
-    color: '#5A2D82',
+    color: BrandColors.primary,
     fontWeight: '700',
     overflow: 'hidden',
     paddingHorizontal: 10,
@@ -142,20 +145,21 @@ const styles = StyleSheet.create({
   lockedBadge: {
     backgroundColor: '#F1F1F1',
     borderRadius: 999,
-    color: '#6F6478',
+    color: BrandColors.muted,
     fontWeight: '700',
     overflow: 'hidden',
     paddingHorizontal: 10,
     paddingVertical: 4,
   },
   pathDescription: {
-    color: '#6F6478',
+    color: BrandColors.muted,
   },
   pathSignal: {
     marginTop: 2,
   },
   notePanel: {
-    borderColor: '#D9C6E8',
+    backgroundColor: BrandColors.surface,
+    borderColor: BrandColors.border,
     borderRadius: 8,
     borderWidth: 1,
     gap: 8,

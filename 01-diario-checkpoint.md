@@ -898,3 +898,59 @@ Percentuale progetto:
 Motivo:
 
 La app ora ha una identita visiva riconoscibile, non solo funzionalita.
+
+## Check 16: rifinitura UI e tono
+
+Stato:
+
+Superato.
+
+Obiettivo:
+
+Rendere l'interfaccia piu coerente, meno tecnica e piu vicina a una app reale.
+
+File creato:
+
+```text
+C:\Users\intel i7 11700\Desktop\AppMobile\app\constants\brand.ts
+```
+
+File aggiornati:
+
+```text
+C:\Users\intel i7 11700\Desktop\AppMobile\app\constants\theme.ts
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\_layout.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\index.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\explore.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\archive.tsx
+```
+
+Cosa cambia:
+
+- palette brand centralizzata;
+- tab bar piu coerente;
+- Home meno tecnica e piu rituale;
+- Percorsi meno marketing interno e piu esperienza utente;
+- Archivio rifinito con superfici, bordi e testi piu puliti;
+- rimosse dall'interfaccia frasi troppo legate al cantiere/progetto.
+
+Verifiche tecniche:
+
+```powershell
+npm.cmd run lint
+npx.cmd tsc --noEmit
+```
+
+Risultato:
+
+Nessun errore segnalato.
+
+Percentuale progetto:
+
+```text
+55%
+```
+
+Motivo:
+
+La app ora ha una esperienza visiva e testuale piu coerente, non solo funzioni isolate.
