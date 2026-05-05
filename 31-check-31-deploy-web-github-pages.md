@@ -39,6 +39,7 @@ Cosa cambia:
 
 - ogni push su `main` può generare una build web statica;
 - GitHub Actions esegue installazione, controlli e export prima del deploy;
+- il workflow prova ad abilitare GitHub Pages se il repository non lo ha ancora attivo;
 - l'export GitHub usa il base path `/via-la-maschera`, necessario per GitHub Pages su repository;
 - l'export locale resta senza base path, quindi lo sviluppo su `localhost` non cambia;
 - le pagine privacy e cancellazione dati hanno URL pubblici prevedibili appena GitHub Pages viene attivato.
