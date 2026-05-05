@@ -25,7 +25,7 @@
 - Sostituire i placeholder `INSERIRE_*` nei file release.
 - Sostituire i placeholder di contatto nelle pagine app `privacy` e `delete-account`.
 - Controllare che il logo e le icone siano quelli definitivi.
-- Verificare in GitHub che Pages usi `GitHub Actions` come sorgente.
+- Verificare in GitHub che Pages usi `GitHub Actions` come sorgente, oppure scegliere hosting alternativo se il piano attuale non supporta Pages.
 
 ## Controlli tecnici
 
@@ -65,7 +65,7 @@ npm.cmd run build:ios:production
 - Account Apple Developer attivo.
 - Account Google Play Console attivo.
 - Progetto Expo/EAS collegato.
-- GitHub Pages attivo e deploy web completato.
+- GitHub Pages attivo e deploy web completato, oppure hosting alternativo scelto e pubblicato.
 - Firebase reale configurato.
 - Privacy policy pubblicata a un URL stabile.
 - Pagina pubblica di cancellazione account/dati pubblicata a un URL stabile.

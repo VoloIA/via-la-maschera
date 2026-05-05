@@ -2,7 +2,7 @@
 
 Stato:
 
-Superato.
+Preparato. Bloccato dall'abilitazione GitHub Pages sul repository con il piano GitHub attuale.
 
 Obiettivo:
 
@@ -44,9 +44,17 @@ Cosa cambia:
 - l'export locale resta senza base path, quindi lo sviluppo su `localhost` non cambia;
 - le pagine privacy e cancellazione dati hanno URL pubblici prevedibili appena GitHub Pages viene attivato.
 
+Esito GitHub:
+
+Il workflow supera installazione, controlli ed export web. Il deploy si ferma quando GitHub deve creare Pages:
+
+```text
+Your current plan does not support GitHub Pages for this repository.
+```
+
 Nota importante:
 
-Nel repository GitHub va verificato che Pages usi `GitHub Actions` come sorgente di pubblicazione.
+Per completare questo check serve una delle tre scelte: rendere il repository pubblico, usare un piano GitHub che abiliti Pages per questo repository, oppure pubblicare lo stesso export su un hosting alternativo.
 
 Verifiche:
 

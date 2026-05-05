@@ -123,7 +123,7 @@ Superato.
 
 Stato:
 
-Superato.
+Preparato. Bloccato dall'abilitazione GitHub Pages sul repository con il piano GitHub attuale.
 
 Obiettivo:
 
@@ -1798,6 +1798,20 @@ Cosa cambia:
 - aggiunto export web dedicato per GitHub Pages con base path `/via-la-maschera`;
 - mantenuto export locale senza base path;
 - aggiornata la checklist release con gli URL pubblici previsti.
+
+Esito GitHub:
+
+Il workflow supera installazione, controlli ed export web. Il deploy si ferma quando GitHub deve creare Pages:
+
+```text
+Your current plan does not support GitHub Pages for this repository.
+```
+
+Scelte possibili:
+
+- rendere il repository pubblico;
+- usare un piano GitHub che abiliti Pages per questo repository;
+- pubblicare lo stesso export su un hosting alternativo.
 
 Verifiche:
 
