@@ -42,6 +42,7 @@ Expo e una piattaforma che semplifica la creazione di app mobile. Ci permette di
 28. Check 28: sistemare logo header, tema chiaro/scuro e lingue. Completato.
 29. Check 29: preparare configurazione build e kit store. Completato.
 30. Check 30: aggiungere pagine app per privacy e cancellazione dati. Completato.
+31. Check 31: preparare deploy web automatico su GitHub Pages. Completato.
 
 ## Percentuale progetto
 
@@ -60,7 +61,7 @@ In questa scala, 100% significa:
 Stato attuale:
 
 ```text
-98%
+99%
 ```
 
 ## Regole semplici
@@ -104,3 +105,4 @@ Stato attuale:
 - `28-check-28-tema-lingue-logo.md`: riepilogo di logo header, tema chiaro/scuro e localizzazione multilingua.
 - `29-check-29-release-store-kit.md`: riepilogo della preparazione build, store e privacy.
 - `30-check-30-privacy-cancellazione-dati.md`: riepilogo delle pagine privacy e cancellazione dati dentro l'app.
+- `31-check-31-deploy-web-github-pages.md`: riepilogo del deploy web automatico su GitHub Pages.

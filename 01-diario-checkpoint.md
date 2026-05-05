@@ -1763,3 +1763,51 @@ Percentuale progetto:
 ```text
 98%
 ```
+
+## Check 31: deploy web automatico su GitHub Pages
+
+Stato:
+
+Superato.
+
+Obiettivo:
+
+Preparare la pubblicazione web statica dell'app su GitHub Pages, con URL pubblici prevedibili anche per privacy policy e richiesta cancellazione dati.
+
+URL previsti:
+
+```text
+https://voloia.github.io/via-la-maschera/
+https://voloia.github.io/via-la-maschera/privacy
+https://voloia.github.io/via-la-maschera/delete-account
+```
+
+File creati:
+
+```text
+C:\Users\intel i7 11700\Desktop\AppMobile\.github\workflows\deploy-web.yml
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app.config.js
+C:\Users\intel i7 11700\Desktop\AppMobile\app\scripts\export-web-github-pages.js
+C:\Users\intel i7 11700\Desktop\AppMobile\31-check-31-deploy-web-github-pages.md
+```
+
+Cosa cambia:
+
+- aggiunto workflow GitHub Actions per installare dipendenze, controllare il progetto, esportare web e pubblicare su Pages;
+- aggiunto export web dedicato per GitHub Pages con base path `/via-la-maschera`;
+- mantenuto export locale senza base path;
+- aggiornata la checklist release con gli URL pubblici previsti.
+
+Verifiche:
+
+```powershell
+npm.cmd run check
+npm.cmd run export:web
+npm.cmd run export:web:github
+```
+
+Percentuale progetto:
+
+```text
+99%
+```

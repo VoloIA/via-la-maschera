@@ -29,7 +29,22 @@ http://localhost:8082/
 ```powershell
 npm.cmd run check
 npm.cmd run export:web
+npm.cmd run export:web:github
 ```
+
+## Web pubblico
+
+Il repository contiene un workflow GitHub Actions per pubblicare la versione web statica su GitHub Pages dopo ogni push su `main`.
+
+URL previsti:
+
+```text
+https://voloia.github.io/via-la-maschera/
+https://voloia.github.io/via-la-maschera/privacy
+https://voloia.github.io/via-la-maschera/delete-account
+```
+
+Per GitHub Pages l'export usa il base path `/via-la-maschera`; l'export locale resta invece su `/`.
 
 ## Build EAS
 

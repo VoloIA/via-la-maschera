@@ -12,6 +12,7 @@
     "lint": "expo lint",
     "typecheck": "tsc --noEmit",
     "export:web": "expo export --platform web --output-dir .expo/web-export",
+    "export:web:github": "node ./scripts/export-web-github-pages.js",
     "build:android:preview": "eas build --platform android --profile preview",
     "build:android:production": "eas build --platform android --profile production",
     "build:ios:production": "eas build --platform ios --profile production"

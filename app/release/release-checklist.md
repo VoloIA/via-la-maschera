@@ -11,6 +11,9 @@
 - Web locale: `http://localhost:8082/`
 - Privacy locale: `http://localhost:8082/privacy`
 - Cancellazione dati locale: `http://localhost:8082/delete-account`
+- Web pubblico previsto: `https://voloia.github.io/via-la-maschera/`
+- Privacy pubblica prevista: `https://voloia.github.io/via-la-maschera/privacy`
+- Cancellazione dati pubblica prevista: `https://voloia.github.io/via-la-maschera/delete-account`
 
 ## Prima della build
 
@@ -22,6 +25,7 @@
 - Sostituire i placeholder `INSERIRE_*` nei file release.
 - Sostituire i placeholder di contatto nelle pagine app `privacy` e `delete-account`.
 - Controllare che il logo e le icone siano quelli definitivi.
+- Verificare in GitHub che Pages usi `GitHub Actions` come sorgente.
 
 ## Controlli tecnici
 
@@ -61,6 +65,7 @@ npm.cmd run build:ios:production
 - Account Apple Developer attivo.
 - Account Google Play Console attivo.
 - Progetto Expo/EAS collegato.
+- GitHub Pages attivo e deploy web completato.
 - Firebase reale configurato.
 - Privacy policy pubblicata a un URL stabile.
 - Pagina pubblica di cancellazione account/dati pubblicata a un URL stabile.
