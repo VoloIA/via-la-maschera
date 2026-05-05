@@ -11,9 +11,11 @@
 - Web locale: `http://localhost:8082/`
 - Privacy locale: `http://localhost:8082/privacy`
 - Cancellazione dati locale: `http://localhost:8082/delete-account`
+- Termini community locale: `http://localhost:8082/terms`
 - Web pubblico previsto: `https://voloia.github.io/via-la-maschera/`
 - Privacy pubblica prevista: `https://voloia.github.io/via-la-maschera/privacy`
 - Cancellazione dati pubblica prevista: `https://voloia.github.io/via-la-maschera/delete-account`
+- Termini community pubblici previsti: `https://voloia.github.io/via-la-maschera/terms`
 
 ## Prima della build
 
@@ -26,6 +28,7 @@
 - Sostituire i placeholder di contatto nelle pagine app `privacy` e `delete-account`.
 - Controllare che il logo e le icone siano quelli definitivi.
 - Verificare in GitHub che Pages usi `GitHub Actions` come sorgente.
+- Verificare che la pagina `terms` sia pubblica prima di inviare la build allo store.
 
 ## Controlli tecnici
 
@@ -53,12 +56,13 @@ npm.cmd run build:ios:production
 ## Store
 
 - Preparare screenshot per Home, Percorsi, Archivio, Profilo, tema scuro e lingue.
+- Usare `release/google-play-submission.md` come dossier per Play Console.
 - Compilare App Privacy in App Store Connect.
 - Compilare Data safety in Play Console.
 - Caricare privacy policy pubblica.
 - Caricare URL pubblico per richiesta cancellazione account/dati.
 - Verificare che la scheda store non prometta diagnosi, terapia o consulenza psicologica.
-- Dichiarare che la stanza condivisa mostra solo iniziali e richiede risposta alla stessa domanda.
+- Dichiarare che la stanza condivisa mostra solo iniziali, richiede risposta alla stessa domanda, accettazione regole e segnalazione in-app.
 
 ## Bloccanti prima del 100%
 
@@ -69,4 +73,5 @@ npm.cmd run build:ios:production
 - Firebase reale configurato.
 - Privacy policy pubblicata a un URL stabile.
 - Pagina pubblica di cancellazione account/dati pubblicata a un URL stabile.
+- Pagina pubblica termini e regole community pubblicata a un URL stabile.
 - Prima build Android/iOS generata e installata su dispositivo reale.

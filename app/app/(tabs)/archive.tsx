@@ -1,5 +1,6 @@
 import { useFocusEffect } from '@react-navigation/native';
 import { useCallback, useEffect, useState } from 'react';
+import { Link } from 'expo-router';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import ParallaxScrollView from '@/components/parallax-scroll-view';
@@ -7,6 +8,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { BrandColors, BrandRadii, BrandShadows, BrandSpacing } from '@/constants/brand';
+import { communityRulesCopy } from '@/constants/community-rules';
 import { FontFamilies } from '@/constants/typography';
 import { useAuth } from '@/contexts/auth-context';
 import { useSettings } from '@/contexts/settings-context';
@@ -70,7 +72,8 @@ function getNextLockedEntry(entries: DailyEntry[], now: number) {
 }
 
 function SharedAnswersPanel({ entry }: { entry: DailyEntry }) {
-  const { copy } = useSettings();
+  const { copy, language } = useSettings();
+  const communityRules = communityRulesCopy[language];
   const {
     isFirebaseConfigured,
     isGoogleAuthConfigured,
@@ -79,6 +82,7 @@ function SharedAnswersPanel({ entry }: { entry: DailyEntry }) {
     user,
   } = useAuth();
   const [answers, setAnswers] = useState<SharedAnswer[]>([]);
+  const [acceptedCommunityRules, setAcceptedCommunityRules] = useState(false);
   const [isShared, setIsShared] = useState(entry.shareWithCommunity);
   const [isLoading, setIsLoading] = useState(false);
   const [reportedAnswerIds, setReportedAnswerIds] = useState<string[]>([]);
@@ -87,7 +91,8 @@ function SharedAnswersPanel({ entry }: { entry: DailyEntry }) {
 
   useEffect(() => {
     setIsShared(entry.shareWithCommunity);
-  }, [entry.shareWithCommunity]);
+    setAcceptedCommunityRules(false);
+  }, [entry.id, entry.shareWithCommunity]);
 
   useEffect(() => {
     let isActive = true;
@@ -193,6 +198,10 @@ function SharedAnswersPanel({ entry }: { entry: DailyEntry }) {
     }
   };
 
+  const toggleCommunityRulesAcceptance = () => {
+    setAcceptedCommunityRules((currentValue) => !currentValue);
+  };
+
   if (!isFirebaseConfigured) {
     return (
       <ThemedView style={styles.sharedPanel}>
@@ -244,11 +253,42 @@ function SharedAnswersPanel({ entry }: { entry: DailyEntry }) {
         <ThemedText style={styles.answerPreview}>
           {copy.shared.privateText}
         </ThemedText>
+        <View style={styles.rulesRow}>
+          <Pressable
+            accessibilityRole="checkbox"
+            accessibilityState={{ checked: acceptedCommunityRules }}
+            onPress={toggleCommunityRulesAcceptance}
+            style={[
+              styles.rulesCheckbox,
+              acceptedCommunityRules ? styles.rulesCheckboxChecked : undefined,
+            ]}>
+            {acceptedCommunityRules ? (
+              <IconSymbol name="checkmark" color="#FFFFFF" size={14} />
+            ) : null}
+          </Pressable>
+          <View style={styles.rulesCopy}>
+            <Pressable onPress={toggleCommunityRulesAcceptance}>
+              <ThemedText style={styles.rulesText}>
+                {communityRules.acceptText}
+              </ThemedText>
+            </Pressable>
+            <Link href="/terms" asChild>
+              <Pressable accessibilityRole="link" style={styles.rulesLink}>
+                <ThemedText type="defaultSemiBold" style={styles.rulesLinkText}>
+                  {communityRules.linkText}
+                </ThemedText>
+              </Pressable>
+            </Link>
+          </View>
+        </View>
         <Pressable
           accessibilityRole="button"
-          disabled={isLoading}
+          disabled={isLoading || !acceptedCommunityRules}
           onPress={shareEntry}
-          style={[styles.sharedButton, isLoading ? styles.sharedButtonDisabled : undefined]}>
+          style={[
+            styles.sharedButton,
+            isLoading || !acceptedCommunityRules ? styles.sharedButtonDisabled : undefined,
+          ]}>
           <ThemedText lightColor="#FFFFFF" darkColor="#FFFFFF" style={styles.sharedButtonText}>
             {isLoading ? copy.shared.opening : copy.shared.openWithInitials}
           </ThemedText>
@@ -736,6 +776,42 @@ const styles = StyleSheet.create({
   },
   sharedButtonText: {
     fontWeight: '700',
+  },
+  rulesRow: {
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+    gap: BrandSpacing.sm,
+  },
+  rulesCheckbox: {
+    alignItems: 'center',
+    backgroundColor: BrandColors.surface,
+    borderColor: BrandColors.teal,
+    borderRadius: 6,
+    borderWidth: 1,
+    height: 24,
+    justifyContent: 'center',
+    marginTop: 2,
+    width: 24,
+  },
+  rulesCheckboxChecked: {
+    backgroundColor: BrandColors.teal,
+  },
+  rulesCopy: {
+    flex: 1,
+    gap: 4,
+  },
+  rulesText: {
+    color: BrandColors.muted,
+    fontSize: 14,
+    lineHeight: 20,
+  },
+  rulesLink: {
+    alignSelf: 'flex-start',
+    paddingVertical: 2,
+  },
+  rulesLinkText: {
+    color: BrandColors.primary,
+    fontSize: 14,
   },
   sharedControls: {
     alignItems: 'flex-start',

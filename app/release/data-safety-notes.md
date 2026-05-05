@@ -47,6 +47,8 @@ Al momento non sono stati aggiunti analytics proprietari. Verificare eventuali d
 
 La stanza condivisa mostra solo iniziali e risposta, e solo dopo reciprocità sulla stessa domanda. Questa è comunque una forma di condivisione volontaria di contenuto utente e va dichiarata con attenzione.
 
+Prima della condivisione l'app richiede accettazione esplicita dei termini community. Ogni risposta condivisa contiene la versione termini `2026-05-05` e può essere segnalata in-app.
+
 ## Tracking
 
 Al momento non sono stati aggiunti advertising SDK o tracking pubblicitario.
@@ -59,13 +61,14 @@ Da verificare e dichiarare solo se vero in produzione:
 - possibilità di richiedere cancellazione dati;
 - condivisione opzionale e revocabile;
 - accesso alle risposte condivise vincolato a login e stessa domanda.
-- pagine in-app già presenti: `/privacy` e `/delete-account`;
-- URL pubblico stabile da pubblicare prima dello store per privacy e cancellazione dati.
+- pagine in-app già presenti: `/privacy`, `/delete-account` e `/terms`;
+- URL pubblico stabile da pubblicare prima dello store per privacy, cancellazione dati e termini community.
 
 ## Punti da confermare prima dello store
 
 - URL privacy policy pubblica.
 - URL pubblico per richiesta cancellazione account/dati.
+- URL pubblico termini e regole community.
 - Email supporto.
 - Procedura cancellazione account/dati.
 - Se l'app sarà accessibile ai minori.

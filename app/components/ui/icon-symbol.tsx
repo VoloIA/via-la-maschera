@@ -21,6 +21,7 @@ const MAPPING = {
   'arrow.right.circle.fill': 'arrow-forward',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
+  checkmark: 'check',
   'checkmark.seal.fill': 'verified',
   'clock.fill': 'schedule',
   'eye.fill': 'visibility',

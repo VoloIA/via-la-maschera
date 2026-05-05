@@ -13,6 +13,7 @@ import { useEffect } from 'react';
 import 'react-native-reanimated';
 
 import { BrandColors } from '@/constants/brand';
+import { communityRulesCopy } from '@/constants/community-rules';
 import { AuthProvider } from '@/contexts/auth-context';
 import { SettingsProvider, useSettings } from '@/contexts/settings-context';
 import { AppLanguage, FontFamilies } from '@/constants/typography';
@@ -37,6 +38,7 @@ function RootLayoutShell() {
   const colorScheme = useColorScheme();
   const { language } = useSettings();
   const legal = legalCopy[language];
+  const communityRules = communityRulesCopy[language];
   const [fontsLoaded] = useFonts({
     Lora_400Regular,
     Lora_500Medium,
@@ -85,6 +87,17 @@ function RootLayoutShell() {
               headerTitleStyle: { fontFamily: FontFamilies.semibold },
               headerTintColor: colorScheme === 'dark' ? '#F4E8FF' : BrandColors.primary,
               title: legal.dataDeletion.title,
+            }}
+          />
+          <Stack.Screen
+            name="terms"
+            options={{
+              headerStyle: {
+                backgroundColor: colorScheme === 'dark' ? BrandColors.backgroundDark : BrandColors.surface,
+              },
+              headerTitleStyle: { fontFamily: FontFamilies.semibold },
+              headerTintColor: colorScheme === 'dark' ? '#F4E8FF' : BrandColors.primary,
+              title: communityRules.title,
             }}
           />
           <Stack.Screen

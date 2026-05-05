@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { Link } from 'expo-router';
 import { Image, Pressable, StyleSheet, Switch, Text, TextInput, View } from 'react-native';
 
 import ParallaxScrollView from '@/components/parallax-scroll-view';
@@ -6,6 +7,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { BrandColors, BrandRadii, BrandShadows, BrandSpacing } from '@/constants/brand';
+import { communityRulesCopy } from '@/constants/community-rules';
 import { FontFamilies } from '@/constants/typography';
 import { useAuth } from '@/contexts/auth-context';
 import { useSettings } from '@/contexts/settings-context';
@@ -37,6 +39,7 @@ function getLatestEntry(entries: DailyEntry[]) {
 export default function HomeScreen() {
   const { isAuthReady, isFirebaseConfigured, user } = useAuth();
   const { copy, language } = useSettings();
+  const communityRules = communityRulesCopy[language];
   const todayKey = getDateKey();
   const question = useMemo(() => getQuestionForDate(todayKey, language), [language, todayKey]);
   const maskPath = useMemo(
@@ -48,6 +51,7 @@ export default function HomeScreen() {
   const [entries, setEntries] = useState<DailyEntry[]>([]);
   const [isLoadingEntry, setIsLoadingEntry] = useState(true);
   const [now, setNow] = useState(Date.now());
+  const [acceptedCommunityRules, setAcceptedCommunityRules] = useState(false);
   const [shareWithCommunity, setShareWithCommunity] = useState(false);
   const [syncMessage, setSyncMessage] = useState<string | null>(null);
 
@@ -97,6 +101,25 @@ export default function HomeScreen() {
 
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    if (!user || !isFirebaseConfigured) {
+      setAcceptedCommunityRules(false);
+      setShareWithCommunity(false);
+    }
+  }, [isFirebaseConfigured, user]);
+
+  const toggleCommunityRulesAcceptance = () => {
+    setAcceptedCommunityRules((currentValue) => {
+      const nextValue = !currentValue;
+
+      if (!nextValue) {
+        setShareWithCommunity(false);
+      }
+
+      return nextValue;
+    });
+  };
 
   const isAnswerReady = answer.trim().length >= 8;
   const isReflectionReady = entry ? now >= entry.reflectionReadyAt : false;
@@ -223,13 +246,43 @@ export default function HomeScreen() {
                 </ThemedText>
               </View>
               <Switch
-                disabled={!user || !isFirebaseConfigured}
-                onValueChange={setShareWithCommunity}
+                disabled={!user || !isFirebaseConfigured || !acceptedCommunityRules}
+                onValueChange={(nextValue) => setShareWithCommunity(nextValue && acceptedCommunityRules)}
                 thumbColor={shareWithCommunity ? BrandColors.primary : '#F4EFF8'}
                 trackColor={{ false: '#D9C6E8', true: BrandColors.primarySoft }}
                 value={shareWithCommunity}
               />
             </View>
+            {user && isFirebaseConfigured ? (
+              <View style={styles.rulesRow}>
+                <Pressable
+                  accessibilityRole="checkbox"
+                  accessibilityState={{ checked: acceptedCommunityRules }}
+                  onPress={toggleCommunityRulesAcceptance}
+                  style={[
+                    styles.rulesCheckbox,
+                    acceptedCommunityRules ? styles.rulesCheckboxChecked : undefined,
+                  ]}>
+                  {acceptedCommunityRules ? (
+                    <IconSymbol name="checkmark" color="#FFFFFF" size={14} />
+                  ) : null}
+                </Pressable>
+                <View style={styles.rulesCopy}>
+                  <Pressable onPress={toggleCommunityRulesAcceptance}>
+                    <ThemedText style={styles.rulesText}>
+                      {communityRules.acceptText}
+                    </ThemedText>
+                  </Pressable>
+                  <Link href="/terms" asChild>
+                    <Pressable accessibilityRole="link" style={styles.rulesLink}>
+                      <ThemedText type="defaultSemiBold" style={styles.rulesLinkText}>
+                        {communityRules.linkText}
+                      </ThemedText>
+                    </Pressable>
+                  </Link>
+                </View>
+              </View>
+            ) : null}
             {!user || !isFirebaseConfigured ? (
               <ThemedText style={styles.smallText}>
                 {copy.home.shareGoogle}
@@ -502,6 +555,43 @@ const styles = StyleSheet.create({
   shareCopy: {
     flex: 1,
     gap: 4,
+  },
+  rulesRow: {
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+    gap: BrandSpacing.sm,
+    paddingLeft: 2,
+  },
+  rulesCheckbox: {
+    alignItems: 'center',
+    backgroundColor: BrandColors.surface,
+    borderColor: BrandColors.teal,
+    borderRadius: 6,
+    borderWidth: 1,
+    height: 24,
+    justifyContent: 'center',
+    marginTop: 2,
+    width: 24,
+  },
+  rulesCheckboxChecked: {
+    backgroundColor: BrandColors.teal,
+  },
+  rulesCopy: {
+    flex: 1,
+    gap: 4,
+  },
+  rulesText: {
+    color: BrandColors.muted,
+    fontSize: 14,
+    lineHeight: 20,
+  },
+  rulesLink: {
+    alignSelf: 'flex-start',
+    paddingVertical: 2,
+  },
+  rulesLinkText: {
+    color: BrandColors.primary,
+    fontSize: 14,
   },
   primaryButton: {
     alignItems: 'center',

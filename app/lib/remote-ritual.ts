@@ -10,6 +10,7 @@ import {
 } from 'firebase/firestore';
 import { type User } from 'firebase/auth';
 
+import { COMMUNITY_TERMS_VERSION } from '@/constants/community-rules';
 import { type DailyEntry, sortEntries } from '@/lib/daily-ritual';
 import { firestoreDb } from '@/lib/firebase';
 
@@ -81,6 +82,7 @@ export async function saveRemoteDailyEntry(user: User, entry: DailyEntry) {
       questionKey: entry.questionKey,
       shared: entry.shareWithCommunity,
       sharedAt: entry.shareWithCommunity ? serverTimestamp() : null,
+      termsVersion: entry.shareWithCommunity ? COMMUNITY_TERMS_VERSION : null,
     },
     { merge: true }
   );
@@ -95,6 +97,7 @@ export async function saveRemoteDailyEntry(user: User, entry: DailyEntry) {
       question: entry.question,
       questionKey: entry.questionKey,
       shareWithCommunity: true,
+      termsVersion: COMMUNITY_TERMS_VERSION,
       uid: user.uid,
       updatedAt: serverTimestamp(),
     });

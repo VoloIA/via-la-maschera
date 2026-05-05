@@ -42,6 +42,7 @@ service cloud.firestore {
         && request.auth.uid == request.resource.data.uid
         && request.resource.data.questionKey == questionKey
         && request.resource.data.shareWithCommunity == true
+        && request.resource.data.termsVersion == "2026-05-05"
         && answerId == request.auth.uid + "_" + request.resource.data.dateKey;
 
       allow delete: if signedIn()

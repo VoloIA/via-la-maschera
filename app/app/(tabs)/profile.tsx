@@ -6,6 +6,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { BrandColors, BrandRadii, BrandShadows, BrandSpacing } from '@/constants/brand';
+import { communityRulesCopy } from '@/constants/community-rules';
 import { legalCopy } from '@/constants/legal';
 import { supportedLanguages } from '@/constants/localization';
 import { FontFamilies } from '@/constants/typography';
@@ -38,6 +39,7 @@ export default function ProfileScreen() {
   } = useAuth();
   const { copy, language, setLanguage, setThemeMode, themeMode } = useSettings();
   const legal = legalCopy[language];
+  const communityRules = communityRulesCopy[language];
 
   return (
     <ParallaxScrollView
@@ -231,6 +233,16 @@ export default function ProfileScreen() {
               </ThemedText>
               <ThemedText style={styles.legalLinkText}>
                 {legal.dataDeletion.profileText}
+              </ThemedText>
+            </Pressable>
+          </Link>
+          <Link href="/terms" asChild>
+            <Pressable accessibilityRole="link" style={styles.legalLink}>
+              <ThemedText type="defaultSemiBold" style={styles.legalLinkTitle}>
+                {communityRules.profileTitle}
+              </ThemedText>
+              <ThemedText style={styles.legalLinkText}>
+                {communityRules.profileText}
               </ThemedText>
             </Pressable>
           </Link>

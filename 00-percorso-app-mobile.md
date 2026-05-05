@@ -43,6 +43,7 @@ Expo e una piattaforma che semplifica la creazione di app mobile. Ci permette di
 29. Check 29: preparare configurazione build e kit store. Completato.
 30. Check 30: aggiungere pagine app per privacy e cancellazione dati. Completato.
 31. Check 31: preparare deploy web automatico su GitHub Pages. Completato.
+32. Check 32: preparare invio Google Play e regole community. Completato.
 
 ## Percentuale progetto
 
@@ -106,3 +107,4 @@ Stato attuale:
 - `29-check-29-release-store-kit.md`: riepilogo della preparazione build, store e privacy.
 - `30-check-30-privacy-cancellazione-dati.md`: riepilogo delle pagine privacy e cancellazione dati dentro l'app.
 - `31-check-31-deploy-web-github-pages.md`: riepilogo del deploy web automatico su GitHub Pages.
+- `32-check-32-google-play-readiness.md`: riepilogo della preparazione Google Play, UGC e regole community.

@@ -27,6 +27,7 @@ L'app può trattare:
 - identificativo account Firebase/Google, se l'utente accede;
 - nome, email o immagine profilo Google, se forniti dal login Google;
 - iniziali mostrate nella stanza condivisa;
+- versione dei termini community accettata prima della condivisione;
 - segnalazioni inviate su contenuti condivisi.
 
 ## Archivio locale
@@ -39,13 +40,14 @@ Se l'utente effettua l'accesso con Google e Firebase è configurato, le risposte
 
 ## Stanza condivisa
 
-La condivisione è opzionale. Una risposta viene resa visibile nella stanza condivisa solo se l'utente attiva il consenso.
+La condivisione è opzionale. Una risposta viene resa visibile nella stanza condivisa solo se l'utente accetta i termini community e attiva il consenso.
 
 Quando una risposta è condivisa:
 
 - gli altri utenti vedono solo le iniziali;
 - gli altri utenti possono leggerla solo se hanno risposto alla stessa domanda;
 - la risposta può essere resa privata di nuovo dall'Archivio.
+- la risposta può essere segnalata da altri utenti se viola le regole community.
 
 ## Segnalazioni
 

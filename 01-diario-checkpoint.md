@@ -1826,3 +1826,48 @@ Percentuale progetto:
 ```text
 99%
 ```
+
+## Check 32: preparazione Google Play e regole community
+
+Stato:
+
+Superato lato codice e documentazione.
+
+Obiettivo:
+
+Preparare il primo invio Android, riducendo i rischi di revisione per la stanza condivisa.
+
+File creati:
+
+```text
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\terms.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\constants\community-rules.ts
+C:\Users\intel i7 11700\Desktop\AppMobile\app\release\google-play-submission.md
+C:\Users\intel i7 11700\Desktop\AppMobile\32-check-32-google-play-readiness.md
+```
+
+File aggiornati principali:
+
+```text
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\_layout.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\index.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\archive.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\(tabs)\profile.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\lib\remote-ritual.ts
+C:\Users\intel i7 11700\Desktop\AppMobile\firebase\firestore.rules
+```
+
+Cosa cambia:
+
+- aggiunta pagina Termini e regole community in cinque lingue;
+- il Profilo ora mostra anche il link alle regole community;
+- prima di condividere una risposta serve accettare esplicitamente le regole;
+- le risposte condivise salvano la versione delle regole accettate;
+- le regole Firestore richiedono la versione termini sulle nuove risposte condivise;
+- preparato un dossier operativo per compilare Play Console.
+
+Percentuale progetto:
+
+```text
+99%
+```
