@@ -42,7 +42,7 @@ Expo e una piattaforma che semplifica la creazione di app mobile. Ci permette di
 28. Check 28: sistemare logo header, tema chiaro/scuro e lingue. Completato.
 29. Check 29: preparare configurazione build e kit store. Completato.
 30. Check 30: aggiungere pagine app per privacy e cancellazione dati. Completato.
-31. Check 31: preparare deploy web automatico su GitHub Pages. Preparato, bloccato dal piano GitHub attuale.
+31. Check 31: preparare deploy web automatico su GitHub Pages. Completato.
 
 ## Percentuale progetto
 

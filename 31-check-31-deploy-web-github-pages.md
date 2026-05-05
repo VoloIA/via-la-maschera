@@ -2,7 +2,7 @@
 
 Stato:
 
-Preparato. Bloccato dall'abilitazione GitHub Pages sul repository con il piano GitHub attuale.
+Superato.
 
 Obiettivo:
 
@@ -37,7 +37,7 @@ C:\Users\intel i7 11700\Desktop\AppMobile\01-diario-checkpoint.md
 
 Cosa cambia:
 
-- il workflow può generare una build web statica quando viene lanciato manualmente;
+- ogni push su `main` genera una build web statica;
 - GitHub Actions esegue installazione, controlli e export prima del deploy;
 - il workflow prova ad abilitare GitHub Pages se il repository non lo ha ancora attivo;
 - l'export GitHub usa il base path `/via-la-maschera`, necessario per GitHub Pages su repository;
@@ -46,15 +46,17 @@ Cosa cambia:
 
 Esito GitHub:
 
-Il workflow supera installazione, controlli ed export web. Il deploy si ferma quando GitHub deve creare Pages:
+Repository reso pubblico, GitHub Pages abilitato e deploy completato.
 
 ```text
-Your current plan does not support GitHub Pages for this repository.
+https://voloia.github.io/via-la-maschera/
+https://voloia.github.io/via-la-maschera/privacy
+https://voloia.github.io/via-la-maschera/delete-account
 ```
 
 Nota importante:
 
-Per completare questo check serve una delle tre scelte: rendere il repository pubblico, usare un piano GitHub che abiliti Pages per questo repository, oppure pubblicare lo stesso export su un hosting alternativo. Fino a quel momento il workflow resta manuale, così non fallisce a ogni push.
+Il repository è pubblico. Prima di inserire chiavi reali, continuare a tenerle fuori da Git e usare solo `.env` locale o segreti del servizio di build.
 
 Verifiche:
 
