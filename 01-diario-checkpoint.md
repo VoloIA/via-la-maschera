@@ -1793,7 +1793,7 @@ C:\Users\intel i7 11700\Desktop\AppMobile\31-check-31-deploy-web-github-pages.md
 
 Cosa cambia:
 
-- aggiunto workflow GitHub Actions per installare dipendenze, controllare il progetto, esportare web e pubblicare su Pages;
+- aggiunto workflow GitHub Actions manuale per installare dipendenze, controllare il progetto, esportare web e pubblicare su Pages;
 - il workflow prova ad abilitare GitHub Pages se il repository non lo ha ancora attivo;
 - aggiunto export web dedicato per GitHub Pages con base path `/via-la-maschera`;
 - mantenuto export locale senza base path;
@@ -1812,6 +1812,8 @@ Scelte possibili:
 - rendere il repository pubblico;
 - usare un piano GitHub che abiliti Pages per questo repository;
 - pubblicare lo stesso export su un hosting alternativo.
+
+Fino a quella scelta, il workflow resta manuale per evitare fallimenti automatici a ogni push.
 
 Verifiche:
 

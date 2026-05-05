@@ -37,7 +37,7 @@ C:\Users\intel i7 11700\Desktop\AppMobile\01-diario-checkpoint.md
 
 Cosa cambia:
 
-- ogni push su `main` può generare una build web statica;
+- il workflow può generare una build web statica quando viene lanciato manualmente;
 - GitHub Actions esegue installazione, controlli e export prima del deploy;
 - il workflow prova ad abilitare GitHub Pages se il repository non lo ha ancora attivo;
 - l'export GitHub usa il base path `/via-la-maschera`, necessario per GitHub Pages su repository;
@@ -54,7 +54,7 @@ Your current plan does not support GitHub Pages for this repository.
 
 Nota importante:
 
-Per completare questo check serve una delle tre scelte: rendere il repository pubblico, usare un piano GitHub che abiliti Pages per questo repository, oppure pubblicare lo stesso export su un hosting alternativo.
+Per completare questo check serve una delle tre scelte: rendere il repository pubblico, usare un piano GitHub che abiliti Pages per questo repository, oppure pubblicare lo stesso export su un hosting alternativo. Fino a quel momento il workflow resta manuale, così non fallisce a ogni push.
 
 Verifiche:
 

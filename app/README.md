@@ -34,7 +34,7 @@ npm.cmd run export:web:github
 
 ## Web pubblico
 
-Il repository contiene un workflow GitHub Actions per pubblicare la versione web statica su GitHub Pages dopo ogni push su `main`.
+Il repository contiene un workflow GitHub Actions manuale per pubblicare la versione web statica su GitHub Pages.
 
 URL previsti:
 
@@ -44,7 +44,7 @@ https://voloia.github.io/via-la-maschera/privacy
 https://voloia.github.io/via-la-maschera/delete-account
 ```
 
-Per GitHub Pages l'export usa il base path `/via-la-maschera`; l'export locale resta invece su `/`.
+Per GitHub Pages l'export usa il base path `/via-la-maschera`; l'export locale resta invece su `/`. Il deploy richiede un repository/piano GitHub con Pages attivo, oppure un hosting alternativo.
 
 ## Build EAS
 
