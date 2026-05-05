@@ -41,6 +41,7 @@ Expo e una piattaforma che semplifica la creazione di app mobile. Ci permette di
 27. Check 27: ridisegnare esperienza visiva, UX e fiducia. Completato.
 28. Check 28: sistemare logo header, tema chiaro/scuro e lingue. Completato.
 29. Check 29: preparare configurazione build e kit store. Completato.
+30. Check 30: aggiungere pagine app per privacy e cancellazione dati. Completato.
 
 ## Percentuale progetto
 
@@ -59,7 +60,7 @@ In questa scala, 100% significa:
 Stato attuale:
 
 ```text
-97%
+98%
 ```
 
 ## Regole semplici
@@ -102,3 +103,4 @@ Stato attuale:
 - `27-check-27-restyling-ux-ui.md`: riepilogo del restyling UX/UI e della nuova grammatica visiva.
 - `28-check-28-tema-lingue-logo.md`: riepilogo di logo header, tema chiaro/scuro e localizzazione multilingua.
 - `29-check-29-release-store-kit.md`: riepilogo della preparazione build, store e privacy.
+- `30-check-30-privacy-cancellazione-dati.md`: riepilogo delle pagine privacy e cancellazione dati dentro l'app.

@@ -1723,3 +1723,43 @@ Percentuale progetto:
 ```text
 97%
 ```
+
+## Check 30: privacy e cancellazione dati in app
+
+Stato:
+
+Superato.
+
+Obiettivo:
+
+Aggiungere pagine raggiungibili dal Profilo per privacy policy e richiesta cancellazione account/dati, con testi localizzati nelle cinque lingue dell'app.
+
+File creati:
+
+```text
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\privacy.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\app\delete-account.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\components\legal-page.tsx
+C:\Users\intel i7 11700\Desktop\AppMobile\app\constants\legal.ts
+C:\Users\intel i7 11700\Desktop\AppMobile\30-check-30-privacy-cancellazione-dati.md
+```
+
+Cosa cambia:
+
+- il Profilo ora contiene accessi diretti a privacy policy e cancellazione dati;
+- i contenuti legali seguono la lingua scelta dall'utente;
+- la checklist release segnala gli URL pubblici ancora da preparare per store e Play Console;
+- resta da sostituire il placeholder dell'email di contatto prima della pubblicazione.
+
+Verifiche:
+
+```powershell
+npm.cmd run check
+npx.cmd expo export --platform web --output-dir .expo\codex-export-test-legal-pages
+```
+
+Percentuale progetto:
+
+```text
+98%
+```

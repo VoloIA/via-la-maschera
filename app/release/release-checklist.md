@@ -9,14 +9,18 @@
 - Android package: `com.vialamaschera.app`
 - Android version code: `1`
 - Web locale: `http://localhost:8082/`
+- Privacy locale: `http://localhost:8082/privacy`
+- Cancellazione dati locale: `http://localhost:8082/delete-account`
 
 ## Prima della build
 
 - Verificare che `app/.env` contenga le chiavi Firebase e Google reali.
 - Verificare che le regole Firestore siano pubblicate.
 - Decidere email pubblica di supporto.
-- Decidere URL pubblico della privacy policy.
+- Pubblicare URL pubblico stabile della privacy policy.
+- Pubblicare URL pubblico stabile per richiesta cancellazione account/dati.
 - Sostituire i placeholder `INSERIRE_*` nei file release.
+- Sostituire i placeholder di contatto nelle pagine app `privacy` e `delete-account`.
 - Controllare che il logo e le icone siano quelli definitivi.
 
 ## Controlli tecnici
@@ -48,6 +52,7 @@ npm.cmd run build:ios:production
 - Compilare App Privacy in App Store Connect.
 - Compilare Data safety in Play Console.
 - Caricare privacy policy pubblica.
+- Caricare URL pubblico per richiesta cancellazione account/dati.
 - Verificare che la scheda store non prometta diagnosi, terapia o consulenza psicologica.
 - Dichiarare che la stanza condivisa mostra solo iniziali e richiede risposta alla stessa domanda.
 
@@ -58,4 +63,5 @@ npm.cmd run build:ios:production
 - Progetto Expo/EAS collegato.
 - Firebase reale configurato.
 - Privacy policy pubblicata a un URL stabile.
+- Pagina pubblica di cancellazione account/dati pubblicata a un URL stabile.
 - Prima build Android/iOS generata e installata su dispositivo reale.

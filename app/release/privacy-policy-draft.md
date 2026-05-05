@@ -78,6 +78,8 @@ Le risposte locali restano sul dispositivo finché l'utente mantiene l'app o i d
 
 Le risposte cloud restano associate all'account finché non vengono rimosse secondo le funzioni disponibili o tramite richiesta al contatto indicato in questa policy.
 
+Dentro l'app l'utente può aprire `Profilo > Cancellazione dati` per leggere la procedura e inviare una richiesta al contatto indicato.
+
 INSERIRE_PROCEDURA_CANCELLAZIONE_ACCOUNT_E_DATI
 
 ## Sicurezza

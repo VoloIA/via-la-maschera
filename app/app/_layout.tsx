@@ -16,6 +16,7 @@ import { BrandColors } from '@/constants/brand';
 import { AuthProvider } from '@/contexts/auth-context';
 import { SettingsProvider, useSettings } from '@/contexts/settings-context';
 import { AppLanguage, FontFamilies } from '@/constants/typography';
+import { legalCopy } from '@/constants/legal';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
 SplashScreen.preventAutoHideAsync();
@@ -35,6 +36,7 @@ export default function RootLayout() {
 function RootLayoutShell() {
   const colorScheme = useColorScheme();
   const { language } = useSettings();
+  const legal = legalCopy[language];
   const [fontsLoaded] = useFonts({
     Lora_400Regular,
     Lora_500Medium,
@@ -63,6 +65,28 @@ function RootLayoutShell() {
       <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen
+            name="privacy"
+            options={{
+              headerStyle: {
+                backgroundColor: colorScheme === 'dark' ? BrandColors.backgroundDark : BrandColors.surface,
+              },
+              headerTitleStyle: { fontFamily: FontFamilies.semibold },
+              headerTintColor: colorScheme === 'dark' ? '#F4E8FF' : BrandColors.primary,
+              title: legal.privacy.title,
+            }}
+          />
+          <Stack.Screen
+            name="delete-account"
+            options={{
+              headerStyle: {
+                backgroundColor: colorScheme === 'dark' ? BrandColors.backgroundDark : BrandColors.surface,
+              },
+              headerTitleStyle: { fontFamily: FontFamilies.semibold },
+              headerTintColor: colorScheme === 'dark' ? '#F4E8FF' : BrandColors.primary,
+              title: legal.dataDeletion.title,
+            }}
+          />
           <Stack.Screen
             name="modal"
             options={{

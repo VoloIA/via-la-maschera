@@ -1,3 +1,4 @@
+import { Link } from 'expo-router';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import ParallaxScrollView from '@/components/parallax-scroll-view';
@@ -5,6 +6,7 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { BrandColors, BrandRadii, BrandShadows, BrandSpacing } from '@/constants/brand';
+import { legalCopy } from '@/constants/legal';
 import { supportedLanguages } from '@/constants/localization';
 import { FontFamilies } from '@/constants/typography';
 import { useAuth } from '@/contexts/auth-context';
@@ -35,6 +37,7 @@ export default function ProfileScreen() {
     user,
   } = useAuth();
   const { copy, language, setLanguage, setThemeMode, themeMode } = useSettings();
+  const legal = legalCopy[language];
 
   return (
     <ParallaxScrollView
@@ -208,6 +211,29 @@ export default function ProfileScreen() {
               {copy.profile.privacyConsentText}
             </ThemedText>
           </View>
+        </View>
+
+        <View style={styles.legalLinks}>
+          <Link href="/privacy" asChild>
+            <Pressable accessibilityRole="link" style={styles.legalLink}>
+              <ThemedText type="defaultSemiBold" style={styles.legalLinkTitle}>
+                {legal.privacy.profileTitle}
+              </ThemedText>
+              <ThemedText style={styles.legalLinkText}>
+                {legal.privacy.profileText}
+              </ThemedText>
+            </Pressable>
+          </Link>
+          <Link href="/delete-account" asChild>
+            <Pressable accessibilityRole="link" style={styles.legalLink}>
+              <ThemedText type="defaultSemiBold" style={styles.legalLinkTitle}>
+                {legal.dataDeletion.profileTitle}
+              </ThemedText>
+              <ThemedText style={styles.legalLinkText}>
+                {legal.dataDeletion.profileText}
+              </ThemedText>
+            </Pressable>
+          </Link>
         </View>
       </ThemedView>
 
@@ -454,6 +480,25 @@ const styles = StyleSheet.create({
   privacyCopy: {
     flex: 1,
     gap: 4,
+  },
+  legalLinks: {
+    gap: BrandSpacing.sm,
+  },
+  legalLink: {
+    backgroundColor: BrandColors.primarySoft,
+    borderColor: BrandColors.borderStrong,
+    borderRadius: BrandRadii.card,
+    borderWidth: 1,
+    gap: 3,
+    padding: BrandSpacing.md,
+  },
+  legalLinkTitle: {
+    color: BrandColors.primary,
+  },
+  legalLinkText: {
+    color: BrandColors.muted,
+    fontSize: 14,
+    lineHeight: 21,
   },
   statusPanel: {
     ...BrandShadows.card,

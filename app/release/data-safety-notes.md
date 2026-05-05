@@ -59,10 +59,13 @@ Da verificare e dichiarare solo se vero in produzione:
 - possibilità di richiedere cancellazione dati;
 - condivisione opzionale e revocabile;
 - accesso alle risposte condivise vincolato a login e stessa domanda.
+- pagine in-app già presenti: `/privacy` e `/delete-account`;
+- URL pubblico stabile da pubblicare prima dello store per privacy e cancellazione dati.
 
 ## Punti da confermare prima dello store
 
 - URL privacy policy pubblica.
+- URL pubblico per richiesta cancellazione account/dati.
 - Email supporto.
 - Procedura cancellazione account/dati.
 - Se l'app sarà accessibile ai minori.
