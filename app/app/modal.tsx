@@ -1,29 +1,80 @@
 import { Link } from 'expo-router';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
+import { IconSymbol } from '@/components/ui/icon-symbol';
+import { BrandColors, BrandRadii, BrandShadows, BrandSpacing } from '@/constants/brand';
 
 export default function ModalScreen() {
   return (
     <ThemedView style={styles.container}>
-      <ThemedText type="title">This is a modal</ThemedText>
-      <Link href="/" dismissTo style={styles.link}>
-        <ThemedText type="link">Go to home screen</ThemedText>
-      </Link>
+      <ThemedView style={styles.panel}>
+        <View style={styles.iconWrap}>
+          <IconSymbol name="eye.fill" color={BrandColors.teal} size={24} />
+        </View>
+        <ThemedText type="title" style={styles.title}>
+          Uno specchio aperto
+        </ThemedText>
+        <ThemedText style={styles.copy}>
+          Torna al rito quando vuoi. Una buona risposta non chiede fretta.
+        </ThemedText>
+        <Link href="/" dismissTo style={styles.link}>
+          <ThemedText lightColor="#FFFFFF" darkColor="#FFFFFF" style={styles.linkText}>
+            Torna alla Home
+          </ThemedText>
+        </Link>
+      </ThemedView>
     </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
+    flex: 1,
     justifyContent: 'center',
     padding: 20,
   },
+  panel: {
+    ...BrandShadows.lifted,
+    alignItems: 'center',
+    backgroundColor: BrandColors.surface,
+    borderColor: BrandColors.border,
+    borderRadius: BrandRadii.card,
+    borderWidth: 1,
+    gap: BrandSpacing.md,
+    maxWidth: 420,
+    padding: BrandSpacing.xxl,
+    width: '100%',
+  },
+  iconWrap: {
+    alignItems: 'center',
+    backgroundColor: BrandColors.tealSoft,
+    borderRadius: BrandRadii.pill,
+    height: 54,
+    justifyContent: 'center',
+    width: 54,
+  },
+  title: {
+    textAlign: 'center',
+  },
+  copy: {
+    color: BrandColors.muted,
+    textAlign: 'center',
+  },
   link: {
-    marginTop: 15,
-    paddingVertical: 15,
+    alignItems: 'center',
+    backgroundColor: BrandColors.primary,
+    borderRadius: BrandRadii.control,
+    justifyContent: 'center',
+    marginTop: 6,
+    minHeight: 48,
+    paddingHorizontal: 18,
+    paddingVertical: 12,
+    width: '100%',
+  },
+  linkText: {
+    fontWeight: '700',
   },
 });

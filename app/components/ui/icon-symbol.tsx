@@ -17,8 +17,17 @@ const MAPPING = {
   'house.fill': 'home',
   'paperplane.fill': 'send',
   'archivebox.fill': 'inventory',
+  'person.fill': 'person',
+  'arrow.right.circle.fill': 'arrow-forward',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
+  'checkmark.seal.fill': 'verified',
+  'clock.fill': 'schedule',
+  'eye.fill': 'visibility',
+  'lock.fill': 'lock',
+  'person.2.fill': 'groups',
+  'shield.fill': 'shield',
+  sparkles: 'auto-awesome',
 } as IconMapping;
 
 /**

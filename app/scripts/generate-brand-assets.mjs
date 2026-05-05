@@ -52,6 +52,10 @@ await sharp(await renderLogo(tintLogo('#F4E8FF'), 1024))
   .png()
   .toFile(path.join(imageDir, 'via-la-maschera-logo-light.png'));
 
+await sharp(await renderLogo(tintLogo('#F4E8FF'), 64))
+  .png()
+  .toFile(path.join(imageDir, 'via-la-maschera-logo-header-light.png'));
+
 await renderIcon(path.join(imageDir, 'icon.png'), 760);
 await renderIcon(path.join(imageDir, 'splash-icon.png'), 620);
 

@@ -1,50 +1,57 @@
-# Welcome to your Expo app 👋
+# Via la Maschera
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+App Expo/React Native per un rituale quotidiano di introspezione:
 
-## Get started
+- una domanda personale al giorno;
+- una risposta sigillata;
+- una riflessione che si apre dopo 24 ore;
+- archivio privato;
+- percorsi emotivi;
+- accesso Google e stanza condivisa opzionale;
+- tema chiaro/scuro;
+- interfaccia in Italiano, Inglese, Ucraino, Russo e Spagnolo.
 
-1. Install dependencies
+## Sviluppo locale
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
+```powershell
+npm.cmd install
+npm.cmd run web
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+URL web locale:
 
-## Learn more
+```text
+http://localhost:8082/
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+## Controlli
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```powershell
+npm.cmd run check
+npm.cmd run export:web
+```
 
-## Join the community
+## Build EAS
 
-Join our community of developers creating universal apps.
+Prima della build installare e configurare EAS CLI con un account Expo.
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```powershell
+eas login
+eas build:configure
+npm.cmd run build:android:preview
+npm.cmd run build:android:production
+npm.cmd run build:ios:production
+```
+
+Identificativi configurati:
+
+```text
+iOS bundle identifier: com.vialamaschera.app
+Android package: com.vialamaschera.app
+```
+
+## Firebase e Google Login
+
+Le chiavi non sono nel repository. Copiare `app/.env.example` in `app/.env` e compilare le variabili `EXPO_PUBLIC_*`.
+
+Finché Firebase o Google Login non sono configurati, l'app resta utilizzabile con archivio locale e mostra lo stato `Da collegare` nel Profilo.

@@ -1,1 +1,5 @@
-export { useColorScheme } from 'react-native';
+import { useOptionalSettings } from '@/contexts/settings-context';
+
+export function useColorScheme() {
+  return useOptionalSettings()?.themeMode ?? 'light';
+}

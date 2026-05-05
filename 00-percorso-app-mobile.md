@@ -28,6 +28,19 @@ Expo e una piattaforma che semplifica la creazione di app mobile. Ci permette di
 14. Check 14: collegare ogni domanda a una maschera emotiva. Completato.
 15. Check 15: integrare logo e identita visiva. Completato.
 16. Check 16: rifinire estetica e tono dell'interfaccia. Completato.
+17. Check 17: aggiungere la mappa personale nell'Archivio. Completato.
+18. Check 18: aggiungere continuita rituale nella Home. Completato.
+19. Check 19: curare lingua italiana e tipografia. Completato.
+20. Check 20: rendere interattivi i Percorsi di Maschera. Completato.
+21. Check 21: preparare accesso Google, archivio utente e risposte condivise. Completato.
+22. Check 22: aggiungere consenso esplicito alla condivisione. Completato.
+23. Check 23: aggiungere segnalazione delle risposte condivise. Completato.
+24. Check 24: permettere di rendere privata una risposta condivisa. Completato.
+25. Check 25: creare la schermata Profilo. Completato.
+26. Check 26: proteggere accesso Google quando manca il client web. Completato.
+27. Check 27: ridisegnare esperienza visiva, UX e fiducia. Completato.
+28. Check 28: sistemare logo header, tema chiaro/scuro e lingue. Completato.
+29. Check 29: preparare configurazione build e kit store. Completato.
 
 ## Percentuale progetto
 
@@ -46,7 +59,7 @@ In questa scala, 100% significa:
 Stato attuale:
 
 ```text
-55%
+97%
 ```
 
 ## Regole semplici
@@ -76,3 +89,16 @@ Stato attuale:
 - `14-check-14-domande-maschere.md`: riepilogo della mappatura domande-percorsi emotivi.
 - `15-check-15-logo-branding.md`: riepilogo del logo, icone e identita visiva.
 - `16-check-16-rifinitura-ui.md`: riepilogo della rifinitura estetica e del tono utente.
+- `17-check-17-mappa-personale.md`: riepilogo della mappa personale nell'Archivio.
+- `18-check-18-continuita-home.md`: riepilogo della continuita rituale nella Home.
+- `19-check-19-lingua-tipografia.md`: riepilogo della cura italiana e della scelta tipografica.
+- `20-check-20-percorsi-interattivi.md`: riepilogo dei Percorsi interattivi.
+- `21-check-21-accesso-google-condivisione.md`: riepilogo di login Google, cloud utente e risposte condivise.
+- `22-check-22-consenso-condivisione.md`: riepilogo del consenso esplicito per la stanza condivisa.
+- `23-check-23-segnalazioni-comunita.md`: riepilogo della segnalazione delle risposte condivise.
+- `24-check-24-revoca-condivisione.md`: riepilogo della revoca della condivisione.
+- `25-check-25-profilo-account-privacy.md`: riepilogo della schermata Profilo.
+- `26-check-26-guardia-accesso-google.md`: riepilogo della protezione quando Google Login non e ancora configurato.
+- `27-check-27-restyling-ux-ui.md`: riepilogo del restyling UX/UI e della nuova grammatica visiva.
+- `28-check-28-tema-lingue-logo.md`: riepilogo di logo header, tema chiaro/scuro e localizzazione multilingua.
+- `29-check-29-release-store-kit.md`: riepilogo della preparazione build, store e privacy.

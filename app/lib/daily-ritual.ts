@@ -1,4 +1,5 @@
-import { maskQuestions } from '@/data/mask-questions';
+import { defaultLanguage, type AppLanguageCode } from '@/constants/localization';
+import { getMaskQuestionsForLanguage, maskQuestions } from '@/data/mask-questions';
 import { type MaskPathId } from '@/data/mask-paths';
 import { getMaskPathForQuestionIndex } from '@/data/question-paths';
 import { getLocalItem, removeLocalItem, setLocalItem } from '@/lib/local-storage';
@@ -15,11 +16,17 @@ export type DailyEntry = {
   id: string;
   pathId: MaskPathId;
   question: string;
+  questionKey: string;
   reflection: string;
   reflectionReadyAt: number;
+  shareWithCommunity: boolean;
 };
 
-type LegacyDailyEntry = Omit<DailyEntry, 'id' | 'pathId'> & Partial<Pick<DailyEntry, 'pathId'>>;
+type LegacyDailyEntry = Omit<
+  DailyEntry,
+  'id' | 'pathId' | 'questionKey' | 'shareWithCommunity'
+> &
+  Partial<Pick<DailyEntry, 'pathId' | 'questionKey' | 'shareWithCommunity'>>;
 
 export function getDateKey(date = new Date()) {
   return date.toISOString().slice(0, 10);
@@ -31,26 +38,90 @@ export function getQuestionIndex(dateKey: string) {
   return dayNumber % maskQuestions.length;
 }
 
-export function getQuestionForDate(dateKey: string) {
-  return maskQuestions[getQuestionIndex(dateKey)];
+export function getQuestionKeyForIndex(questionIndex: number) {
+  return `q-${questionIndex}`;
+}
+
+export function getQuestionKeyForDate(dateKey: string) {
+  return getQuestionKeyForIndex(getQuestionIndex(dateKey));
+}
+
+export function getQuestionKeyForQuestion(question: string, dateKey: string) {
+  const questionIndex = maskQuestions.findIndex((savedQuestion) => savedQuestion === question);
+
+  return getQuestionKeyForIndex(questionIndex >= 0 ? questionIndex : getQuestionIndex(dateKey));
+}
+
+export function getQuestionForDate(dateKey: string, language: AppLanguageCode = defaultLanguage) {
+  return getMaskQuestionsForLanguage(language)[getQuestionIndex(dateKey)];
 }
 
 export function getMaskPathForDate(dateKey: string) {
   return getMaskPathForQuestionIndex(getQuestionIndex(dateKey));
 }
 
-export function buildReflection(answer: string, question: string) {
-  const trimmedAnswer = answer.trim();
-  const sentence =
-    trimmedAnswer.length > 130
-      ? 'Hai risposto senza restare in superficie, e questo di solito accade quando una domanda ha toccato qualcosa che meritava spazio.'
-      : 'Hai lasciato una traccia breve, ma anche le risposte brevi a volte proteggono qualcosa di preciso.';
+export function buildReflection(
+  answer: string,
+  question: string,
+  language: AppLanguageCode = defaultLanguage
+) {
+  const isLongAnswer = answer.trim().length > 130;
+  const reflectionCopy = {
+    it: {
+      close:
+        'Per oggi basta questo: hai tolto un millimetro di maschera. Non serve strappare tutto insieme.',
+      long:
+        'Hai risposto senza restare in superficie, e questo di solito accade quando una domanda ha toccato qualcosa che meritava spazio.',
+      notice:
+        'Il punto non è giudicare la risposta. Il punto è notare dove hai esitato, cosa hai scelto di dire e cosa hai lasciato appena fuori dalla porta.',
+      question: `La domanda era: "${question}"`,
+      short: 'Hai lasciato una traccia breve, ma anche le risposte brevi a volte proteggono qualcosa di preciso.',
+    },
+    en: {
+      close:
+        'For today, this is enough: you removed one millimetre of mask. You do not need to tear everything away at once.',
+      long:
+        'You answered without staying on the surface, and that usually happens when a question touches something that needed space.',
+      notice:
+        'The point is not to judge the answer. The point is to notice where you hesitated, what you chose to say, and what stayed just outside the door.',
+      question: `The question was: "${question}"`,
+      short: 'You left a brief trace, but brief answers sometimes protect something precise.',
+    },
+    uk: {
+      close: 'На сьогодні цього достатньо: ти зняв міліметр маски. Не треба зривати все одразу.',
+      long:
+        'Ти відповів не поверхово, і так часто буває, коли запитання торкнулося чогось, що потребувало простору.',
+      notice:
+        'Сенс не в тому, щоб судити відповідь. Сенс у тому, щоб помітити, де ти вагався, що вирішив сказати і що залишив за дверима.',
+      question: `Запитання було: "${question}"`,
+      short: 'Ти залишив короткий слід, але короткі відповіді іноді захищають щось дуже точне.',
+    },
+    ru: {
+      close: 'На сегодня этого достаточно: ты снял миллиметр маски. Не нужно срывать всё сразу.',
+      long:
+        'Ты ответил не поверхностно, и так обычно бывает, когда вопрос коснулся чего-то, чему нужно было место.',
+      notice:
+        'Смысл не в том, чтобы судить ответ. Смысл в том, чтобы заметить, где ты колебался, что решил сказать и что оставил за дверью.',
+      question: `Вопрос был: "${question}"`,
+      short: 'Ты оставил короткий след, но короткие ответы иногда защищают что-то очень точное.',
+    },
+    es: {
+      close:
+        'Por hoy basta esto: quitaste un milímetro de máscara. No hace falta arrancarlo todo de una vez.',
+      long:
+        'Respondiste sin quedarte en la superficie, y eso suele ocurrir cuando una pregunta tocó algo que necesitaba espacio.',
+      notice:
+        'El punto no es juzgar la respuesta. El punto es notar dónde dudaste, qué elegiste decir y qué dejaste apenas fuera de la puerta.',
+      question: `La pregunta era: "${question}"`,
+      short: 'Dejaste una huella breve, pero las respuestas breves a veces protegen algo muy preciso.',
+    },
+  }[language];
 
   return [
-    sentence,
-    `La domanda era: "${question}"`,
-    'Il punto non e giudicare la risposta. Il punto e notare dove hai esitato, cosa hai scelto di dire e cosa hai lasciato appena fuori dalla porta.',
-    'Per oggi basta questo: hai tolto un millimetro di maschera. Non serve strappare tutto insieme.',
+    isLongAnswer ? reflectionCopy.long : reflectionCopy.short,
+    reflectionCopy.question,
+    reflectionCopy.notice,
+    reflectionCopy.close,
   ].join('\n\n');
 }
 
@@ -67,19 +138,34 @@ export function formatRemainingTime(milliseconds: number) {
 }
 
 function normalizeEntry(entry: DailyEntry | LegacyDailyEntry): DailyEntry {
-  if ('id' in entry && entry.id) {
-    return entry;
-  }
-
   return {
     ...entry,
-    id: `${entry.dateKey}-${entry.createdAt}`,
+    id: 'id' in entry && entry.id ? entry.id : `${entry.dateKey}-${entry.createdAt}`,
     pathId: entry.pathId ?? getMaskPathForDate(entry.dateKey).id,
+    questionKey: entry.questionKey ?? getQuestionKeyForQuestion(entry.question, entry.dateKey),
+    shareWithCommunity: entry.shareWithCommunity ?? false,
   };
 }
 
-function sortEntries(entries: DailyEntry[]) {
+export function sortEntries(entries: DailyEntry[]) {
   return [...entries].sort((first, second) => second.createdAt - first.createdAt);
+}
+
+export function mergeDailyEntries(primaryEntries: DailyEntry[], secondaryEntries: DailyEntry[]) {
+  const entryMap = new Map<string, DailyEntry>();
+
+  [...secondaryEntries, ...primaryEntries].forEach((entry) => {
+    entryMap.set(entry.dateKey, normalizeEntry(entry));
+  });
+
+  return sortEntries([...entryMap.values()]);
+}
+
+export async function replaceDailyEntries(entries: DailyEntry[]) {
+  const nextEntries = sortEntries(entries.map(normalizeEntry));
+  await setLocalItem(ENTRIES_STORAGE_KEY, JSON.stringify(nextEntries));
+
+  return nextEntries;
 }
 
 export async function loadDailyEntries() {
@@ -129,7 +215,13 @@ export function getEntryForDate(entries: DailyEntry[], dateKey: string) {
   return entries.find((entry) => entry.dateKey === dateKey) ?? null;
 }
 
-export function createDailyEntry(answer: string, question: string, dateKey: string) {
+export function createDailyEntry(
+  answer: string,
+  question: string,
+  dateKey: string,
+  shareWithCommunity = false,
+  language: AppLanguageCode = defaultLanguage
+) {
   const createdAt = Date.now();
 
   return {
@@ -139,7 +231,9 @@ export function createDailyEntry(answer: string, question: string, dateKey: stri
     id: `${dateKey}-${createdAt}`,
     pathId: getMaskPathForDate(dateKey).id,
     question,
-    reflection: buildReflection(answer, question),
+    questionKey: getQuestionKeyForDate(dateKey),
+    reflection: buildReflection(answer, question, language),
     reflectionReadyAt: createdAt + REFLECTION_DELAY_MS,
+    shareWithCommunity,
   };
 }

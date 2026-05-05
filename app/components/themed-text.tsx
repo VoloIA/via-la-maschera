@@ -1,5 +1,7 @@
 import { StyleSheet, Text, type TextProps } from 'react-native';
 
+import { AppLanguage, AppLanguageLocales, FontFamilies } from '@/constants/typography';
+import { useOptionalSettings } from '@/contexts/settings-context';
 import { useThemeColor } from '@/hooks/use-theme-color';
 
 export type ThemedTextProps = TextProps & {
@@ -9,6 +11,7 @@ export type ThemedTextProps = TextProps & {
 };
 
 export function ThemedText({
+  accessibilityLanguage = AppLanguage.locale,
   style,
   lightColor,
   darkColor,
@@ -16,6 +19,8 @@ export function ThemedText({
   ...rest
 }: ThemedTextProps) {
   const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
+  const settings = useOptionalSettings();
+  const language = settings ? AppLanguageLocales[settings.language] : accessibilityLanguage;
 
   return (
     <Text
@@ -28,6 +33,7 @@ export function ThemedText({
         type === 'link' ? styles.link : undefined,
         style,
       ]}
+      accessibilityLanguage={language}
       {...rest}
     />
   );
@@ -35,26 +41,29 @@ export function ThemedText({
 
 const styles = StyleSheet.create({
   default: {
+    fontFamily: FontFamilies.regular,
     fontSize: 16,
     lineHeight: 24,
   },
   defaultSemiBold: {
+    fontFamily: FontFamilies.semibold,
     fontSize: 16,
     lineHeight: 24,
-    fontWeight: '600',
   },
   title: {
+    fontFamily: FontFamilies.bold,
     fontSize: 32,
-    fontWeight: 'bold',
-    lineHeight: 32,
+    lineHeight: 40,
   },
   subtitle: {
+    fontFamily: FontFamilies.semibold,
     fontSize: 20,
-    fontWeight: 'bold',
+    lineHeight: 27,
   },
   link: {
-    lineHeight: 30,
-    fontSize: 16,
+    fontFamily: FontFamilies.semibold,
     color: '#0a7ea4',
+    fontSize: 16,
+    lineHeight: 30,
   },
 });

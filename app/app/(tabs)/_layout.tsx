@@ -3,12 +3,16 @@ import React from 'react';
 
 import { HapticTab } from '@/components/haptic-tab';
 import { IconSymbol } from '@/components/ui/icon-symbol';
-import { BrandColors } from '@/constants/brand';
+import { BrandThemes } from '@/constants/brand';
 import { Colors } from '@/constants/theme';
+import { FontFamilies } from '@/constants/typography';
+import { useSettings } from '@/contexts/settings-context';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
+  const { copy } = useSettings();
+  const palette = BrandThemes[colorScheme ?? 'light'];
 
   return (
     <Tabs
@@ -16,30 +20,46 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
         tabBarButton: HapticTab,
+        tabBarLabelStyle: {
+          fontFamily: FontFamilies.semibold,
+          fontSize: 12,
+          lineHeight: 16,
+        },
         tabBarStyle: {
-          backgroundColor: colorScheme === 'dark' ? BrandColors.backgroundDark : BrandColors.surface,
-          borderTopColor: colorScheme === 'dark' ? '#2A1C34' : BrandColors.border,
+          backgroundColor: palette.surface,
+          borderTopColor: palette.border,
+          borderTopWidth: 1,
+          height: 66,
+          paddingBottom: 10,
+          paddingTop: 7,
         },
       }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: copy.common.home,
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
         }}
       />
       <Tabs.Screen
         name="explore"
         options={{
-          title: 'Percorsi',
+          title: copy.paths.headerKicker,
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
         }}
       />
       <Tabs.Screen
         name="archive"
         options={{
-          title: 'Archivio',
+          title: copy.archive.headerKicker,
           tabBarIcon: ({ color }) => <IconSymbol size={28} name="archivebox.fill" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: copy.profile.headerKicker,
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="person.fill" color={color} />,
         }}
       />
     </Tabs>

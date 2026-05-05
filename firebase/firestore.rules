@@ -1,0 +1,67 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function signedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return signedIn() && request.auth.uid == userId;
+    }
+
+    function hasAnswered(questionKey) {
+      return exists(
+        /databases/$(database)/documents/users/$(request.auth.uid)/answeredQuestions/$(questionKey)
+      );
+    }
+
+    function hasShared(questionKey) {
+      return hasAnswered(questionKey)
+        && get(
+          /databases/$(database)/documents/users/$(request.auth.uid)/answeredQuestions/$(questionKey)
+        ).data.shared == true;
+    }
+
+    match /users/{userId} {
+      allow read, write: if isOwner(userId);
+
+      match /entries/{entryId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      match /answeredQuestions/{questionKey} {
+        allow read, write: if isOwner(userId);
+      }
+    }
+
+    match /questions/{questionKey}/answers/{answerId} {
+      allow read: if signedIn() && hasShared(questionKey);
+
+      allow create, update: if signedIn()
+        && request.auth.uid == request.resource.data.uid
+        && request.resource.data.questionKey == questionKey
+        && request.resource.data.shareWithCommunity == true
+        && answerId == request.auth.uid + "_" + request.resource.data.dateKey;
+
+      allow delete: if signedIn()
+        && (
+          !exists(/databases/$(database)/documents/questions/$(questionKey)/answers/$(answerId))
+          || request.auth.uid == resource.data.uid
+        );
+    }
+
+    match /reports/{reportId} {
+      allow read: if false;
+
+      allow create: if signedIn()
+        && request.resource.data.reporterUid == request.auth.uid
+        && request.resource.data.status == "open"
+        && reportId == request.resource.data.questionKey + "_"
+          + request.resource.data.answerId + "_"
+          + request.auth.uid;
+
+      allow update, delete: if false;
+    }
+  }
+}
