@@ -20,6 +20,7 @@
 ## Prima della build
 
 - Verificare che `app/.env` contenga le chiavi Firebase e Google reali.
+- Caricare le variabili production su EAS con `npm.cmd run eas:env:push`.
 - Verificare che le regole Firestore siano pubblicate.
 - Decidere email pubblica di supporto.
 - Pubblicare URL pubblico stabile della privacy policy.
@@ -36,6 +37,7 @@
 npm.cmd run check
 npm.cmd run export:web
 npx.cmd expo config --type public
+npm.cmd run eas:env:push
 ```
 
 ## Build interne

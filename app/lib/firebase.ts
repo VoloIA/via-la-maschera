@@ -1,6 +1,7 @@
 import { getApps, initializeApp, type FirebaseApp, type FirebaseOptions } from 'firebase/app';
 import { getAuth, type Auth } from 'firebase/auth';
 import { getFirestore, type Firestore } from 'firebase/firestore';
+import { Platform } from 'react-native';
 
 const firebaseConfig: FirebaseOptions = {
   apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
@@ -24,8 +25,15 @@ export const isFirebaseConfigured = Boolean(
     firebaseConfig.projectId
 );
 
+const hasPlatformGoogleClientId = Platform.select({
+  android: Boolean(googleClientIds.androidClientId),
+  ios: Boolean(googleClientIds.iosClientId),
+  web: Boolean(googleClientIds.webClientId),
+  default: Boolean(googleClientIds.webClientId),
+});
+
 export const isGoogleAuthConfigured = Boolean(
-  isFirebaseConfigured && googleClientIds.webClientId
+  isFirebaseConfigured && googleClientIds.webClientId && hasPlatformGoogleClientId
 );
 
 export const firebaseApp: FirebaseApp | null = isFirebaseConfigured
