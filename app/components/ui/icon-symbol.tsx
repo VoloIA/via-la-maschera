@@ -19,6 +19,7 @@ const MAPPING = {
   'archivebox.fill': 'inventory',
   'person.fill': 'person',
   'arrow.right.circle.fill': 'arrow-forward',
+  'camera.fill': 'photo-camera',
   'chevron.left.forwardslash.chevron.right': 'code',
   'chevron.right': 'chevron-right',
   checkmark: 'check',

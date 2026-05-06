@@ -116,6 +116,10 @@ export const appCopy = {
       headerText:
         'Account, salvataggio e condivisione restano separati: scegli cosa aprire e cosa tenere tuo.',
       headerTitle: 'Controllo, non esposizione',
+      instagram: 'Instagram',
+      instagramAction: '@via_lamaschera',
+      instagramText:
+        'Segui il progetto fuori dal rito quotidiano: aggiornamenti, dietro le quinte e nuove aperture.',
       language: 'Lingua',
       login: 'Entra con Google',
       loginOpening: 'Apertura Google…',
@@ -253,6 +257,10 @@ export const appCopy = {
       headerKicker: 'Profile',
       headerText: 'Account, saving, and sharing stay separate: choose what to open and what to keep yours.',
       headerTitle: 'Control, not exposure',
+      instagram: 'Instagram',
+      instagramAction: '@via_lamaschera',
+      instagramText:
+        'Follow the project outside the daily ritual: updates, behind the scenes, and new openings.',
       language: 'Language',
       login: 'Sign in with Google',
       loginOpening: 'Opening Google…',
@@ -389,6 +397,10 @@ export const appCopy = {
       headerKicker: 'Профіль',
       headerText: 'Акаунт, збереження і поширення розділені: обирай, що відкрити, а що залишити своїм.',
       headerTitle: 'Контроль, не оголення',
+      instagram: 'Instagram',
+      instagramAction: '@via_lamaschera',
+      instagramText:
+        'Стеж за проєктом поза щоденним ритуалом: оновлення, залаштунки та нові відкриття.',
       language: 'Мова',
       login: 'Увійти через Google',
       loginOpening: 'Відкриваю Google…',
@@ -526,6 +538,10 @@ export const appCopy = {
       headerKicker: 'Профиль',
       headerText: 'Аккаунт, сохранение и обмен разделены: выбирай, что открыть, а что оставить своим.',
       headerTitle: 'Контроль, не раскрытие',
+      instagram: 'Instagram',
+      instagramAction: '@via_lamaschera',
+      instagramText:
+        'Следи за проектом вне ежедневного ритуала: обновления, закулисье и новые открытия.',
       language: 'Язык',
       login: 'Войти через Google',
       loginOpening: 'Открываю Google…',
@@ -662,6 +678,10 @@ export const appCopy = {
       headerKicker: 'Perfil',
       headerText: 'Cuenta, guardado y compartir quedan separados: eliges qué abrir y qué conservar tuyo.',
       headerTitle: 'Control, no exposición',
+      instagram: 'Instagram',
+      instagramAction: '@via_lamaschera',
+      instagramText:
+        'Sigue el proyecto fuera del ritual diario: novedades, detrás de escena y nuevas aperturas.',
       language: 'Idioma',
       login: 'Entrar con Google',
       loginOpening: 'Abriendo Google…',

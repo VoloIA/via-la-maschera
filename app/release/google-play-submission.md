@@ -18,6 +18,7 @@
 - Privacy policy: `https://voloia.github.io/via-la-maschera/privacy`
 - Account and data deletion: `https://voloia.github.io/via-la-maschera/delete-account`
 - Terms and community rules: `https://voloia.github.io/via-la-maschera/terms`
+- Instagram: `https://www.instagram.com/via_lamaschera/`
 
 ## Store positioning
 
@@ -130,6 +131,8 @@ eas submit --platform android --profile production
 - Add support email: `volodymyr.ilchenko.it@gmail.com`.
 - Add tester feedback email or URL.
 - Start internal testing first.
+
+Note: Instagram is a project/social presence, not the primary support channel. Keep support and privacy requests on email and public web pages.
 
 Note:
 

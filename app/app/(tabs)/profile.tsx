@@ -1,5 +1,5 @@
 import { Link } from 'expo-router';
-import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { Image, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
@@ -12,6 +12,8 @@ import { supportedLanguages } from '@/constants/localization';
 import { FontFamilies } from '@/constants/typography';
 import { useAuth } from '@/contexts/auth-context';
 import { useSettings } from '@/contexts/settings-context';
+
+const INSTAGRAM_URL = 'https://www.instagram.com/via_lamaschera/';
 
 function getUserInitials(displayName?: string | null, email?: string | null) {
   const source = displayName?.trim() || email?.split('@')[0] || 'Tu';
@@ -40,6 +42,9 @@ export default function ProfileScreen() {
   const { copy, language, setLanguage, setThemeMode, themeMode } = useSettings();
   const legal = legalCopy[language];
   const communityRules = communityRulesCopy[language];
+  const openInstagram = () => {
+    void Linking.openURL(INSTAGRAM_URL);
+  };
 
   return (
     <ParallaxScrollView
@@ -247,6 +252,20 @@ export default function ProfileScreen() {
             </Pressable>
           </Link>
         </View>
+      </ThemedView>
+
+      <ThemedView style={styles.socialPanel}>
+        <View style={styles.panelTitleRow}>
+          <IconSymbol name="camera.fill" color={BrandColors.primary} size={20} />
+          <ThemedText type="subtitle">{copy.profile.instagram}</ThemedText>
+        </View>
+        <ThemedText style={styles.mutedText}>{copy.profile.instagramText}</ThemedText>
+        <Pressable accessibilityRole="link" onPress={openInstagram} style={styles.socialLink}>
+          <ThemedText type="defaultSemiBold" style={styles.socialLinkText}>
+            {copy.profile.instagramAction}
+          </ThemedText>
+          <IconSymbol name="arrow.right.circle.fill" color={BrandColors.primary} size={18} />
+        </Pressable>
       </ThemedView>
 
       <ThemedView style={styles.statusPanel}>
@@ -511,6 +530,31 @@ const styles = StyleSheet.create({
     color: BrandColors.muted,
     fontSize: 14,
     lineHeight: 21,
+  },
+  socialPanel: {
+    ...BrandShadows.card,
+    backgroundColor: BrandColors.surface,
+    borderColor: BrandColors.border,
+    borderRadius: BrandRadii.card,
+    borderWidth: 1,
+    gap: BrandSpacing.md,
+    padding: BrandSpacing.lg,
+  },
+  socialLink: {
+    alignItems: 'center',
+    alignSelf: 'flex-start',
+    backgroundColor: BrandColors.primarySoft,
+    borderColor: BrandColors.borderStrong,
+    borderRadius: BrandRadii.control,
+    borderWidth: 1,
+    flexDirection: 'row',
+    gap: BrandSpacing.sm,
+    minHeight: 44,
+    paddingHorizontal: 14,
+    paddingVertical: 10,
+  },
+  socialLinkText: {
+    color: BrandColors.primary,
   },
   statusPanel: {
     ...BrandShadows.card,
