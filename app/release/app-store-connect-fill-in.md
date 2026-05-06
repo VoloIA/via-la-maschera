@@ -154,6 +154,14 @@ Ordine consigliato:
 6. Aprire TestFlight interno.
 7. Testare su iPhone reale.
 
+Latest production iOS build:
+
+- EAS build: `c900afe7-c750-4605-9c76-a4622695c43b`
+- Expo page: `https://expo.dev/accounts/via_lamaschera/projects/via-la-maschera/builds/c900afe7-c750-4605-9c76-a4622695c43b`
+- Artifact URL: `https://expo.dev/artifacts/eas/qPAJf96Xq82b3nreYx54gr.ipa`
+- Local file: `release/builds/via-la-maschera-ios-1.0.0-1.ipa`
+- Status checked on 2026-05-07: `FINISHED`
+
 Comando build:
 
 ```powershell
