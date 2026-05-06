@@ -119,6 +119,7 @@ eas submit --platform android --profile production
 
 ## Play Console checklist
 
+- Use `release/play-console-fill-in.md` as the step-by-step Play Console guide.
 - Create app in Play Console with package `com.vialamaschera.app`.
 - Upload the `.aab` from EAS production build.
 - Complete store listing in the five supported languages.
