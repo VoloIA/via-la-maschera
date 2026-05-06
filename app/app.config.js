@@ -1,15 +1,11 @@
-const appJson = require('./app.json');
-
-module.exports = () => {
+module.exports = ({ config }) => {
   const baseUrl = process.env.EXPO_WEB_BASE_PATH;
 
   return {
-    expo: {
-      ...appJson.expo,
-      experiments: {
-        ...appJson.expo.experiments,
-        ...(baseUrl ? { baseUrl } : {}),
-      },
+    ...config,
+    experiments: {
+      ...config.experiments,
+      ...(baseUrl ? { baseUrl } : {}),
     },
   };
 };
