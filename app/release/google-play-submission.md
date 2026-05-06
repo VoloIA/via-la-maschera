@@ -117,6 +117,14 @@ If EAS Submit is configured later:
 eas submit --platform android --profile production
 ```
 
+Latest production Android build:
+
+- EAS build: `52f118e0-4bd2-4845-a714-cf989af4795d`
+- Expo page: `https://expo.dev/accounts/via_lamaschera/projects/via-la-maschera/builds/52f118e0-4bd2-4845-a714-cf989af4795d`
+- Artifact URL: `https://expo.dev/artifacts/eas/bf379aNHpg8Wj5rn99BG5v.aab`
+- Local file for Play Console upload: `release/builds/via-la-maschera-1.0.0-1.aab`
+- Status checked on 2026-05-06: `FINISHED`
+
 ## Play Console checklist
 
 - Use `release/play-console-fill-in.md` as the step-by-step Play Console guide.
