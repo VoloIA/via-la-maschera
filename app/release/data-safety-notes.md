@@ -19,8 +19,8 @@ Queste note servono a compilare le schermate privacy degli store. Non sono consu
 
 ### Personal info
 
-- Email: solo con Google Login.
-- Name: solo se Google fornisce display name.
+- Email: solo con accesso Google o Apple.
+- Name: solo se Google o Apple forniscono display name.
 - User IDs: Firebase UID.
 
 Uso:
@@ -72,5 +72,5 @@ Da verificare e dichiarare solo se vero in produzione:
 - Email supporto.
 - Procedura cancellazione account/dati.
 - Se l'app sarà accessibile ai minori.
-- Se Firebase/Google Login saranno attivi già nella prima release.
+- Se Firebase, Google Login e Sign in with Apple saranno attivi già nella prima release.
 - Se verranno aggiunti analytics, crash reporting, notifiche push o pagamenti.

@@ -1,3 +1,4 @@
+import * as AppleAuthentication from 'expo-apple-authentication';
 import { Link } from 'expo-router';
 import { Image, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 
@@ -32,9 +33,11 @@ function getUserInitials(displayName?: string | null, email?: string | null) {
 export default function ProfileScreen() {
   const {
     authError,
+    isAppleAuthAvailable,
     isFirebaseConfigured,
     isGoogleAuthConfigured,
     isSigningIn,
+    signInWithApple,
     signInWithGoogle,
     signOut,
     user,
@@ -119,6 +122,19 @@ export default function ProfileScreen() {
               </ThemedText>
               <IconSymbol name="arrow.right.circle.fill" color="#FFFFFF" size={18} />
             </Pressable>
+            {isAppleAuthAvailable ? (
+              <AppleAuthentication.AppleAuthenticationButton
+                buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+                buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+                cornerRadius={BrandRadii.control}
+                onPress={() => {
+                  if (!isSigningIn) {
+                    void signInWithApple();
+                  }
+                }}
+                style={styles.appleButton}
+              />
+            ) : null}
           </>
         )}
 
@@ -285,6 +301,12 @@ export default function ProfileScreen() {
             {isGoogleAuthConfigured ? copy.common.ready : copy.common.waiting}
           </ThemedText>
         </View>
+        <View style={styles.statusRow}>
+          <ThemedText>{copy.profile.appleLogin}</ThemedText>
+          <ThemedText style={isAppleAuthAvailable ? styles.readyBadge : styles.waitingBadge}>
+            {isAppleAuthAvailable ? copy.common.ready : copy.common.waiting}
+          </ThemedText>
+        </View>
       </ThemedView>
     </ParallaxScrollView>
   );
@@ -402,6 +424,10 @@ const styles = StyleSheet.create({
   },
   primaryButtonText: {
     fontWeight: '700',
+  },
+  appleButton: {
+    height: 52,
+    width: '100%',
   },
   secondaryButton: {
     alignItems: 'center',

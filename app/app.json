@@ -27,6 +27,10 @@
     "ios": {
       "bundleIdentifier": "com.vialamaschera.app",
       "buildNumber": "1",
+      "usesAppleSignIn": true,
+      "infoPlist": {
+        "CFBundleAllowMixedLocalizations": true
+      },
       "supportsTablet": true
     },
     "android": {
@@ -47,6 +51,7 @@
     },
     "plugins": [
       "expo-router",
+      "expo-apple-authentication",
       "expo-web-browser",
       [
         "expo-splash-screen",

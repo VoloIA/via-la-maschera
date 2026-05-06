@@ -58,6 +58,7 @@ npm.cmd run build:ios:production
 ## Store
 
 - Usare `release/play-console-fill-in.md` per compilare Play Console campo per campo.
+- Usare `release/app-store-connect-fill-in.md` per preparare App Store Connect e TestFlight.
 - Preparare screenshot per Home, Percorsi, Archivio, Profilo, tema scuro e lingue.
 - Usare `release/google-play-submission.md` come dossier per Play Console.
 - Compilare App Privacy in App Store Connect.

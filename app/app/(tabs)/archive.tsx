@@ -1,4 +1,5 @@
 import { useFocusEffect } from '@react-navigation/native';
+import * as AppleAuthentication from 'expo-apple-authentication';
 import { useCallback, useEffect, useState } from 'react';
 import { Link } from 'expo-router';
 import { Image, Pressable, StyleSheet, Text, View } from 'react-native';
@@ -76,8 +77,10 @@ function SharedAnswersPanel({ entry }: { entry: DailyEntry }) {
   const communityRules = communityRulesCopy[language];
   const {
     isFirebaseConfigured,
+    isAppleAuthAvailable,
     isGoogleAuthConfigured,
     isSigningIn,
+    signInWithApple,
     signInWithGoogle,
     user,
   } = useAuth();
@@ -239,6 +242,19 @@ function SharedAnswersPanel({ entry }: { entry: DailyEntry }) {
           </ThemedText>
           <IconSymbol name="arrow.right.circle.fill" color="#FFFFFF" size={17} />
         </Pressable>
+        {isAppleAuthAvailable ? (
+          <AppleAuthentication.AppleAuthenticationButton
+            buttonStyle={AppleAuthentication.AppleAuthenticationButtonStyle.BLACK}
+            buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
+            cornerRadius={BrandRadii.control}
+            onPress={() => {
+              if (!isSigningIn) {
+                void signInWithApple();
+              }
+            }}
+            style={styles.appleSharedButton}
+          />
+        ) : null}
       </ThemedView>
     );
   }
@@ -776,6 +792,10 @@ const styles = StyleSheet.create({
   },
   sharedButtonText: {
     fontWeight: '700',
+  },
+  appleSharedButton: {
+    height: 46,
+    width: '100%',
   },
   rulesRow: {
     alignItems: 'flex-start',

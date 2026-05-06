@@ -45,14 +45,14 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
           title: 'Dati che possono essere trattati',
           body: [
             'Risposte scritte, domande associate, date, stato delle risposte, lingua e tema scelti.',
-            'Se accedi con Google, possono essere trattati identificativo utente, nome, email e immagine profilo forniti da Google.',
+            'Se accedi con Google o Apple, possono essere trattati identificativo utente, nome, email e dati profilo forniti dal servizio di accesso.',
           ],
         },
         {
           title: 'Archivio locale e cloud',
           body: [
             'Senza accesso, le risposte restano sul dispositivo.',
-            'Con accesso Google e Firebase configurato, le risposte possono essere sincronizzate nel tuo spazio cloud personale.',
+            'Con accesso e Firebase configurato, le risposte possono essere sincronizzate nel tuo spazio cloud personale.',
           ],
         },
         {
@@ -65,7 +65,7 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
         {
           title: 'Servizi tecnici',
           body: [
-            'L’app può usare Google Sign-In, Firebase Authentication, Cloud Firestore ed Expo per accesso, sincronizzazione, build e infrastruttura.',
+            'L’app può usare Google Sign-In, Sign in with Apple, Firebase Authentication, Cloud Firestore ed Expo per accesso, sincronizzazione, build e infrastruttura.',
           ],
         },
         {
@@ -87,13 +87,13 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
       profileTitle: 'Cancellazione account e dati',
       profileText: 'Scopri come richiedere la cancellazione dell’account e delle risposte cloud.',
       intro:
-        'Se usi l’accesso Google, puoi chiedere la cancellazione dell’account app e dei dati associati.',
+        'Se usi l’accesso Google o Apple, puoi chiedere la cancellazione dell’account app e dei dati associati.',
       sections: [
         {
           title: 'Come richiedere la cancellazione',
           body: [
             `Invia una richiesta a ${supportEmail} con oggetto “Cancellazione Via la Maschera”.`,
-            'Usa l’email collegata al tuo accesso Google, così possiamo identificare lo spazio corretto.',
+            'Usa l’email collegata al tuo accesso, così possiamo identificare lo spazio corretto.',
           ],
         },
         {
@@ -127,14 +127,14 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
           title: 'Data that may be processed',
           body: [
             'Written answers, related questions, dates, answer status, chosen language, and theme.',
-            'If you sign in with Google, user ID, name, email, and profile image provided by Google may be processed.',
+            'If you sign in with Google or Apple, user ID, name, email, and profile data provided by the sign-in service may be processed.',
           ],
         },
         {
           title: 'Local archive and cloud',
           body: [
             'Without sign-in, answers stay on the device.',
-            'With Google sign-in and Firebase configured, answers may sync to your personal cloud space.',
+            'With sign-in and Firebase configured, answers may sync to your personal cloud space.',
           ],
         },
         {
@@ -147,7 +147,7 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
         {
           title: 'Technical services',
           body: [
-            'The app may use Google Sign-In, Firebase Authentication, Cloud Firestore, and Expo for sign-in, sync, builds, and infrastructure.',
+            'The app may use Google Sign-In, Sign in with Apple, Firebase Authentication, Cloud Firestore, and Expo for sign-in, sync, builds, and infrastructure.',
           ],
         },
         {
@@ -169,13 +169,13 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
       profileTitle: 'Account and data deletion',
       profileText: 'Learn how to request deletion of your account and cloud answers.',
       intro:
-        'If you use Google sign-in, you can request deletion of your app account and associated data.',
+        'If you use Google or Apple sign-in, you can request deletion of your app account and associated data.',
       sections: [
         {
           title: 'How to request deletion',
           body: [
             `Send a request to ${supportEmail} with subject “Via la Maschera deletion”.`,
-            'Use the email connected to your Google sign-in so the correct space can be identified.',
+            'Use the email connected to your sign-in so the correct space can be identified.',
           ],
         },
         {
@@ -209,14 +209,14 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
           title: 'Дані, які можуть оброблятися',
           body: [
             'Написані відповіді, пов’язані запитання, дати, статус відповідей, вибрана мова і тема.',
-            'Якщо ти входиш через Google, можуть оброблятися ID користувача, ім’я, email та фото профілю від Google.',
+            'Якщо ти входиш через Google або Apple, можуть оброблятися ID користувача, ім’я, email та дані профілю від сервісу входу.',
           ],
         },
         {
           title: 'Локальний архів і хмара',
           body: [
             'Без входу відповіді залишаються на пристрої.',
-            'З входом Google і налаштованим Firebase відповіді можуть синхронізуватися у твоєму особистому хмарному просторі.',
+            'З входом і налаштованим Firebase відповіді можуть синхронізуватися у твоєму особистому хмарному просторі.',
           ],
         },
         {
@@ -229,7 +229,7 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
         {
           title: 'Технічні сервіси',
           body: [
-            'Додаток може використовувати Google Sign-In, Firebase Authentication, Cloud Firestore та Expo для входу, синхронізації, збірок і інфраструктури.',
+            'Додаток може використовувати Google Sign-In, Sign in with Apple, Firebase Authentication, Cloud Firestore та Expo для входу, синхронізації, збірок і інфраструктури.',
           ],
         },
         {
@@ -251,13 +251,13 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
       profileTitle: 'Видалення акаунта і даних',
       profileText: 'Дізнайся, як надіслати запит на видалення акаунта і хмарних відповідей.',
       intro:
-        'Якщо ти використовуєш вхід Google, можна надіслати запит на видалення акаунта додатка і пов’язаних даних.',
+        'Якщо ти використовуєш вхід Google або Apple, можна надіслати запит на видалення акаунта додатка і пов’язаних даних.',
       sections: [
         {
           title: 'Як надіслати запит',
           body: [
             `Надішли запит на ${supportEmail} з темою “Via la Maschera deletion”.`,
-            'Використовуй email, пов’язаний із входом Google, щоб можна було визначити правильний простір.',
+            'Використовуй email, пов’язаний із входом, щоб можна було визначити правильний простір.',
           ],
         },
         {
@@ -291,14 +291,14 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
           title: 'Данные, которые могут обрабатываться',
           body: [
             'Написанные ответы, связанные вопросы, даты, статус ответов, выбранный язык и тема.',
-            'Если ты входишь через Google, могут обрабатываться ID пользователя, имя, email и фото профиля от Google.',
+            'Если ты входишь через Google или Apple, могут обрабатываться ID пользователя, имя, email и данные профиля от сервиса входа.',
           ],
         },
         {
           title: 'Локальный архив и облако',
           body: [
             'Без входа ответы остаются на устройстве.',
-            'С входом Google и настроенным Firebase ответы могут синхронизироваться в твоё личное облачное пространство.',
+            'С входом и настроенным Firebase ответы могут синхронизироваться в твоё личное облачное пространство.',
           ],
         },
         {
@@ -311,7 +311,7 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
         {
           title: 'Технические сервисы',
           body: [
-            'Приложение может использовать Google Sign-In, Firebase Authentication, Cloud Firestore и Expo для входа, синхронизации, сборок и инфраструктуры.',
+            'Приложение может использовать Google Sign-In, Sign in with Apple, Firebase Authentication, Cloud Firestore и Expo для входа, синхронизации, сборок и инфраструктуры.',
           ],
         },
         {
@@ -333,13 +333,13 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
       profileTitle: 'Удаление аккаунта и данных',
       profileText: 'Узнай, как запросить удаление аккаунта и облачных ответов.',
       intro:
-        'Если ты используешь вход через Google, можно запросить удаление аккаунта приложения и связанных данных.',
+        'Если ты используешь вход через Google или Apple, можно запросить удаление аккаунта приложения и связанных данных.',
       sections: [
         {
           title: 'Как запросить удаление',
           body: [
             `Отправь запрос на ${supportEmail} с темой “Via la Maschera deletion”.`,
-            'Используй email, связанный со входом Google, чтобы можно было определить правильное пространство.',
+            'Используй email, связанный со входом, чтобы можно было определить правильное пространство.',
           ],
         },
         {
@@ -373,14 +373,14 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
           title: 'Datos que pueden tratarse',
           body: [
             'Respuestas escritas, preguntas asociadas, fechas, estado de las respuestas, idioma y tema elegidos.',
-            'Si entras con Google, pueden tratarse ID de usuario, nombre, email e imagen de perfil proporcionados por Google.',
+            'Si entras con Google o Apple, pueden tratarse ID de usuario, nombre, email y datos de perfil proporcionados por el servicio de acceso.',
           ],
         },
         {
           title: 'Archivo local y cloud',
           body: [
             'Sin acceso, las respuestas quedan en el dispositivo.',
-            'Con acceso Google y Firebase configurado, las respuestas pueden sincronizarse en tu espacio cloud personal.',
+            'Con acceso y Firebase configurado, las respuestas pueden sincronizarse en tu espacio cloud personal.',
           ],
         },
         {
@@ -393,7 +393,7 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
         {
           title: 'Servicios técnicos',
           body: [
-            'La app puede usar Google Sign-In, Firebase Authentication, Cloud Firestore y Expo para acceso, sincronización, builds e infraestructura.',
+            'La app puede usar Google Sign-In, Sign in with Apple, Firebase Authentication, Cloud Firestore y Expo para acceso, sincronización, builds e infraestructura.',
           ],
         },
         {
@@ -415,13 +415,13 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
       profileTitle: 'Eliminación de cuenta y datos',
       profileText: 'Descubre cómo solicitar la eliminación de tu cuenta y respuestas cloud.',
       intro:
-        'Si usas acceso con Google, puedes solicitar la eliminación de la cuenta de la app y los datos asociados.',
+        'Si usas acceso con Google o Apple, puedes solicitar la eliminación de la cuenta de la app y los datos asociados.',
       sections: [
         {
           title: 'Cómo solicitar la eliminación',
           body: [
             `Envía una solicitud a ${supportEmail} con asunto “Via la Maschera deletion”.`,
-            'Usa el email conectado a tu acceso Google para identificar el espacio correcto.',
+            'Usa el email conectado a tu acceso para identificar el espacio correcto.',
           ],
         },
         {
