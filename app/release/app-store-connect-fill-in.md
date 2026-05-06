@@ -82,6 +82,7 @@ Valori tecnici correnti:
 - Build number: `1`
 - Runtime version: `1.0.0`
 - Supports tablet: yes
+- Export compliance: `ITSAppUsesNonExemptEncryption=false`
 
 Release notes per TestFlight:
 
@@ -160,6 +161,12 @@ cd "C:\Users\intel i7 11700\Desktop\AppMobile\app"
 npm.cmd run check
 npm.cmd run build:ios:production
 ```
+
+Prima build iOS:
+
+- la prima generazione delle credenziali Apple richiede una build EAS interattiva;
+- EAS può chiedere login Apple Developer, team, certificato distribuzione e provisioning profile;
+- scegliere gestione automatica quando proposta.
 
 Test obbligatori:
 

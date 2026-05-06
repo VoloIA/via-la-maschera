@@ -29,7 +29,8 @@
       "buildNumber": "1",
       "usesAppleSignIn": true,
       "infoPlist": {
-        "CFBundleAllowMixedLocalizations": true
+        "CFBundleAllowMixedLocalizations": true,
+        "ITSAppUsesNonExemptEncryption": false
       },
       "supportsTablet": true
     },
