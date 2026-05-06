@@ -53,6 +53,7 @@ Valori consigliati:
 - Name: `Via la Maschera`
 - Primary language: `Italian`
 - Bundle ID: `com.vialamaschera.app`
+- Apple ID: `6767053235`
 - SKU: `via-la-maschera-ios`
 - User Access: `Full Access`
 
@@ -157,6 +158,9 @@ Ordine consigliato:
 Latest production iOS build:
 
 - EAS build: `c900afe7-c750-4605-9c76-a4622695c43b`
+- EAS submission: `9fdf136f-64c8-4703-a78a-144d7b2841a9`
+- App Store Connect app ID: `6767053235`
+- TestFlight URL: `https://appstoreconnect.apple.com/apps/6767053235/testflight/ios`
 - Expo page: `https://expo.dev/accounts/via_lamaschera/projects/via-la-maschera/builds/c900afe7-c750-4605-9c76-a4622695c43b`
 - Artifact URL: `https://expo.dev/artifacts/eas/qPAJf96Xq82b3nreYx54gr.ipa`
 - Local file: `release/builds/via-la-maschera-ios-1.0.0-1.ipa`
