@@ -123,6 +123,7 @@ eas submit --platform android --profile production
 - Create app in Play Console with package `com.vialamaschera.app`.
 - Upload the `.aab` from EAS production build.
 - Complete store listing in the five supported languages.
+- Upload feature graphic `release/play-store-assets/feature-graphic-it.png`.
 - Upload screenshots for Home, Percorsi, Archivio, Profilo, dark mode, and language selection.
 - Add privacy policy URL.
 - Add data deletion URL.

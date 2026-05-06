@@ -60,6 +60,12 @@ Una domanda al giorno, una risposta privata, uno specchio da riaprire con calma.
 
 Full description: usa la bozza in `release/store-listing.md`.
 
+Asset grafici pronti:
+
+- Feature graphic: `release/play-store-assets/feature-graphic-it.png`
+- Specifica verificata: `1024x500`, PNG 24-bit senza alpha.
+- Screenshot: seguire la shot list in `release/play-store-assets/README.md`.
+
 Evita nella scheda store:
 
 - terapia;
