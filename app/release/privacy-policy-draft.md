@@ -7,8 +7,8 @@ Questa è una bozza operativa da far rivedere prima della pubblicazione. Sostitu
 ## Titolare
 
 INSERIRE_NOME_TITOLARE  
-INSERIRE_EMAIL_CONTATTO  
-INSERIRE_SITO_O_INDIRIZZO_SE_NECESSARIO
+volodymyr.ilchenko.it@gmail.com  
+https://voloia.github.io/via-la-maschera/
 
 ## App
 
@@ -82,7 +82,7 @@ Le risposte cloud restano associate all'account finché non vengono rimosse seco
 
 Dentro l'app l'utente può aprire `Profilo > Cancellazione dati` per leggere la procedura e inviare una richiesta al contatto indicato.
 
-INSERIRE_PROCEDURA_CANCELLAZIONE_ACCOUNT_E_DATI
+Per richiedere la cancellazione dei dati cloud, l'utente può scrivere a `volodymyr.ilchenko.it@gmail.com` usando l'email collegata al login Google. La richiesta consente di identificare l'account app, rimuovere archivio cloud, risposte personali, risposte condivise, iniziali associate e dati di sincronizzazione, salvo conservazioni minime richieste per sicurezza, prevenzione abusi o obblighi legali.
 
 ## Sicurezza
 
@@ -100,4 +100,4 @@ Questa policy potrà essere aggiornata. La data di ultimo aggiornamento indica l
 
 Per domande o richieste sui dati:
 
-INSERIRE_EMAIL_CONTATTO
+volodymyr.ilchenko.it@gmail.com

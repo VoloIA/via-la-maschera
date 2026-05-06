@@ -1,5 +1,7 @@
 import type { AppLanguageCode } from '@/constants/localization';
 
+export const supportEmail = 'volodymyr.ilchenko.it@gmail.com';
+
 type LegalSection = {
   body: string[];
   title: string;
@@ -67,6 +69,10 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
           ],
         },
         {
+          title: 'Contatti',
+          body: [`Per richieste privacy o cancellazione dati scrivi a ${supportEmail}.`],
+        },
+        {
           title: 'Nota importante',
           body: [
             'L’app non fornisce diagnosi, terapia, consulenza medica o consulenza psicologica professionale.',
@@ -86,7 +92,7 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
         {
           title: 'Come richiedere la cancellazione',
           body: [
-            'Invia una richiesta a INSERIRE_EMAIL_CONTATTO con oggetto “Cancellazione Via la Maschera”.',
+            `Invia una richiesta a ${supportEmail} con oggetto “Cancellazione Via la Maschera”.`,
             'Usa l’email collegata al tuo accesso Google, così possiamo identificare lo spazio corretto.',
           ],
         },
@@ -145,6 +151,10 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
           ],
         },
         {
+          title: 'Contact',
+          body: [`For privacy or data deletion requests, write to ${supportEmail}.`],
+        },
+        {
           title: 'Important note',
           body: [
             'The app does not provide diagnosis, therapy, medical advice, or professional psychological support.',
@@ -164,7 +174,7 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
         {
           title: 'How to request deletion',
           body: [
-            'Send a request to INSERT_CONTACT_EMAIL with subject “Via la Maschera deletion”.',
+            `Send a request to ${supportEmail} with subject “Via la Maschera deletion”.`,
             'Use the email connected to your Google sign-in so the correct space can be identified.',
           ],
         },
@@ -223,6 +233,10 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
           ],
         },
         {
+          title: 'Контакти',
+          body: [`Для питань приватності або видалення даних напиши на ${supportEmail}.`],
+        },
+        {
           title: 'Важлива примітка',
           body: [
             'Додаток не надає діагностику, терапію, медичні поради або професійну психологічну підтримку.',
@@ -242,7 +256,7 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
         {
           title: 'Як надіслати запит',
           body: [
-            'Надішли запит на INSERT_CONTACT_EMAIL з темою “Via la Maschera deletion”.',
+            `Надішли запит на ${supportEmail} з темою “Via la Maschera deletion”.`,
             'Використовуй email, пов’язаний із входом Google, щоб можна було визначити правильний простір.',
           ],
         },
@@ -301,6 +315,10 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
           ],
         },
         {
+          title: 'Контакты',
+          body: [`По вопросам приватности или удаления данных напиши на ${supportEmail}.`],
+        },
+        {
           title: 'Важное примечание',
           body: [
             'Приложение не предоставляет диагностику, терапию, медицинские советы или профессиональную психологическую поддержку.',
@@ -320,7 +338,7 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
         {
           title: 'Как запросить удаление',
           body: [
-            'Отправь запрос на INSERT_CONTACT_EMAIL с темой “Via la Maschera deletion”.',
+            `Отправь запрос на ${supportEmail} с темой “Via la Maschera deletion”.`,
             'Используй email, связанный со входом Google, чтобы можно было определить правильное пространство.',
           ],
         },
@@ -379,6 +397,10 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
           ],
         },
         {
+          title: 'Contacto',
+          body: [`Para solicitudes de privacidad o eliminación de datos, escribe a ${supportEmail}.`],
+        },
+        {
           title: 'Nota importante',
           body: [
             'La app no ofrece diagnóstico, terapia, consejo médico ni apoyo psicológico profesional.',
@@ -398,7 +420,7 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
         {
           title: 'Cómo solicitar la eliminación',
           body: [
-            'Envía una solicitud a INSERT_CONTACT_EMAIL con asunto “Via la Maschera deletion”.',
+            `Envía una solicitud a ${supportEmail} con asunto “Via la Maschera deletion”.`,
             'Usa el email conectado a tu acceso Google para identificar el espacio correcto.',
           ],
         },

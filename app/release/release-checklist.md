@@ -22,11 +22,11 @@
 - Verificare che `app/.env` contenga le chiavi Firebase e Google reali.
 - Caricare le variabili production su EAS con `npm.cmd run eas:env:push`.
 - Verificare che le regole Firestore siano pubblicate.
-- Decidere email pubblica di supporto.
+- Email pubblica di supporto: `volodymyr.ilchenko.it@gmail.com`.
 - Pubblicare URL pubblico stabile della privacy policy.
 - Pubblicare URL pubblico stabile per richiesta cancellazione account/dati.
-- Sostituire i placeholder `INSERIRE_*` nei file release.
-- Sostituire i placeholder di contatto nelle pagine app `privacy` e `delete-account`.
+- Sostituire eventuali placeholder `INSERIRE_*` nei file release non pubblici prima dell'invio definitivo.
+- Verificare che le pagine app `privacy` e `delete-account` mostrino l'email pubblica di supporto.
 - Controllare che il logo e le icone siano quelli definitivi.
 - Verificare in GitHub che Pages usi `GitHub Actions` come sorgente.
 - Verificare che la pagina `terms` sia pubblica prima di inviare la build allo store.

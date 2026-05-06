@@ -10,6 +10,7 @@
 - Price: free
 - Ads: no
 - In-app purchases: no, not in this first release
+- Support email: `volodymyr.ilchenko.it@gmail.com`
 
 ## Public URLs
 
@@ -88,7 +89,7 @@ Likely sharing:
 Deletion:
 
 - User-facing page: `https://voloia.github.io/via-la-maschera/delete-account`
-- Replace `INSERT_CONTACT_EMAIL` / `INSERIRE_EMAIL_CONTATTO` before store submission.
+- Support contact shown in app and public pages: `volodymyr.ilchenko.it@gmail.com`
 
 ## First Android track
 
@@ -126,7 +127,7 @@ eas submit --platform android --profile production
 - Complete Data safety.
 - Complete content rating questionnaire.
 - Declare user-generated content and describe moderation.
-- Add support email.
+- Add support email: `volodymyr.ilchenko.it@gmail.com`.
 - Add tester feedback email or URL.
 - Start internal testing first.
 
