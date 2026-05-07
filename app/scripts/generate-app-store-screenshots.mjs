@@ -6,14 +6,27 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
-const outputDir = path.join(rootDir, 'release', 'app-store-assets', 'iphone-65');
-const sourceDir = path.join(outputDir, '.source');
+const assetsDir = path.join(rootDir, 'release', 'app-store-assets');
+const sourceDir = path.join(assetsDir, '.source');
 const htmlPath = path.join(sourceDir, 'screenshot.html');
-const width = 414;
-const height = 896;
-const scale = 3;
-const expectedWidth = width * scale;
-const expectedHeight = height * scale;
+const deviceProfiles = [
+  {
+    deviceClass: 'iphone',
+    height: 896,
+    key: 'iphone-65',
+    label: 'iPhone 6.5"',
+    scale: 3,
+    width: 414,
+  },
+  {
+    deviceClass: 'ipad',
+    height: 1366,
+    key: 'ipad-13',
+    label: 'iPad 13"',
+    scale: 2,
+    width: 1024,
+  },
+];
 
 const loraRegular = pathToFileURL(
   path.join(rootDir, 'node_modules', '@expo-google-fonts', 'lora', '400Regular', 'Lora_400Regular.ttf')
@@ -339,6 +352,28 @@ button { width: 100%; height: 46px; margin-top: 12px; border: 0; border-radius: 
 .shared-answer b { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; color: #100B14; background: #8AE0C3; font-size: 12px; }
 .shared-answer p { margin: 0; color: #F8F1FF; font-size: 13px; line-height: 1.42; }
 .shared-answer span { grid-column: 2; color: #C7B8D0; font-size: 11px; font-weight: 700; }
+.format-ipad .story { padding: 92px 96px 72px; gap: 34px; }
+.format-ipad .story-header { min-height: 350px; gap: 16px; }
+.format-ipad .eyebrow { font-size: 22px; }
+.format-ipad h1 { max-width: 780px; font-size: 72px; line-height: 1.05; }
+.format-ipad .subtitle { max-width: 790px; font-size: 30px; line-height: 1.4; }
+.format-ipad .device { border-width: 10px; border-radius: 36px; max-height: 790px; }
+.format-ipad .hero { min-height: 266px; padding: 42px 44px 28px; }
+.format-ipad .hero img { width: 58px; height: 58px; }
+.format-ipad .hero .kicker { margin-top: 20px; font-size: 15px; }
+.format-ipad .hero h2 { max-width: 780px; font-size: 36px; }
+.format-ipad .panel, .format-ipad .entry, .format-ipad .path-card, .format-ipad .questions, .format-ipad .privacy-row { margin: 18px; padding: 22px; }
+.format-ipad .stats { margin: 18px; gap: 14px; }
+.format-ipad .stats div { padding: 20px; }
+.format-ipad .stats b { font-size: 42px; }
+.format-ipad .stats span, .format-ipad .path-card span, .format-ipad .entry span { font-size: 14px; }
+.format-ipad .panel h3, .format-ipad .path-card h3 { font-size: 30px; }
+.format-ipad .entry h3 { font-size: 28px; }
+.format-ipad .sealed p, .format-ipad .entry p, .format-ipad .path-card p, .format-ipad .questions p, .format-ipad .privacy-row p, .format-ipad .textarea { font-size: 21px; }
+.format-ipad .shared-answer { grid-template-columns: 62px 1fr; gap: 18px; padding: 20px; }
+.format-ipad .shared-answer b { width: 54px; height: 54px; font-size: 20px; }
+.format-ipad .shared-answer p { font-size: 22px; }
+.format-ipad .segments span, .format-ipad .langs span { min-height: 54px; font-size: 20px; }
 </style>
 </head>
 <body>
@@ -349,10 +384,11 @@ const screens = ${screenJson};
 const backgrounds = { blue: '#EEF3FA', dark: '#100B14', darkTeal: '#100B14', light: '#F7F3F8', teal: '#EEF8F2' };
 const params = new URLSearchParams(location.search);
 const slide = slides[Number(params.get('slide') || 0)] || slides[0];
+const device = params.get('device') || 'iphone';
 document.documentElement.style.setProperty('--accent', slide.accent);
 document.documentElement.style.background = backgrounds[slide.tone] || backgrounds.light;
 document.body.style.background = backgrounds[slide.tone] || backgrounds.light;
-document.getElementById('root').innerHTML = '<section class="slide ' + slide.tone + '"><div class="story"><header class="story-header"><p class="eyebrow">' + slide.eyebrow + '</p><h1>' + slide.title + '</h1><p class="subtitle">' + slide.subtitle + '</p></header><div class="device">' + screens[slide.screen] + '</div></div></section>';
+document.getElementById('root').innerHTML = '<section class="slide ' + slide.tone + ' format-' + device + '"><div class="story"><header class="story-header"><p class="eyebrow">' + slide.eyebrow + '</p><h1>' + slide.title + '</h1><p class="subtitle">' + slide.subtitle + '</p></header><div class="device">' + screens[slide.screen] + '</div></div></section>';
 </script>
 </body>
 </html>`;
@@ -360,38 +396,45 @@ document.getElementById('root').innerHTML = '<section class="slide ' + slide.ton
 
 function main() {
   fs.mkdirSync(sourceDir, { recursive: true });
-  fs.mkdirSync(outputDir, { recursive: true });
   fs.writeFileSync(htmlPath, buildHtml(), 'utf8');
 
   const chrome = findChrome();
   const htmlUrl = pathToFileURL(htmlPath).href;
 
-  for (const [index, slide] of slides.entries()) {
-    const outputPath = path.join(outputDir, slide.file);
-    const result = spawnSync(chrome, [
-      '--headless=new',
-      '--disable-gpu',
-      '--no-first-run',
-      '--no-default-browser-check',
-      '--hide-scrollbars',
-      '--run-all-compositor-stages-before-draw',
-      `--window-size=${width},${height}`,
-      `--force-device-scale-factor=${scale}`,
-      `--screenshot=${outputPath}`,
-      `${htmlUrl}?slide=${index}`,
-    ], { encoding: 'utf8' });
+  for (const profile of deviceProfiles) {
+    const outputDir = path.join(assetsDir, profile.key);
+    const expectedWidth = profile.width * profile.scale;
+    const expectedHeight = profile.height * profile.scale;
 
-    if (result.status !== 0) {
-      throw new Error(result.stderr || result.stdout || `Chrome failed for ${slide.file}`);
+    fs.mkdirSync(outputDir, { recursive: true });
+
+    for (const [index, slide] of slides.entries()) {
+      const outputPath = path.join(outputDir, slide.file);
+      const result = spawnSync(chrome, [
+        '--headless=new',
+        '--disable-gpu',
+        '--no-first-run',
+        '--no-default-browser-check',
+        '--hide-scrollbars',
+        '--run-all-compositor-stages-before-draw',
+        `--window-size=${profile.width},${profile.height}`,
+        `--force-device-scale-factor=${profile.scale}`,
+        `--screenshot=${outputPath}`,
+        `${htmlUrl}?slide=${index}&device=${profile.deviceClass}`,
+      ], { encoding: 'utf8' });
+
+      if (result.status !== 0) {
+        throw new Error(result.stderr || result.stdout || `Chrome failed for ${profile.key}/${slide.file}`);
+      }
+
+      const size = readPngSize(outputPath);
+
+      if (size.width !== expectedWidth || size.height !== expectedHeight) {
+        throw new Error(`${slide.file} is ${size.width}x${size.height}, expected ${expectedWidth}x${expectedHeight}.`);
+      }
+
+      console.log(`created ${path.relative(rootDir, outputPath)} (${size.width}x${size.height}, ${profile.label})`);
     }
-
-    const size = readPngSize(outputPath);
-
-    if (size.width !== expectedWidth || size.height !== expectedHeight) {
-      throw new Error(`${slide.file} is ${size.width}x${size.height}, expected ${expectedWidth}x${expectedHeight}.`);
-    }
-
-    console.log(`created ${path.relative(rootDir, outputPath)} (${size.width}x${size.height})`);
   }
 }
 
