@@ -7,6 +7,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const rootDir = path.resolve(__dirname, '..');
 const assetsDir = path.join(rootDir, 'release', 'app-store-assets');
+const playAssetsDir = path.join(rootDir, 'release', 'play-store-assets');
 const sourceDir = path.join(assetsDir, '.source');
 const htmlPath = path.join(sourceDir, 'screenshot.html');
 const deviceProfiles = [
@@ -25,6 +26,15 @@ const deviceProfiles = [
     label: 'iPad 13"',
     scale: 2,
     width: 1024,
+  },
+  {
+    deviceClass: 'iphone',
+    height: 800,
+    key: 'phone',
+    label: 'Google Play phone',
+    outputBaseDir: playAssetsDir,
+    scale: 2.4,
+    width: 450,
   },
 ];
 
@@ -402,9 +412,9 @@ function main() {
   const htmlUrl = pathToFileURL(htmlPath).href;
 
   for (const profile of deviceProfiles) {
-    const outputDir = path.join(assetsDir, profile.key);
-    const expectedWidth = profile.width * profile.scale;
-    const expectedHeight = profile.height * profile.scale;
+    const outputDir = path.join(profile.outputBaseDir ?? assetsDir, profile.key);
+    const expectedWidth = Math.round(profile.width * profile.scale);
+    const expectedHeight = Math.round(profile.height * profile.scale);
 
     fs.mkdirSync(outputDir, { recursive: true });
 

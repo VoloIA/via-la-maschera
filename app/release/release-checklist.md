@@ -61,6 +61,7 @@ npm.cmd run build:ios:production
 - Usare `release/app-store-connect-fill-in.md` per preparare App Store Connect e TestFlight.
 - Preparare screenshot per Home, Percorsi, Archivio, Profilo, tema scuro e lingue.
 - Usare `release/google-play-submission.md` come dossier per Play Console.
+- Usare `release/google-play-next-steps.md` per riprendere dopo la verifica con dispositivo Android.
 - Compilare App Privacy in App Store Connect.
 - Compilare Data safety in Play Console.
 - Caricare privacy policy pubblica.

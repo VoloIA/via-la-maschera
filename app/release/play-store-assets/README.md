@@ -25,6 +25,13 @@ powershell -ExecutionPolicy Bypass -File .\scripts\generate-play-assets.ps1
 
 Google Play richiede almeno due screenshot e consiglia almeno quattro screenshot app con risoluzione minima `1080x1920` in portrait.
 
+Cartella pronta:
+
+- `phone/`
+- Dimensioni: `1080x1920`
+- Formato: PNG
+- Quantita: 6 screenshot
+
 Shot list consigliata:
 
 - Home con domanda quotidiana.
@@ -35,3 +42,10 @@ Shot list consigliata:
 - Versione light mode.
 
 Gli screenshot devono mostrare l'interfaccia reale dell'app, senza cornici dispositivo, badge store o testi promozionali esterni all'app.
+
+Rigenerazione:
+
+```powershell
+cd "C:\Users\intel i7 11700\Desktop\AppMobile\app"
+npm.cmd run screenshots:stores
+```
