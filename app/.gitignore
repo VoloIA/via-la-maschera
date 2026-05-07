@@ -44,3 +44,4 @@ app-example
 
 # locally downloaded store artifacts
 /release/builds/
+/release/app-store-assets/**/.source/

@@ -13,6 +13,7 @@
     "typecheck": "tsc --noEmit",
     "export:web": "expo export --platform web --output-dir .expo/web-export",
     "export:web:github": "node ./scripts/export-web-github-pages.js",
+    "screenshots:ios": "node ./scripts/generate-app-store-screenshots.mjs",
     "eas:env:push": "powershell -ExecutionPolicy Bypass -File ./scripts/push-eas-env.ps1 production",
     "build:android:preview": "npx eas-cli@latest build --platform android --profile preview --non-interactive",
     "build:android:production": "npx eas-cli@latest build --platform android --profile production --non-interactive",
