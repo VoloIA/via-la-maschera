@@ -1,5 +1,6 @@
 import * as AppleAuthentication from 'expo-apple-authentication';
 import { Link } from 'expo-router';
+import { useState } from 'react';
 import { Image, Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 
 import ParallaxScrollView from '@/components/parallax-scroll-view';
@@ -45,8 +46,12 @@ export default function ProfileScreen() {
   const { copy, language, setLanguage, setThemeMode, themeMode } = useSettings();
   const legal = legalCopy[language];
   const communityRules = communityRulesCopy[language];
+  const [acceptedLoginTerms, setAcceptedLoginTerms] = useState(false);
   const openInstagram = () => {
     void Linking.openURL(INSTAGRAM_URL);
+  };
+  const toggleLoginTermsAcceptance = () => {
+    setAcceptedLoginTerms((currentValue) => !currentValue);
   };
 
   return (
@@ -109,13 +114,43 @@ export default function ProfileScreen() {
             <ThemedText style={styles.mutedText}>
               {copy.profile.signInText}
             </ThemedText>
+            <View style={styles.rulesRow}>
+              <Pressable
+                accessibilityRole="checkbox"
+                accessibilityState={{ checked: acceptedLoginTerms }}
+                onPress={toggleLoginTermsAcceptance}
+                style={[
+                  styles.rulesCheckbox,
+                  acceptedLoginTerms ? styles.rulesCheckboxChecked : undefined,
+                ]}>
+                {acceptedLoginTerms ? (
+                  <IconSymbol name="checkmark" color="#FFFFFF" size={14} />
+                ) : null}
+              </Pressable>
+              <View style={styles.rulesCopy}>
+                <Pressable onPress={toggleLoginTermsAcceptance}>
+                  <ThemedText style={styles.rulesText}>
+                    {communityRules.loginAcceptText}
+                  </ThemedText>
+                </Pressable>
+                <Link href="/terms" asChild>
+                  <Pressable accessibilityRole="link" style={styles.rulesLink}>
+                    <ThemedText type="defaultSemiBold" style={styles.rulesLinkText}>
+                      {communityRules.linkText}
+                    </ThemedText>
+                  </Pressable>
+                </Link>
+              </View>
+            </View>
             <Pressable
               accessibilityRole="button"
-              disabled={!isGoogleAuthConfigured || isSigningIn}
+              disabled={!isGoogleAuthConfigured || isSigningIn || !acceptedLoginTerms}
               onPress={signInWithGoogle}
               style={[
                 styles.primaryButton,
-                !isGoogleAuthConfigured || isSigningIn ? styles.primaryButtonDisabled : undefined,
+                !isGoogleAuthConfigured || isSigningIn || !acceptedLoginTerms
+                  ? styles.primaryButtonDisabled
+                  : undefined,
               ]}>
               <ThemedText lightColor="#FFFFFF" darkColor="#FFFFFF" style={styles.primaryButtonText}>
                 {isSigningIn ? copy.profile.loginOpening : copy.profile.login}
@@ -128,7 +163,7 @@ export default function ProfileScreen() {
                 buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
                 cornerRadius={BrandRadii.control}
                 onPress={() => {
-                  if (!isSigningIn) {
+                  if (acceptedLoginTerms && !isSigningIn) {
                     void signInWithApple();
                   }
                 }}
@@ -445,6 +480,42 @@ const styles = StyleSheet.create({
   },
   warningText: {
     color: BrandColors.rose,
+  },
+  rulesRow: {
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+    gap: BrandSpacing.sm,
+  },
+  rulesCheckbox: {
+    alignItems: 'center',
+    backgroundColor: BrandColors.surface,
+    borderColor: BrandColors.teal,
+    borderRadius: 6,
+    borderWidth: 1,
+    height: 24,
+    justifyContent: 'center',
+    marginTop: 2,
+    width: 24,
+  },
+  rulesCheckboxChecked: {
+    backgroundColor: BrandColors.teal,
+  },
+  rulesCopy: {
+    flex: 1,
+    gap: 4,
+  },
+  rulesText: {
+    color: BrandColors.muted,
+    fontSize: 14,
+    lineHeight: 20,
+  },
+  rulesLink: {
+    alignSelf: 'flex-start',
+    paddingVertical: 2,
+  },
+  rulesLinkText: {
+    color: BrandColors.primary,
+    fontSize: 14,
   },
   preferencesPanel: {
     ...BrandShadows.card,

@@ -11,6 +11,7 @@ type CommunityRulesContent = {
   intro: string;
   kicker: string;
   linkText: string;
+  loginAcceptText: string;
   profileText: string;
   profileTitle: string;
   sections: CommunityRulesSection[];
@@ -26,6 +27,7 @@ export const communityRulesCopy: Record<AppLanguageCode, CommunityRulesContent> 
     backToProfile: 'Torna al Profilo',
     kicker: 'Community',
     linkText: 'Leggi termini e regole',
+    loginAcceptText: 'Accetto i termini e le regole community prima di accedere.',
     profileTitle: 'Termini e regole community',
     profileText: 'Condivisione, moderazione, limiti del servizio e responsabilità dell’utente.',
     title: 'Termini e regole community',
@@ -51,6 +53,7 @@ export const communityRulesCopy: Record<AppLanguageCode, CommunityRulesContent> 
       {
         title: 'Contenuti non ammessi',
         body: [
+          'C’è tolleranza zero verso contenuti offensivi, abusivi o pericolosi.',
           'Non sono ammessi minacce, molestie, odio, contenuti sessuali espliciti, contenuti violenti, illegalità, sfruttamento, bullismo o attacchi verso persone o gruppi.',
           'Non usare la stanza condivisa per identificare, umiliare o prendere di mira qualcuno.',
         ],
@@ -59,8 +62,9 @@ export const communityRulesCopy: Record<AppLanguageCode, CommunityRulesContent> 
         title: 'Moderazione',
         body: [
           'Ogni voce condivisa può essere segnalata dall’app.',
-          'Una voce segnalata viene nascosta localmente e può essere revisionata, limitata o rimossa se viola queste regole.',
-          'L’accesso alla stanza condivisa può essere limitato quando serve a proteggere le persone e la qualità dello spazio.',
+          'Puoi bloccare l’autore di una voce: la voce sparisce subito dal tuo spazio e viene inviata alla moderazione.',
+          'Le segnalazioni vengono esaminate entro 24 ore; i contenuti che violano le regole possono essere rimossi e gli utenti responsabili esclusi dalla stanza condivisa.',
+          'Per contattare lo sviluppatore: volodymyr.ilchenko.it@gmail.com.',
         ],
       },
     ],
@@ -70,6 +74,7 @@ export const communityRulesCopy: Record<AppLanguageCode, CommunityRulesContent> 
     backToProfile: 'Back to Profile',
     kicker: 'Community',
     linkText: 'Read terms and rules',
+    loginAcceptText: 'I accept the terms and community rules before signing in.',
     profileTitle: 'Terms and community rules',
     profileText: 'Sharing, moderation, service limits, and user responsibility.',
     title: 'Terms and Community Rules',
@@ -95,6 +100,7 @@ export const communityRulesCopy: Record<AppLanguageCode, CommunityRulesContent> 
       {
         title: 'Content not allowed',
         body: [
+          'There is zero tolerance for objectionable, abusive, or dangerous content.',
           'Threats, harassment, hate, explicit sexual content, violent content, illegality, exploitation, bullying, or attacks against people or groups are not allowed.',
           'Do not use the shared room to identify, humiliate, or target anyone.',
         ],
@@ -103,8 +109,9 @@ export const communityRulesCopy: Record<AppLanguageCode, CommunityRulesContent> 
         title: 'Moderation',
         body: [
           'Every shared voice can be reported in the app.',
-          'A reported voice is hidden locally and may be reviewed, limited, or removed if it violates these rules.',
-          'Access to the shared room may be limited when needed to protect people and the quality of the space.',
+          'You can block the author of a voice: the voice disappears from your space immediately and is sent to moderation.',
+          'Reports are reviewed within 24 hours; content that violates these rules may be removed and responsible users may be removed from the shared room.',
+          'Developer contact: volodymyr.ilchenko.it@gmail.com.',
         ],
       },
     ],
@@ -114,6 +121,7 @@ export const communityRulesCopy: Record<AppLanguageCode, CommunityRulesContent> 
     backToProfile: 'Назад до профілю',
     kicker: 'Спільнота',
     linkText: 'Прочитати умови та правила',
+    loginAcceptText: 'Я приймаю умови та правила спільноти перед входом.',
     profileTitle: 'Умови та правила спільноти',
     profileText: 'Поширення, модерація, межі сервісу та відповідальність користувача.',
     title: 'Умови та правила спільноти',
@@ -139,6 +147,7 @@ export const communityRulesCopy: Record<AppLanguageCode, CommunityRulesContent> 
       {
         title: 'Заборонений вміст',
         body: [
+          'Є нульова толерантність до образливого, агресивного або небезпечного вмісту.',
           'Не допускаються погрози, переслідування, ненависть, відвертий сексуальний вміст, насильство, незаконні дії, експлуатація, булінг або напади на людей чи групи.',
           'Не використовуй спільну кімнату, щоб ідентифікувати, принижувати або переслідувати когось.',
         ],
@@ -147,8 +156,9 @@ export const communityRulesCopy: Record<AppLanguageCode, CommunityRulesContent> 
         title: 'Модерація',
         body: [
           'Кожен спільний голос можна поскаржити в додатку.',
-          'Поскаржений голос приховується локально і може бути переглянутий, обмежений або видалений, якщо порушує ці правила.',
-          'Доступ до спільної кімнати може бути обмежений, коли це потрібно для захисту людей і якості простору.',
+          'Можна заблокувати автора голосу: голос одразу зникає з твого простору й надсилається на модерацію.',
+          'Скарги розглядаються протягом 24 годин; вміст, що порушує правила, може бути видалений, а відповідальних користувачів можуть виключити зі спільної кімнати.',
+          'Контакт розробника: volodymyr.ilchenko.it@gmail.com.',
         ],
       },
     ],
@@ -158,6 +168,7 @@ export const communityRulesCopy: Record<AppLanguageCode, CommunityRulesContent> 
     backToProfile: 'Назад в профиль',
     kicker: 'Сообщество',
     linkText: 'Прочитать условия и правила',
+    loginAcceptText: 'Я принимаю условия и правила сообщества перед входом.',
     profileTitle: 'Условия и правила сообщества',
     profileText: 'Публикация, модерация, границы сервиса и ответственность пользователя.',
     title: 'Условия и правила сообщества',
@@ -183,6 +194,7 @@ export const communityRulesCopy: Record<AppLanguageCode, CommunityRulesContent> 
       {
         title: 'Запрещенный контент',
         body: [
+          'Действует нулевая терпимость к оскорбительному, агрессивному или опасному контенту.',
           'Не допускаются угрозы, преследование, ненависть, откровенный сексуальный контент, насилие, незаконные действия, эксплуатация, буллинг или атаки на людей и группы.',
           'Не используй общую комнату, чтобы идентифицировать, унижать или целенаправленно преследовать кого-либо.',
         ],
@@ -191,8 +203,9 @@ export const communityRulesCopy: Record<AppLanguageCode, CommunityRulesContent> 
         title: 'Модерация',
         body: [
           'Каждый общий голос можно пожаловаться в приложении.',
-          'Голос с жалобой скрывается локально и может быть проверен, ограничен или удален, если нарушает эти правила.',
-          'Доступ к общей комнате может быть ограничен, когда это нужно для защиты людей и качества пространства.',
+          'Можно заблокировать автора голоса: голос сразу исчезает из твоего пространства и отправляется на модерацию.',
+          'Жалобы рассматриваются в течение 24 часов; контент, нарушающий правила, может быть удален, а ответственные пользователи исключены из общей комнаты.',
+          'Контакт разработчика: volodymyr.ilchenko.it@gmail.com.',
         ],
       },
     ],
@@ -202,6 +215,7 @@ export const communityRulesCopy: Record<AppLanguageCode, CommunityRulesContent> 
     backToProfile: 'Volver al Perfil',
     kicker: 'Comunidad',
     linkText: 'Leer términos y reglas',
+    loginAcceptText: 'Acepto los términos y reglas de comunidad antes de acceder.',
     profileTitle: 'Términos y reglas de comunidad',
     profileText: 'Compartir, moderación, límites del servicio y responsabilidad del usuario.',
     title: 'Términos y reglas de comunidad',
@@ -227,6 +241,7 @@ export const communityRulesCopy: Record<AppLanguageCode, CommunityRulesContent> 
       {
         title: 'Contenido no permitido',
         body: [
+          'Hay tolerancia cero hacia contenido ofensivo, abusivo o peligroso.',
           'No se permiten amenazas, acoso, odio, contenido sexual explícito, violencia, ilegalidad, explotación, bullying ni ataques contra personas o grupos.',
           'No uses la sala compartida para identificar, humillar o dirigir ataques hacia alguien.',
         ],
@@ -235,8 +250,9 @@ export const communityRulesCopy: Record<AppLanguageCode, CommunityRulesContent> 
         title: 'Moderación',
         body: [
           'Cada voz compartida puede denunciarse desde la app.',
-          'Una voz denunciada se oculta localmente y puede revisarse, limitarse o eliminarse si infringe estas reglas.',
-          'El acceso a la sala compartida puede limitarse cuando sea necesario para proteger a las personas y la calidad del espacio.',
+          'Puedes bloquear al autor de una voz: la voz desaparece de tu espacio inmediatamente y se envía a moderación.',
+          'Las denuncias se revisan en un plazo de 24 horas; el contenido que infrinja estas reglas puede eliminarse y los usuarios responsables pueden ser excluidos de la sala compartida.',
+          'Contacto del desarrollador: volodymyr.ilchenko.it@gmail.com.',
         ],
       },
     ],

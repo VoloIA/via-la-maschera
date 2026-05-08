@@ -11,6 +11,10 @@ import {
 import { type User } from 'firebase/auth';
 
 import { COMMUNITY_TERMS_VERSION } from '@/constants/community-rules';
+import {
+  CONTENT_MODERATION_VERSION,
+  moderateSharedAnswer,
+} from '@/lib/content-moderation';
 import { type DailyEntry, sortEntries } from '@/lib/daily-ritual';
 import { firestoreDb } from '@/lib/firebase';
 
@@ -21,6 +25,7 @@ export type SharedAnswer = {
   id: string;
   initials: string;
   questionKey: string;
+  authorId?: string;
 };
 
 function getInitials(user: User) {
@@ -54,6 +59,13 @@ export async function saveRemoteDailyEntry(user: User, entry: DailyEntry) {
   const publicAnswerId = `${user.uid}_${entry.dateKey}`;
   const publicAnswerRef = doc(firestoreDb, 'questions', entry.questionKey, 'answers', publicAnswerId);
   const batch = writeBatch(firestoreDb);
+  const moderation: ReturnType<typeof moderateSharedAnswer> = entry.shareWithCommunity
+    ? moderateSharedAnswer(entry.answer)
+    : { allowed: true };
+
+  if (!moderation.allowed) {
+    throw new Error(`shared-answer-filtered:${moderation.reason}`);
+  }
 
   batch.set(
     doc(firestoreDb, 'users', user.uid),
@@ -93,6 +105,8 @@ export async function saveRemoteDailyEntry(user: User, entry: DailyEntry) {
       createdAt: entry.createdAt,
       dateKey: entry.dateKey,
       initials,
+      moderationStatus: 'visible',
+      moderationVersion: CONTENT_MODERATION_VERSION,
       pathId: entry.pathId,
       question: entry.question,
       questionKey: entry.questionKey,
@@ -134,6 +148,9 @@ export async function loadSharedAnswersForEntry(userId: string, entry: DailyEntr
     return [];
   }
 
+  const blockedUsersSnapshot = await getDocs(collection(firestoreDb, 'users', userId, 'blockedUsers'));
+  const blockedUserIds = new Set(blockedUsersSnapshot.docs.map((blockedUserDoc) => blockedUserDoc.id));
+
   const snapshot = await getDocs(
     query(
       collection(firestoreDb, 'questions', entry.questionKey, 'answers'),
@@ -144,20 +161,26 @@ export async function loadSharedAnswersForEntry(userId: string, entry: DailyEntr
 
   const sharedAnswers = snapshot.docs
     .map((answerDoc) => {
-      const data = answerDoc.data() as SharedAnswer & { uid?: string };
+      const data = answerDoc.data() as SharedAnswer & {
+        moderationStatus?: string;
+        uid?: string;
+      };
 
       return {
         answer: data.answer,
+        authorId: data.uid,
         createdAt: data.createdAt,
         dateKey: data.dateKey,
         id: answerDoc.id,
         initials: data.initials,
+        moderationStatus: data.moderationStatus,
         questionKey: entry.questionKey,
-        uid: data.uid,
       };
     })
-    .filter((answer) => answer.uid !== userId)
-    .map(({ uid: _uid, ...answer }) => answer);
+    .filter((answer) => answer.authorId !== userId)
+    .filter((answer) => !answer.authorId || !blockedUserIds.has(answer.authorId))
+    .filter((answer) => answer.moderationStatus !== 'removed')
+    .map(({ moderationStatus: _moderationStatus, ...answer }) => answer);
 
   return shuffleAnswers(sharedAnswers).slice(0, 3);
 }
@@ -172,11 +195,46 @@ export async function reportSharedAnswer(user: User, answer: SharedAnswer) {
   await writeBatch(firestoreDb)
     .set(doc(firestoreDb, 'reports', reportId), {
       answerId: answer.id,
+      answerInitials: answer.initials,
+      answerText: answer.answer,
+      authorUid: answer.authorId ?? null,
       createdAt: serverTimestamp(),
       dateKey: answer.dateKey,
       questionKey: answer.questionKey,
       reporterUid: user.uid,
       status: 'open',
+      type: 'report',
     })
     .commit();
+}
+
+export async function blockSharedAnswerAuthor(user: User, answer: SharedAnswer) {
+  if (!firestoreDb || !answer.authorId) {
+    return;
+  }
+
+  const reportId = `${answer.questionKey}_${answer.id}_${user.uid}_block`;
+  const batch = writeBatch(firestoreDb);
+
+  batch.set(doc(firestoreDb, 'users', user.uid, 'blockedUsers', answer.authorId), {
+    answerId: answer.id,
+    blockedAt: serverTimestamp(),
+    blockedUid: answer.authorId,
+    questionKey: answer.questionKey,
+  });
+
+  batch.set(doc(firestoreDb, 'reports', reportId), {
+    answerId: answer.id,
+    answerInitials: answer.initials,
+    answerText: answer.answer,
+    authorUid: answer.authorId,
+    createdAt: serverTimestamp(),
+    dateKey: answer.dateKey,
+    questionKey: answer.questionKey,
+    reporterUid: user.uid,
+    status: 'open',
+    type: 'block',
+  });
+
+  await batch.commit();
 }

@@ -26,6 +26,7 @@ import {
   replaceDailyEntries,
   saveDailyEntry,
 } from '@/lib/daily-ritual';
+import { moderateSharedAnswer } from '@/lib/content-moderation';
 import { loadRemoteDailyEntries, saveRemoteDailyEntry } from '@/lib/remote-ritual';
 
 function getUnlockedCount(entries: DailyEntry[], now: number) {
@@ -133,6 +134,16 @@ export default function HomeScreen() {
   const saveAnswer = async () => {
     if (!isAnswerReady) {
       return;
+    }
+
+    if (user && isFirebaseConfigured && shareWithCommunity) {
+      const moderation = moderateSharedAnswer(answer);
+
+      if (!moderation.allowed) {
+        setSyncMessage(copy.shared.filterBlocked);
+        setShareWithCommunity(false);
+        return;
+      }
     }
 
     const nextEntry = createDailyEntry(

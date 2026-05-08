@@ -5,7 +5,7 @@
 - Nome app: `Via la Maschera`
 - Versione pubblica: `1.0.0`
 - iOS bundle identifier: `com.vialamaschera.app`
-- iOS build number: `1`
+- iOS build number: `2`
 - Android package: `com.vialamaschera.app`
 - Android version code: `1`
 - Web locale: `http://localhost:8082/`

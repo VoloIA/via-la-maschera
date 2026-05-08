@@ -80,7 +80,7 @@ Valori tecnici correnti:
 
 - Bundle identifier: `com.vialamaschera.app`
 - Version: `1.0.0`
-- Build number: `1`
+- Build number: `2`
 - Runtime version: `1.0.0`
 - Supports tablet: yes
 - Export compliance: `ITSAppUsesNonExemptEncryption=false`
@@ -94,7 +94,63 @@ First TestFlight build for Via la Maschera. Includes daily question, sealed answ
 Review notes:
 
 ```text
-Via la Maschera is a personal reflection app. It is not medical, diagnostic, or therapeutic. Users can answer a daily question locally. Sign-in is used for cloud archive, protected sharing, reporting, and account/data deletion requests. Shared answers are optional, visible with initials only, and become readable only after the reviewer answers the same question. Every shared answer includes an in-app report action.
+Via la Maschera is a personal reflection app. It is not medical, diagnostic, or therapeutic. Users can answer a daily question locally. Sign-in is used for cloud archive, protected sharing, reporting, and account/data deletion requests.
+
+For Guideline 1.2, the app now requires users to accept Terms and Community Rules before signing in. The terms state zero tolerance for objectionable content and abusive users. Shared answers are optional, filtered before publishing, visible with initials only, and become readable only after the reviewer answers the same question. Every shared answer includes Report and Block Author actions. Reporting or blocking hides the content immediately for the user and writes a moderation report for developer review within 24 hours.
+```
+
+## Rejection 2026-05-08 - correzioni richieste
+
+Apple ha respinto la versione `1.0 (1)` per:
+
+- `Guideline 2.3.6`: Age Rating non coerente, manca `User-Generated Content = Yes`.
+- `Guideline 1.2`: UGC con precauzioni insufficienti.
+
+Correzioni tecniche inserite nella build successiva:
+
+- consenso ai termini prima del login Google/Apple;
+- termini con tolleranza zero verso contenuti offensivi o utenti abusivi;
+- filtro locale prima della pubblicazione di una risposta condivisa;
+- pulsante `Segnala`;
+- pulsante `Blocca autore`;
+- blocco autore persistente per l'utente;
+- segnalazioni/blocchi scritti nella collection `reports` per revisione;
+- contenuto segnalato o bloccato nascosto subito dal feed dell'utente.
+
+Da fare in App Store Connect:
+
+1. `Informazioni sull'app > Classificazione per età`: impostare `User-Generated Content` su `Sì`.
+2. Caricare nuova build iOS `1.0.0 (2)`.
+3. Registrare da iPhone fisico un video che mostra:
+   - checkbox termini prima del login;
+   - pagina termini/regole community;
+   - risposta condivisa;
+   - pulsante `Segnala`;
+   - pulsante `Blocca autore`.
+4. Inserire il video nelle `Note` della sezione `Informazioni per il team di verifica`.
+5. Rispondere ad Apple nel Centro risoluzioni.
+
+Risposta consigliata ad Apple:
+
+```text
+Hello App Review team,
+
+Thank you for the review. We have addressed Guideline 1.2 and Guideline 2.3.6 in the new build.
+
+Changes made:
+- Age Rating has been updated to select "Yes" for User-Generated Content.
+- Users must accept Terms and Community Rules before signing in with Google or Apple.
+- The Terms state zero tolerance for objectionable content and abusive users.
+- Shared answers are filtered before being posted.
+- Every shared answer includes a Report action.
+- Every shared answer includes a Block Author action.
+- Reporting or blocking hides the content immediately from the user's feed and creates a moderation report for developer review.
+- Reports are reviewed within 24 hours; offending content may be removed and responsible users may be removed from the shared room.
+
+The app does not include public profiles, direct messaging, following, tagging, or unrestricted posting. Shared answers are optional, visible with initials only, and only after the reviewer has answered the same daily question.
+
+A screen recording from a physical device has been attached in the App Review Information notes.
+Thank you.
 ```
 
 ## App Privacy
@@ -157,14 +213,14 @@ Ordine consigliato:
 
 Latest production iOS build:
 
-- EAS build: `c900afe7-c750-4605-9c76-a4622695c43b`
-- EAS submission: `9fdf136f-64c8-4703-a78a-144d7b2841a9`
+- EAS build: `3a1ffe3f-0d2b-4c19-895e-b244dc350d3a`
+- EAS submission: `9c91c9f5-6fa9-41ca-b6aa-d02ebf863528`
 - App Store Connect app ID: `6767053235`
 - TestFlight URL: `https://appstoreconnect.apple.com/apps/6767053235/testflight/ios`
-- Expo page: `https://expo.dev/accounts/via_lamaschera/projects/via-la-maschera/builds/c900afe7-c750-4605-9c76-a4622695c43b`
-- Artifact URL: `https://expo.dev/artifacts/eas/qPAJf96Xq82b3nreYx54gr.ipa`
-- Local file: `release/builds/via-la-maschera-ios-1.0.0-1.ipa`
-- Status checked on 2026-05-07: `FINISHED`
+- Expo page: `https://expo.dev/accounts/via_lamaschera/projects/via-la-maschera/builds/3a1ffe3f-0d2b-4c19-895e-b244dc350d3a`
+- Artifact URL: `https://expo.dev/artifacts/eas/8bibbEwwQtPdmh6gBMpu4m.ipa`
+- Local file: `release/builds/via-la-maschera-ios-1.0.0-2.ipa`
+- Status checked on 2026-05-08: `FINISHED` and submitted to App Store Connect for processing
 
 Comando build:
 

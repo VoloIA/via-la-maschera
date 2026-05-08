@@ -24,12 +24,14 @@ import {
   saveDailyEntry,
 } from '@/lib/daily-ritual';
 import {
+  blockSharedAnswerAuthor,
   loadRemoteDailyEntries,
   loadSharedAnswersForEntry,
   reportSharedAnswer,
   saveRemoteDailyEntry,
   type SharedAnswer,
 } from '@/lib/remote-ritual';
+import { moderateSharedAnswer } from '@/lib/content-moderation';
 
 function formatDate(dateKey: string) {
   const [year, month, day] = dateKey.split('-');
@@ -88,6 +90,7 @@ function SharedAnswersPanel({ entry }: { entry: DailyEntry }) {
   const [acceptedCommunityRules, setAcceptedCommunityRules] = useState(false);
   const [isShared, setIsShared] = useState(entry.shareWithCommunity);
   const [isLoading, setIsLoading] = useState(false);
+  const [blockedAuthorIds, setBlockedAuthorIds] = useState<string[]>([]);
   const [reportedAnswerIds, setReportedAnswerIds] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
@@ -95,6 +98,8 @@ function SharedAnswersPanel({ entry }: { entry: DailyEntry }) {
   useEffect(() => {
     setIsShared(entry.shareWithCommunity);
     setAcceptedCommunityRules(false);
+    setBlockedAuthorIds([]);
+    setReportedAnswerIds([]);
   }, [entry.id, entry.shareWithCommunity]);
 
   useEffect(() => {
@@ -139,6 +144,14 @@ function SharedAnswersPanel({ entry }: { entry: DailyEntry }) {
 
     setIsLoading(true);
     setError(null);
+
+    const moderation = moderateSharedAnswer(entry.answer);
+
+    if (!moderation.allowed) {
+      setIsLoading(false);
+      setError(copy.shared.filterBlocked);
+      return;
+    }
 
     const nextEntry = {
       ...entry,
@@ -201,6 +214,24 @@ function SharedAnswersPanel({ entry }: { entry: DailyEntry }) {
     }
   };
 
+  const blockAuthor = async (answer: SharedAnswer) => {
+    if (!user || !answer.authorId) {
+      return;
+    }
+
+    setBlockedAuthorIds((currentIds) => [...currentIds, answer.authorId as string]);
+    setAnswers((currentAnswers) =>
+      currentAnswers.filter((currentAnswer) => currentAnswer.authorId !== answer.authorId)
+    );
+    setStatusMessage(copy.shared.blockStatus);
+
+    try {
+      await blockSharedAnswerAuthor(user, answer);
+    } catch {
+      setError(copy.shared.blockError);
+    }
+  };
+
   const toggleCommunityRulesAcceptance = () => {
     setAcceptedCommunityRules((currentValue) => !currentValue);
   };
@@ -229,13 +260,43 @@ function SharedAnswersPanel({ entry }: { entry: DailyEntry }) {
         <ThemedText style={styles.answerPreview}>
           {copy.shared.googlePrompt}
         </ThemedText>
+        <View style={styles.rulesRow}>
+          <Pressable
+            accessibilityRole="checkbox"
+            accessibilityState={{ checked: acceptedCommunityRules }}
+            onPress={toggleCommunityRulesAcceptance}
+            style={[
+              styles.rulesCheckbox,
+              acceptedCommunityRules ? styles.rulesCheckboxChecked : undefined,
+            ]}>
+            {acceptedCommunityRules ? (
+              <IconSymbol name="checkmark" color="#FFFFFF" size={14} />
+            ) : null}
+          </Pressable>
+          <View style={styles.rulesCopy}>
+            <Pressable onPress={toggleCommunityRulesAcceptance}>
+              <ThemedText style={styles.rulesText}>
+                {communityRules.loginAcceptText}
+              </ThemedText>
+            </Pressable>
+            <Link href="/terms" asChild>
+              <Pressable accessibilityRole="link" style={styles.rulesLink}>
+                <ThemedText type="defaultSemiBold" style={styles.rulesLinkText}>
+                  {communityRules.linkText}
+                </ThemedText>
+              </Pressable>
+            </Link>
+          </View>
+        </View>
         <Pressable
           accessibilityRole="button"
-          disabled={!isGoogleAuthConfigured || isSigningIn}
+          disabled={!isGoogleAuthConfigured || isSigningIn || !acceptedCommunityRules}
           onPress={signInWithGoogle}
           style={[
             styles.sharedButton,
-            !isGoogleAuthConfigured || isSigningIn ? styles.sharedButtonDisabled : undefined,
+            !isGoogleAuthConfigured || isSigningIn || !acceptedCommunityRules
+              ? styles.sharedButtonDisabled
+              : undefined,
           ]}>
           <ThemedText lightColor="#FFFFFF" darkColor="#FFFFFF" style={styles.sharedButtonText}>
             {isSigningIn ? copy.profile.loginOpening : copy.profile.login}
@@ -248,6 +309,11 @@ function SharedAnswersPanel({ entry }: { entry: DailyEntry }) {
             buttonType={AppleAuthentication.AppleAuthenticationButtonType.SIGN_IN}
             cornerRadius={BrandRadii.control}
             onPress={() => {
+              if (!acceptedCommunityRules) {
+                setError(copy.shared.acceptTermsBeforeLogin);
+                return;
+              }
+
               if (!isSigningIn) {
                 void signInWithApple();
               }
@@ -255,6 +321,7 @@ function SharedAnswersPanel({ entry }: { entry: DailyEntry }) {
             style={styles.appleSharedButton}
           />
         ) : null}
+        {error ? <ThemedText style={styles.sharedWarning}>{error}</ThemedText> : null}
       </ThemedView>
     );
   }
@@ -345,7 +412,7 @@ function SharedAnswersPanel({ entry }: { entry: DailyEntry }) {
         </ThemedText>
       ) : null}
 
-      {answers.map((answer) => (
+      {answers.filter((answer) => !answer.authorId || !blockedAuthorIds.includes(answer.authorId)).map((answer) => (
         <View key={answer.id} style={styles.sharedAnswer}>
           <View style={styles.sharedInitials}>
             <ThemedText lightColor="#FFFFFF" darkColor="#FFFFFF" style={styles.sharedInitialsText}>
@@ -354,15 +421,26 @@ function SharedAnswersPanel({ entry }: { entry: DailyEntry }) {
           </View>
           <View style={styles.sharedAnswerBody}>
             <ThemedText style={styles.sharedAnswerText}>{answer.answer}</ThemedText>
-            <Pressable
-              accessibilityRole="button"
-              disabled={reportedAnswerIds.includes(answer.id)}
-              onPress={() => reportAnswer(answer)}
-              style={styles.reportButton}>
-              <ThemedText type="defaultSemiBold" style={styles.reportButtonText}>
-                {copy.shared.report}
-              </ThemedText>
-            </Pressable>
+            <View style={styles.moderationActions}>
+              <Pressable
+                accessibilityRole="button"
+                disabled={reportedAnswerIds.includes(answer.id)}
+                onPress={() => reportAnswer(answer)}
+                style={styles.reportButton}>
+                <ThemedText type="defaultSemiBold" style={styles.reportButtonText}>
+                  {copy.shared.report}
+                </ThemedText>
+              </Pressable>
+              <Pressable
+                accessibilityRole="button"
+                disabled={!answer.authorId || blockedAuthorIds.includes(answer.authorId)}
+                onPress={() => blockAuthor(answer)}
+                style={styles.reportButton}>
+                <ThemedText type="defaultSemiBold" style={styles.reportButtonText}>
+                  {copy.shared.blockAuthor}
+                </ThemedText>
+              </Pressable>
+            </View>
           </View>
         </View>
       ))}
@@ -880,6 +958,11 @@ const styles = StyleSheet.create({
   sharedAnswerBody: {
     flex: 1,
     gap: 6,
+  },
+  moderationActions: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 8,
   },
   reportButton: {
     alignSelf: 'flex-start',
