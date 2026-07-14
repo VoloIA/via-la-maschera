@@ -4,7 +4,9 @@ import { type MaskPathId } from '@/data/mask-paths';
 import { getMaskPathForQuestionIndex } from '@/data/question-paths';
 import { getLocalItem, removeLocalItem, setLocalItem } from '@/lib/local-storage';
 
-export const REFLECTION_DELAY_MS = 24 * 60 * 60 * 1000;
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+export const REFLECTION_DELAY_MS = 20 * 60 * 1000;
 
 const LEGACY_STORAGE_KEY = 'via-la-maschera:digital-ritual:v1';
 const ENTRIES_STORAGE_KEY = 'via-la-maschera:entries:v1';
@@ -33,7 +35,7 @@ export function getDateKey(date = new Date()) {
 }
 
 export function getQuestionIndex(dateKey: string) {
-  const dayNumber = Math.floor(new Date(`${dateKey}T00:00:00`).getTime() / REFLECTION_DELAY_MS);
+  const dayNumber = Math.floor(new Date(`${dateKey}T00:00:00`).getTime() / DAY_MS);
 
   return dayNumber % maskQuestions.length;
 }
@@ -69,23 +71,23 @@ export function buildReflection(
   const reflectionCopy = {
     it: {
       close:
-        'Per oggi basta questo: hai tolto un millimetro di maschera. Non serve strappare tutto insieme.',
+        'Per oggi basta così. Conserva ciò che ti è utile e torna a questa risposta quando ne senti il bisogno.',
       long:
-        'Hai risposto senza restare in superficie, e questo di solito accade quando una domanda ha toccato qualcosa che meritava spazio.',
+        'Hai scritto una risposta articolata. Rileggila e nota quali parti ti sembrano ancora vere e quali ti sorprendono.',
       notice:
-        'Il punto non è giudicare la risposta. Il punto è notare dove hai esitato, cosa hai scelto di dire e cosa hai lasciato appena fuori dalla porta.',
-      question: `La domanda era: "${question}"`,
-      short: 'Hai lasciato una traccia breve, ma anche le risposte brevi a volte proteggono qualcosa di preciso.',
+        'Non devi giudicare la risposta. Nota dove hai esitato, cosa hai scelto di dire e cosa hai lasciato fuori.',
+      question: `La domanda a cui hai risposto era: "${question}"`,
+      short: 'Hai risposto in poche parole. Chiediti se c’è qualcosa che avresti voluto aggiungere.',
     },
     en: {
       close:
-        'For today, this is enough: you removed one millimetre of mask. You do not need to tear everything away at once.',
+        'That is enough for today. Keep what feels useful and return to this answer whenever you need to.',
       long:
-        'You answered without staying on the surface, and that usually happens when a question touches something that needed space.',
+        'You wrote a detailed answer. Read it again and notice which parts still feel true and which ones surprise you.',
       notice:
-        'The point is not to judge the answer. The point is to notice where you hesitated, what you chose to say, and what stayed just outside the door.',
-      question: `The question was: "${question}"`,
-      short: 'You left a brief trace, but brief answers sometimes protect something precise.',
+        'You do not need to judge your answer. Notice where you hesitated, what you chose to say, and what you left out.',
+      question: `The question you answered was: "${question}"`,
+      short: 'You answered in a few words. Ask yourself whether there is anything you would have liked to add.',
     },
     uk: {
       close: 'На сьогодні цього достатньо: ти зняв міліметр маски. Не треба зривати все одразу.',
@@ -143,6 +145,10 @@ function normalizeEntry(entry: DailyEntry | LegacyDailyEntry): DailyEntry {
     id: 'id' in entry && entry.id ? entry.id : `${entry.dateKey}-${entry.createdAt}`,
     pathId: entry.pathId ?? getMaskPathForDate(entry.dateKey).id,
     questionKey: entry.questionKey ?? getQuestionKeyForQuestion(entry.question, entry.dateKey),
+    reflectionReadyAt: Math.min(
+      entry.reflectionReadyAt,
+      entry.createdAt + REFLECTION_DELAY_MS
+    ),
     shareWithCommunity: entry.shareWithCommunity ?? false,
   };
 }
@@ -166,6 +172,11 @@ export async function replaceDailyEntries(entries: DailyEntry[]) {
   await setLocalItem(ENTRIES_STORAGE_KEY, JSON.stringify(nextEntries));
 
   return nextEntries;
+}
+
+export async function clearDailyEntries() {
+  await removeLocalItem(ENTRIES_STORAGE_KEY);
+  await removeLocalItem(LEGACY_STORAGE_KEY);
 }
 
 export async function loadDailyEntries() {

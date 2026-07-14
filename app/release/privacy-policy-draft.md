@@ -78,11 +78,11 @@ Questi servizi possono trattare dati secondo le rispettive policy.
 
 Le risposte locali restano sul dispositivo finché l'utente mantiene l'app o i dati locali.
 
-Le risposte cloud restano associate all'account finché non vengono rimosse secondo le funzioni disponibili o tramite richiesta al contatto indicato in questa policy.
+Le risposte cloud restano associate all'account finché non vengono rimosse dall'utente tramite le funzioni disponibili nell'app.
 
-Dentro l'app l'utente può aprire `Profilo > Cancellazione dati` per leggere la procedura e inviare una richiesta al contatto indicato.
+Dentro l'app l'utente può aprire `Profilo > Cancellazione account e dati` per eliminare account app, archivio cloud, risposte personali, risposte condivise, iniziali associate, dati di sincronizzazione e risposte locali salvate sul dispositivo.
 
-Per richiedere la cancellazione dei dati cloud, l'utente può scrivere a `volodymyr.ilchenko.it@gmail.com` usando l'email collegata al login Google. La richiesta consente di identificare l'account app, rimuovere archivio cloud, risposte personali, risposte condivise, iniziali associate e dati di sincronizzazione, salvo conservazioni minime richieste per sicurezza, prevenzione abusi o obblighi legali.
+Per richieste privacy diverse dalla cancellazione in-app, l'utente può scrivere a `volodymyr.ilchenko.it@gmail.com`. Alcune informazioni minime possono essere conservate solo quando necessario per sicurezza, prevenzione abusi o obblighi legali.
 
 ## Sicurezza
 

@@ -36,7 +36,7 @@ export default function RootLayout() {
 
 function RootLayoutShell() {
   const colorScheme = useColorScheme();
-  const { language } = useSettings();
+  const { copy, language } = useSettings();
   const legal = legalCopy[language];
   const communityRules = communityRulesCopy[language];
   const [fontsLoaded] = useFonts({
@@ -109,7 +109,7 @@ function RootLayoutShell() {
               headerTitleStyle: { fontFamily: FontFamilies.semibold },
               headerTintColor: colorScheme === 'dark' ? '#F4E8FF' : BrandColors.primary,
               presentation: 'modal',
-              title: 'Specchio',
+              title: copy.archive.reflection,
             }}
           />
         </Stack>

@@ -23,31 +23,31 @@ export const COMMUNITY_TERMS_VERSION = '2026-05-05';
 
 export const communityRulesCopy: Record<AppLanguageCode, CommunityRulesContent> = {
   it: {
-    acceptText: 'Accetto i termini e le regole community prima di condividere.',
+    acceptText: 'Accetto i termini e le regole della community prima di condividere.',
     backToProfile: 'Torna al Profilo',
     kicker: 'Community',
     linkText: 'Leggi termini e regole',
-    loginAcceptText: 'Accetto i termini e le regole community prima di accedere.',
+    loginAcceptText: 'Accetto i termini e le regole della community prima di accedere.',
     profileTitle: 'Termini e regole community',
-    profileText: 'Condivisione, moderazione, limiti del servizio e responsabilità dell’utente.',
+    profileText: 'Leggi le regole su condivisione, moderazione e uso del servizio.',
     title: 'Termini e regole community',
     updated: 'Ultimo aggiornamento: 5 maggio 2026',
     intro:
-      'Via la Maschera permette di condividere una risposta solo in modo volontario, con iniziali e dopo una scelta esplicita. Queste regole proteggono il tono della stanza condivisa.',
+      'La condivisione è sempre facoltativa. Se condividi una risposta, saranno visibili solo le tue iniziali. Queste regole aiutano a mantenere la community sicura e rispettosa.',
     sections: [
       {
         title: 'Uso dell’app',
         body: [
-          'L’app è uno spazio di riflessione personale e intrattenimento introspettivo.',
+          'L’app è uno strumento di riflessione personale.',
           'Non sostituisce diagnosi, terapia, consulenza medica, consulenza psicologica professionale o interventi di emergenza.',
         ],
       },
       {
-        title: 'Condivisione nella stanza',
+        title: 'Condivisione con la community',
         body: [
           'La condivisione è facoltativa e può essere revocata dall’Archivio.',
           'Le altre persone vedono solo le iniziali e solo dopo aver risposto alla stessa domanda.',
-          'Non condividere dati personali tuoi o di altre persone, indirizzi, numeri, informazioni mediche o contenuti che non vuoi rendere leggibili ad altri.',
+          'Non condividere dati personali tuoi o di altre persone, come indirizzi, numeri di telefono o informazioni mediche. Non pubblicare contenuti che vuoi mantenere privati.',
         ],
       },
       {
@@ -55,15 +55,15 @@ export const communityRulesCopy: Record<AppLanguageCode, CommunityRulesContent> 
         body: [
           'C’è tolleranza zero verso contenuti offensivi, abusivi o pericolosi.',
           'Non sono ammessi minacce, molestie, odio, contenuti sessuali espliciti, contenuti violenti, illegalità, sfruttamento, bullismo o attacchi verso persone o gruppi.',
-          'Non usare la stanza condivisa per identificare, umiliare o prendere di mira qualcuno.',
+          'Non usare la community per identificare, umiliare o prendere di mira qualcuno.',
         ],
       },
       {
         title: 'Moderazione',
         body: [
-          'Ogni voce condivisa può essere segnalata dall’app.',
-          'Puoi bloccare l’autore di una voce: la voce sparisce subito dal tuo spazio e viene inviata alla moderazione.',
-          'Le segnalazioni vengono esaminate entro 24 ore; i contenuti che violano le regole possono essere rimossi e gli utenti responsabili esclusi dalla stanza condivisa.',
+          'Puoi segnalare qualsiasi risposta condivisa direttamente dall’app.',
+          'Puoi bloccare l’autore di una risposta: il contenuto scompare subito dal tuo dispositivo e viene inviato alla moderazione.',
+          'Le segnalazioni vengono esaminate entro 24 ore. I contenuti che violano le regole possono essere rimossi e gli utenti responsabili esclusi dalla community.',
           'Per contattare lo sviluppatore: volodymyr.ilchenko.it@gmail.com.',
         ],
       },
@@ -76,25 +76,25 @@ export const communityRulesCopy: Record<AppLanguageCode, CommunityRulesContent> 
     linkText: 'Read terms and rules',
     loginAcceptText: 'I accept the terms and community rules before signing in.',
     profileTitle: 'Terms and community rules',
-    profileText: 'Sharing, moderation, service limits, and user responsibility.',
+    profileText: 'Read the rules for sharing, moderation, and use of the service.',
     title: 'Terms and Community Rules',
     updated: 'Last updated: May 5, 2026',
     intro:
-      'Via la Maschera lets you share an answer only voluntarily, with initials, and after an explicit choice. These rules protect the tone of the shared room.',
+      'Sharing is always optional. If you share an answer, only your initials will be visible. These rules help keep the community safe and respectful.',
     sections: [
       {
         title: 'Use of the app',
         body: [
-          'The app is a space for personal reflection and introspective entertainment.',
+          'The app is a tool for personal reflection.',
           'It does not replace diagnosis, therapy, medical advice, professional psychological support, or emergency services.',
         ],
       },
       {
-        title: 'Sharing in the room',
+        title: 'Sharing with the community',
         body: [
           'Sharing is optional and can be revoked from the Archive.',
           'Other people see initials only and only after answering the same question.',
-          'Do not share personal data about yourself or others, addresses, phone numbers, medical information, or content you do not want others to read.',
+          'Do not share personal data about yourself or others, such as addresses, phone numbers, or medical information. Do not post content you want to keep private.',
         ],
       },
       {
@@ -102,15 +102,15 @@ export const communityRulesCopy: Record<AppLanguageCode, CommunityRulesContent> 
         body: [
           'There is zero tolerance for objectionable, abusive, or dangerous content.',
           'Threats, harassment, hate, explicit sexual content, violent content, illegality, exploitation, bullying, or attacks against people or groups are not allowed.',
-          'Do not use the shared room to identify, humiliate, or target anyone.',
+          'Do not use the community to identify, humiliate, or target anyone.',
         ],
       },
       {
         title: 'Moderation',
         body: [
-          'Every shared voice can be reported in the app.',
-          'You can block the author of a voice: the voice disappears from your space immediately and is sent to moderation.',
-          'Reports are reviewed within 24 hours; content that violates these rules may be removed and responsible users may be removed from the shared room.',
+          'You can report any shared answer directly in the app.',
+          'You can block the author of an answer. The content disappears from your device immediately and is sent to moderation.',
+          'Reports are reviewed within 24 hours. Content that violates these rules may be removed, and responsible users may be removed from the community.',
           'Developer contact: volodymyr.ilchenko.it@gmail.com.',
         ],
       },

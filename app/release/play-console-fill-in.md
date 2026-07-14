@@ -31,8 +31,8 @@ Usa questi valori nella schermata `Create app`.
 Valori tecnici da verificare prima dell'upload:
 
 - Package name: `com.vialamaschera.app`
-- Version name: `1.0.0`
-- Version code: `1`
+- Version name: `1.1.0`
+- Version code: `2`
 - Build type: Android App Bundle `.aab`
 - EAS project: `@via_lamaschera/via-la-maschera`
 
@@ -55,7 +55,7 @@ Contatti e link pubblici:
 Short description consigliata:
 
 ```text
-Una domanda al giorno, una risposta privata, uno specchio da riaprire con calma.
+Una domanda al giorno, risposte private e una riflessione dopo 20 minuti.
 ```
 
 Full description: usa la bozza in `release/store-listing.md`.
@@ -240,7 +240,7 @@ https://voloia.github.io/via-la-maschera/delete-account
 Testo breve per Play Console:
 
 ```text
-Users can request deletion of their Via la Maschera account and associated data from the in-app delete account page or from the public deletion page. Requests are handled through the support email associated with the Google account used in the app.
+Users can delete their Via la Maschera account and associated data from the in-app delete account page. The in-app flow deletes the app account, cloud archive, shared answers, sync data, and local answers saved on the device without requiring an email to support.
 ```
 
 ## User-generated content

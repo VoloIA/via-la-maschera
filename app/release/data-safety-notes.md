@@ -67,7 +67,7 @@ Da verificare e dichiarare solo se vero in produzione:
 ## Punti da confermare prima dello store
 
 - URL privacy policy pubblica.
-- URL pubblico per richiesta cancellazione account/dati.
+- URL pubblico informativo per cancellazione account/dati.
 - URL pubblico termini e regole community.
 - Email supporto.
 - Procedura cancellazione account/dati.

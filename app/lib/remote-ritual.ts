@@ -6,6 +6,7 @@ import {
   orderBy,
   query,
   serverTimestamp,
+  type WriteBatch,
   writeBatch,
 } from 'firebase/firestore';
 import { type User } from 'firebase/auth';
@@ -28,6 +29,10 @@ export type SharedAnswer = {
   authorId?: string;
 };
 
+type BatchOperation = (batch: WriteBatch) => void;
+
+const FIRESTORE_BATCH_OPERATION_LIMIT = 450;
+
 function getInitials(user: User) {
   const source = user.displayName?.trim() || user.email?.split('@')[0] || 'Anonimo';
   const pieces = source
@@ -48,6 +53,20 @@ function getInitials(user: User) {
 
 function shuffleAnswers(answers: SharedAnswer[]) {
   return [...answers].sort(() => Math.random() - 0.5);
+}
+
+async function commitBatchOperations(operations: BatchOperation[]) {
+  if (!firestoreDb) {
+    return;
+  }
+
+  for (let startIndex = 0; startIndex < operations.length; startIndex += FIRESTORE_BATCH_OPERATION_LIMIT) {
+    const batch = writeBatch(firestoreDb);
+    const chunk = operations.slice(startIndex, startIndex + FIRESTORE_BATCH_OPERATION_LIMIT);
+
+    chunk.forEach((operation) => operation(batch));
+    await batch.commit();
+  }
 }
 
 export async function saveRemoteDailyEntry(user: User, entry: DailyEntry) {
@@ -120,6 +139,74 @@ export async function saveRemoteDailyEntry(user: User, entry: DailyEntry) {
   }
 
   await batch.commit();
+}
+
+export async function deleteRemoteAccountData(user: User) {
+  if (!firestoreDb) {
+    return;
+  }
+
+  const db = firestoreDb;
+  const userId = user.uid;
+  const userRef = doc(db, 'users', userId);
+  const deletionRequestRef = doc(db, 'accountDeletionRequests', userId);
+  const [entriesSnapshot, answeredQuestionsSnapshot, blockedUsersSnapshot] = await Promise.all([
+    getDocs(collection(db, 'users', userId, 'entries')),
+    getDocs(collection(db, 'users', userId, 'answeredQuestions')),
+    getDocs(collection(db, 'users', userId, 'blockedUsers')),
+  ]);
+  const publicAnswerRefs = new Map<string, ReturnType<typeof doc>>();
+
+  entriesSnapshot.docs.forEach((entryDoc) => {
+    const entry = entryDoc.data() as Partial<DailyEntry>;
+
+    if (entry.shareWithCommunity && entry.questionKey && entry.dateKey) {
+      const publicAnswerId = `${userId}_${entry.dateKey}`;
+      publicAnswerRefs.set(
+        `${entry.questionKey}_${publicAnswerId}`,
+        doc(db, 'questions', entry.questionKey, 'answers', publicAnswerId)
+      );
+    }
+  });
+
+  const operations: BatchOperation[] = [
+    (batch) =>
+      batch.set(
+        deletionRequestRef,
+        {
+          displayName: user.displayName ?? null,
+          email: user.email ?? null,
+          requestedAt: serverTimestamp(),
+          source: 'in-app',
+          status: 'initiated',
+          uid: userId,
+        },
+        { merge: true }
+      ),
+    ...[...publicAnswerRefs.values()].map(
+      (answerRef): BatchOperation =>
+        (batch) =>
+          batch.delete(answerRef)
+    ),
+    ...entriesSnapshot.docs.map(
+      (entryDoc): BatchOperation =>
+        (batch) =>
+          batch.delete(entryDoc.ref)
+    ),
+    ...answeredQuestionsSnapshot.docs.map(
+      (questionDoc): BatchOperation =>
+        (batch) =>
+          batch.delete(questionDoc.ref)
+    ),
+    ...blockedUsersSnapshot.docs.map(
+      (blockedUserDoc): BatchOperation =>
+        (batch) =>
+          batch.delete(blockedUserDoc.ref)
+    ),
+    (batch) => batch.delete(userRef),
+  ];
+
+  await commitBatchOperations(operations);
 }
 
 export async function loadRemoteDailyEntries(userId: string) {

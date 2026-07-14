@@ -4,7 +4,7 @@ App Expo/React Native per un rituale quotidiano di introspezione:
 
 - una domanda personale al giorno;
 - una risposta sigillata;
-- una riflessione che si apre dopo 24 ore;
+- una riflessione che si apre dopo 20 minuti;
 - archivio privato;
 - percorsi emotivi;
 - accesso Google e stanza condivisa opzionale;

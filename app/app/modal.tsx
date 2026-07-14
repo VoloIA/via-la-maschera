@@ -5,8 +5,11 @@ import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
 import { BrandColors, BrandRadii, BrandShadows, BrandSpacing } from '@/constants/brand';
+import { useSettings } from '@/contexts/settings-context';
 
 export default function ModalScreen() {
+  const { copy } = useSettings();
+
   return (
     <ThemedView style={styles.container}>
       <ThemedView style={styles.panel}>
@@ -14,14 +17,14 @@ export default function ModalScreen() {
           <IconSymbol name="eye.fill" color={BrandColors.teal} size={24} />
         </View>
         <ThemedText type="title" style={styles.title}>
-          Uno specchio aperto
+          {copy.archive.reflection}
         </ThemedText>
         <ThemedText style={styles.copy}>
-          Torna al rito quando vuoi. Una buona risposta non chiede fretta.
+          {copy.home.ritualStep3}
         </ThemedText>
         <Link href="/" dismissTo style={styles.link}>
           <ThemedText lightColor="#FFFFFF" darkColor="#FFFFFF" style={styles.linkText}>
-            Torna alla Home
+            {copy.common.home}
           </ThemedText>
         </Link>
       </ThemedView>

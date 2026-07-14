@@ -35,7 +35,7 @@ Cartella pronta:
 Shot list consigliata:
 
 - Home con domanda quotidiana.
-- Archivio con risposta sigillata.
+- Archivio con risposta salvata e riflessione disponibile dopo 20 minuti.
 - Stanza condivisa con iniziali e pulsante di segnalazione.
 - Profilo con privacy, lingue, tema chiaro/scuro e Instagram.
 - Versione dark mode.

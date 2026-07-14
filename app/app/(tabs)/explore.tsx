@@ -74,9 +74,9 @@ export default function PathsScreen() {
           {copy.paths.featuredBody}
         </ThemedText>
         <View style={styles.featuredSignals}>
-          <ThemedText style={styles.signalBadge}>Rituale</ThemedText>
-          <ThemedText style={styles.signalBadgeWarm}>Archivio</ThemedText>
-          <ThemedText style={styles.signalBadgeTeal}>Specchio</ThemedText>
+          <ThemedText style={styles.signalBadge}>{copy.home.ritualTitle}</ThemedText>
+          <ThemedText style={styles.signalBadgeWarm}>{copy.archive.headerKicker}</ThemedText>
+          <ThemedText style={styles.signalBadgeTeal}>{copy.archive.reflection}</ThemedText>
         </View>
       </ThemedView>
 

@@ -8,26 +8,26 @@ Via la Maschera
 
 ### Sottotitolo breve
 
-Una domanda al giorno. Poi silenzio.
+Una domanda al giorno per conoscerti meglio.
 
 ### Descrizione
 
-Via la Maschera è un rituale quotidiano di riflessione personale.
+Via la Maschera è un’app di riflessione personale che ti aiuta a dedicare ogni giorno qualche minuto a te.
 
-Ogni giorno ricevi una domanda. Rispondi con calma, sigilli la risposta e la ritrovi dopo un tempo di distanza. L'Archivio conserva le tue tracce, i Percorsi mostrano le maschere emotive che attraversi e la stanza condivisa si apre solo con consenso.
+Ogni giorno trovi una domanda. Salva la tua risposta e, dopo 20 minuti, rileggila insieme a una breve riflessione. L’Archivio conserva le risposte in un unico spazio, mentre i Percorsi le organizzano per tema.
 
-Le risposte restano personali. Se scegli di condividerne una, gli altri vedono solo le iniziali e soltanto dopo aver risposto alla stessa domanda.
+Le risposte sono private per impostazione predefinita. Se scegli di condividerne una con la community, le altre persone vedranno solo le tue iniziali e potranno leggerla soltanto dopo aver risposto alla stessa domanda.
 
 Funzioni principali:
 
 - domanda quotidiana;
-- risposta sigillata;
+- riflessione disponibile dopo 20 minuti;
 - archivio personale;
-- percorsi emotivi;
+- percorsi organizzati per tema;
 - tema chiaro e scuro;
 - cinque lingue;
 - accesso Google opzionale;
-- condivisione protetta con iniziali.
+- condivisione facoltativa con le sole iniziali.
 
 L'app non sostituisce terapia, diagnosi o supporto professionale.
 
@@ -39,26 +39,26 @@ Via la Maschera
 
 ### Short subtitle
 
-One question a day. Then silence.
+One question a day to help you understand yourself.
 
 ### Description
 
-Via la Maschera is a daily ritual for personal reflection.
+Via la Maschera is a personal reflection app that helps you set aside a few minutes for yourself each day.
 
-Every day you receive one question. You answer quietly, seal it, and return to it after a pause. The Archive keeps your traces, Paths reveal the emotional masks you move through, and the shared room opens only with consent.
+Each day, you receive one question. Save your answer and, after 20 minutes, reread it with a short reflection. The Archive keeps all your answers in one place, while Paths organize them by theme.
 
-Your answers stay personal. If you choose to share one, others see initials only and only after answering the same question.
+Your answers are private by default. If you choose to share one with the community, other people will see only your initials and can read it only after answering the same question.
 
 Main features:
 
 - daily question;
-- sealed answer;
+- reflection available after 20 minutes;
 - personal archive;
-- emotional paths;
+- paths organized by theme;
 - light and dark mode;
 - five languages;
 - optional Google sign-in;
-- protected sharing with initials.
+- optional sharing with initials only.
 
 The app does not replace therapy, diagnosis, or professional support.
 

@@ -79,24 +79,38 @@ Evita nella scheda App Store:
 Valori tecnici correnti:
 
 - Bundle identifier: `com.vialamaschera.app`
-- Version: `1.0.0`
-- Build number: `2`
-- Runtime version: `1.0.0`
+- Version: `1.1.0`
+- Build number: `4`
+- Runtime version: `1.1.0`
 - Supports tablet: yes
 - Export compliance: `ITSAppUsesNonExemptEncryption=false`
 
 Release notes per TestFlight:
 
 ```text
-First TestFlight build for Via la Maschera. Includes daily question, sealed answers, personal archive, protected sharing with initials, reporting, privacy pages, dark/light mode, five languages, Google Sign-In, and Sign in with Apple on iOS.
+Via la Maschera includes one daily question, a reflection available after 20 minutes, a private archive, optional sharing with initials, reporting tools, privacy pages, light and dark modes, five languages, Google Sign-In, and Sign in with Apple on iOS.
+```
+
+Novità della versione `1.1.0`:
+
+```text
+Testi italiani e inglesi più chiari e accessibili. La riflessione ora è disponibile dopo 20 minuti. Migliorati anche percorsi, messaggi di accesso, privacy e condivisione con la community.
+```
+
+Versione inglese:
+
+```text
+Clearer, more accessible Italian and English copy. Reflections are now available after 20 minutes. Paths, sign-in messages, privacy, and community sharing have also been improved.
 ```
 
 Review notes:
 
 ```text
-Via la Maschera is a personal reflection app. It is not medical, diagnostic, or therapeutic. Users can answer a daily question locally. Sign-in is used for cloud archive, protected sharing, reporting, and account/data deletion requests.
+Via la Maschera is a personal reflection app. It is not medical, diagnostic, or therapeutic. Users can answer a daily question locally. Sign-in is used for cloud archive, protected sharing, reporting, and in-app account deletion.
 
 For Guideline 1.2, the app now requires users to accept Terms and Community Rules before signing in. The terms state zero tolerance for objectionable content and abusive users. Shared answers are optional, filtered before publishing, visible with initials only, and become readable only after the reviewer answers the same question. Every shared answer includes Report and Block Author actions. Reporting or blocking hides the content immediately for the user and writes a moderation report for developer review within 24 hours.
+
+For Guideline 5.1.1(v), account deletion is available in the app at Profile > Privacy > Account and data deletion. A signed-in user can delete the app account and associated data from that page without sending email or contacting support.
 ```
 
 ## Rejection 2026-05-08 - correzioni richieste
@@ -150,6 +164,49 @@ Changes made:
 The app does not include public profiles, direct messaging, following, tagging, or unrestricted posting. Shared answers are optional, visible with initials only, and only after the reviewer has answered the same daily question.
 
 A screen recording from a physical device has been attached in the App Review Information notes.
+Thank you.
+```
+
+## Rejection 2026-05-09 - correzioni richieste
+
+Apple ha respinto la versione `1.0 (2)` per:
+
+- `Guideline 5.1.1(v)`: l'app supporta account, ma la cancellazione richiedeva ancora l'invio di una email.
+
+Correzioni tecniche inserite nella build successiva:
+
+- pulsante `Elimina account e dati` nella pagina `/delete-account`;
+- conferma esplicita dentro l'app;
+- rimozione del requisito email per completare la cancellazione;
+- cancellazione dell'account Firebase Authentication corrente;
+- cancellazione dell'archivio cloud utente;
+- cancellazione delle risposte condivise pubblicate dall'utente;
+- cancellazione delle risposte locali salvate sul dispositivo;
+- localizzazioni aggiornate in tutte le lingue supportate.
+
+Da fare in App Store Connect:
+
+1. Caricare nuova build iOS `1.0.0 (3)`.
+2. Selezionare la build `1.0.0 (3)` nella versione iOS `1.0`.
+3. Aggiornare le Review notes con il percorso:
+   - `Profile > Privacy > Account and data deletion`.
+4. Rispondere ad Apple nel Centro risoluzioni.
+
+Risposta consigliata ad Apple:
+
+```text
+Hello App Review team,
+
+Thank you for the review. We have addressed Guideline 5.1.1(v) in the new build.
+
+The app no longer requires users to send an email to complete account deletion. We added an in-app account deletion flow at:
+
+Profile > Privacy > Account and data deletion
+
+When a signed-in user opens this page, the app shows a "Delete account and data" button. The user confirms the action in the app. The flow deletes the user's app account, cloud archive, personal answers, shared answers, associated initials, sync data, and local answers saved on the device. It then deletes the current Firebase Authentication account.
+
+The page text was updated in all supported languages to explain that account deletion is completed inside the app without contacting support.
+
 Thank you.
 ```
 

@@ -4,8 +4,8 @@
 
 - App name: `Via la Maschera`
 - Package name: `com.vialamaschera.app`
-- Version name: `1.0.0`
-- Version code: `1`
+- Version name: `1.1.0`
+- Version code: `2`
 - Recommended category: `Lifestyle`
 - Price: free
 - Ads: no
@@ -25,13 +25,19 @@
 Recommended short description:
 
 ```text
-Una domanda al giorno, una risposta privata, uno specchio da riaprire con calma.
+Una domanda al giorno, risposte private e una riflessione dopo 20 minuti.
 ```
 
 Recommended English short description:
 
 ```text
-One daily question, one private answer, one mirror to reopen with time.
+One daily question, private answers, and a reflection after 20 minutes.
+```
+
+Release notes `1.1.0`:
+
+```text
+Testi italiani e inglesi più chiari e accessibili. La riflessione ora è disponibile dopo 20 minuti. Migliorati anche percorsi, messaggi di accesso, privacy e condivisione con la community.
 ```
 
 Avoid claims such as:

@@ -1,4 +1,5 @@
 import { Link } from 'expo-router';
+import { type ReactNode } from 'react';
 import { Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
 import { ThemedText } from '@/components/themed-text';
@@ -9,6 +10,7 @@ import { useColorScheme } from '@/hooks/use-color-scheme';
 
 type LegalPageProps = {
   backLabel: string;
+  children?: ReactNode;
   intro: string;
   kicker: string;
   sections: {
@@ -19,7 +21,7 @@ type LegalPageProps = {
   updated: string;
 };
 
-export function LegalPage({ backLabel, intro, kicker, sections, title, updated }: LegalPageProps) {
+export function LegalPage({ backLabel, children, intro, kicker, sections, title, updated }: LegalPageProps) {
   const colorScheme = useColorScheme() ?? 'light';
   const palette = BrandThemes[colorScheme];
   const actionTextColor = colorScheme === 'dark' ? BrandThemes.dark.background : '#FFFFFF';
@@ -66,6 +68,8 @@ export function LegalPage({ backLabel, intro, kicker, sections, title, updated }
           ))}
         </ThemedView>
       ))}
+
+      {children}
 
       <Link href="/profile" asChild>
         <Pressable

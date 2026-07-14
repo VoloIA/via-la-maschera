@@ -15,14 +15,19 @@ import {
 } from 'react';
 import { Platform } from 'react-native';
 
+import type { AppLanguageCode } from '@/constants/localization';
 import { AppLanguage } from '@/constants/typography';
+import { useSettings } from '@/contexts/settings-context';
+import { clearDailyEntries } from '@/lib/daily-ritual';
 import {
   firebaseAuth,
   googleClientIds,
   isFirebaseConfigured,
   isGoogleAuthConfigured,
 } from '@/lib/firebase';
+import { deleteRemoteAccountData } from '@/lib/remote-ritual';
 import {
+  deleteUser,
   GoogleAuthProvider,
   OAuthProvider,
   onAuthStateChanged,
@@ -36,8 +41,10 @@ WebBrowser.maybeCompleteAuthSession();
 
 type AuthContextValue = {
   authError: string | null;
+  deleteAccount: () => Promise<boolean>;
   isAuthReady: boolean;
   isAppleAuthAvailable: boolean;
+  isDeletingAccount: boolean;
   isFirebaseConfigured: boolean;
   isGoogleAuthConfigured: boolean;
   isSigningIn: boolean;
@@ -51,7 +58,39 @@ const AuthContext = createContext<AuthContextValue | null>(null);
 
 type GoogleSignIn = () => Promise<void>;
 
+const RECENT_LOGIN_WINDOW_MS = 5 * 60 * 1000;
 const nonceCharset = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
+
+const authErrorCopy = {
+  it: {
+    appleInvalidToken: 'Apple non ha fornito i dati necessari per completare l’accesso. Riprova.',
+    appleSignInFailed: 'Non è stato possibile completare l’accesso con Apple. Riprova.',
+    appleUnavailable: 'L’accesso con Apple non è disponibile su questo dispositivo.',
+    deletionFailed: 'Non è stato possibile eliminare l’account e i dati. Riprova tra poco.',
+    googleInvalidToken: 'Google non ha fornito i dati necessari per completare l’accesso. Riprova.',
+    googleNotReady: 'L’accesso con Google non è ancora pronto. Riprova tra qualche istante.',
+    googleOpenFailed: 'Non è stato possibile aprire l’accesso con Google. Riprova.',
+    googleSignInFailed: 'Non è stato possibile completare l’accesso con Google. Riprova.',
+    noAccount: 'Non c’è alcun account collegato da eliminare.',
+    recentLogin: 'Per sicurezza, esci dall’account, accedi di nuovo e riprova.',
+    signInUnavailable: 'L’accesso non è disponibile al momento. Riprova più tardi.',
+  },
+  en: {
+    appleInvalidToken: 'Apple did not provide the information needed to sign you in. Try again.',
+    appleSignInFailed: 'Sign-in with Apple could not be completed. Try again.',
+    appleUnavailable: 'Sign-in with Apple is not available on this device.',
+    deletionFailed: 'Your account and data could not be deleted. Try again shortly.',
+    googleInvalidToken: 'Google did not provide the information needed to sign you in. Try again.',
+    googleNotReady: 'Sign-in with Google is not ready yet. Try again in a moment.',
+    googleOpenFailed: 'Sign-in with Google could not be opened. Try again.',
+    googleSignInFailed: 'Sign-in with Google could not be completed. Try again.',
+    noAccount: 'There is no connected account to delete.',
+    recentLogin: 'For security, sign out, sign in again, and then retry.',
+    signInUnavailable: 'Sign-in is currently unavailable. Try again later.',
+  },
+} as const;
+
+type AuthErrorMessages = (typeof authErrorCopy)[keyof typeof authErrorCopy];
 
 function createNonce(length = 32) {
   const randomBytes = Crypto.getRandomBytes(length);
@@ -70,13 +109,36 @@ function isAppleCancelError(error: unknown) {
   );
 }
 
+function isRequiresRecentLoginError(error: unknown) {
+  return (
+    typeof error === 'object' &&
+    error !== null &&
+    'code' in error &&
+    error.code === 'auth/requires-recent-login'
+  );
+}
+
+function hasRecentSignIn(user: User) {
+  const lastSignInTime = user.metadata.lastSignInTime;
+
+  if (!lastSignInTime) {
+    return true;
+  }
+
+  return Date.now() - Date.parse(lastSignInTime) <= RECENT_LOGIN_WINDOW_MS;
+}
+
 type GoogleAuthBridgeProps = {
+  errorCopy: AuthErrorMessages;
+  language: AppLanguageCode;
   onGoogleSignInReady: (nextSignIn: GoogleSignIn | null) => void;
   setAuthError: Dispatch<SetStateAction<string | null>>;
   setIsSigningIn: Dispatch<SetStateAction<boolean>>;
 };
 
 function GoogleAuthBridge({
+  errorCopy,
+  language,
   onGoogleSignInReady,
   setAuthError,
   setIsSigningIn,
@@ -85,7 +147,7 @@ function GoogleAuthBridge({
     {
       androidClientId: googleClientIds.androidClientId,
       iosClientId: googleClientIds.iosClientId,
-      language: AppLanguage.locale,
+      language: language === 'it' ? AppLanguage.locale : language,
       selectAccount: true,
       webClientId: googleClientIds.webClientId,
     },
@@ -108,13 +170,13 @@ function GoogleAuthBridge({
           setIsSigningIn(false);
         }
       } catch {
-        setAuthError('Non sono riuscito ad aprire l’accesso con Google.');
+        setAuthError(errorCopy.googleOpenFailed);
         setIsSigningIn(false);
       }
     });
 
     return () => onGoogleSignInReady(null);
-  }, [onGoogleSignInReady, promptAsync, request, setAuthError, setIsSigningIn]);
+  }, [errorCopy.googleOpenFailed, onGoogleSignInReady, promptAsync, request, setAuthError, setIsSigningIn]);
 
   useEffect(() => {
     async function finishGoogleSignIn() {
@@ -125,7 +187,7 @@ function GoogleAuthBridge({
       const idToken = response.params.id_token;
 
       if (!idToken) {
-        setAuthError('Google non ha restituito un token valido.');
+        setAuthError(errorCopy.googleInvalidToken);
         setIsSigningIn(false);
         return;
       }
@@ -135,23 +197,26 @@ function GoogleAuthBridge({
         await signInWithCredential(firebaseAuth, credential);
         setAuthError(null);
       } catch {
-        setAuthError('Non sono riuscito a completare l’accesso con Google.');
+        setAuthError(errorCopy.googleSignInFailed);
       } finally {
         setIsSigningIn(false);
       }
     }
 
     finishGoogleSignIn();
-  }, [response, setAuthError, setIsSigningIn]);
+  }, [errorCopy.googleInvalidToken, errorCopy.googleSignInFailed, response, setAuthError, setIsSigningIn]);
 
   return null;
 }
 
 export function AuthProvider({ children }: PropsWithChildren) {
+  const { language } = useSettings();
+  const errorCopy = authErrorCopy[language === 'en' ? 'en' : 'it'];
   const [user, setUser] = useState<User | null>(null);
   const [isAuthReady, setIsAuthReady] = useState(!firebaseAuth);
   const [isAppleAuthAvailable, setIsAppleAuthAvailable] = useState(false);
   const [isSigningIn, setIsSigningIn] = useState(false);
+  const [isDeletingAccount, setIsDeletingAccount] = useState(false);
   const [authError, setAuthError] = useState<string | null>(null);
   const [googleSignIn, setGoogleSignIn] = useState<GoogleSignIn | null>(null);
 
@@ -196,14 +261,46 @@ export function AuthProvider({ children }: PropsWithChildren) {
   const value = useMemo<AuthContextValue>(
     () => ({
       authError,
+      deleteAccount: async () => {
+        if (!firebaseAuth || !user) {
+          setAuthError(errorCopy.noAccount);
+          return false;
+        }
+
+        if (!hasRecentSignIn(user)) {
+          setAuthError(errorCopy.recentLogin);
+          return false;
+        }
+
+        try {
+          setIsDeletingAccount(true);
+          setAuthError(null);
+          await deleteRemoteAccountData(user);
+          await deleteUser(user);
+          await clearDailyEntries();
+          setAuthError(null);
+          return true;
+        } catch (error) {
+          if (isRequiresRecentLoginError(error)) {
+            setAuthError(errorCopy.recentLogin);
+          } else {
+            setAuthError(errorCopy.deletionFailed);
+          }
+
+          return false;
+        } finally {
+          setIsDeletingAccount(false);
+        }
+      },
       isAuthReady,
       isAppleAuthAvailable,
+      isDeletingAccount,
       isFirebaseConfigured,
       isGoogleAuthConfigured,
       isSigningIn,
       signInWithApple: async () => {
         if (!firebaseAuth || !isAppleAuthAvailable) {
-          setAuthError('Accesso Apple non disponibile su questo dispositivo.');
+          setAuthError(errorCopy.appleUnavailable);
           return;
         }
 
@@ -225,7 +322,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
           });
 
           if (!appleCredential.identityToken) {
-            setAuthError('Apple non ha restituito un token valido.');
+            setAuthError(errorCopy.appleInvalidToken);
             return;
           }
 
@@ -246,7 +343,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
           setAuthError(null);
         } catch (error) {
           if (!isAppleCancelError(error)) {
-            setAuthError('Non sono riuscito a completare l’accesso con Apple.');
+            setAuthError(errorCopy.appleSignInFailed);
           }
         } finally {
           setIsSigningIn(false);
@@ -254,12 +351,12 @@ export function AuthProvider({ children }: PropsWithChildren) {
       },
       signInWithGoogle: async () => {
         if (!firebaseAuth || !isGoogleAuthConfigured) {
-          setAuthError('Configura Firebase e il client Google prima di usare l’accesso.');
+          setAuthError(errorCopy.signInUnavailable);
           return;
         }
 
         if (!googleSignIn) {
-          setAuthError('Accesso Google non ancora pronto. Riprova tra qualche istante.');
+          setAuthError(errorCopy.googleNotReady);
           return;
         }
 
@@ -272,13 +369,15 @@ export function AuthProvider({ children }: PropsWithChildren) {
       },
       user,
     }),
-    [authError, googleSignIn, isAppleAuthAvailable, isAuthReady, isSigningIn, user]
+    [authError, errorCopy, googleSignIn, isAppleAuthAvailable, isAuthReady, isDeletingAccount, isSigningIn, user]
   );
 
   return (
     <AuthContext.Provider value={value}>
       {isGoogleAuthConfigured ? (
         <GoogleAuthBridge
+          errorCopy={errorCopy}
+          language={language}
           onGoogleSignInReady={registerGoogleSignIn}
           setAuthError={setAuthError}
           setIsSigningIn={setIsSigningIn}

@@ -57,18 +57,18 @@ const slides = [
     file: '01-domanda-quotidiana.png',
     tone: 'light',
     accent: '#523071',
-    eyebrow: 'Rituale quotidiano',
+    eyebrow: 'Riflessione quotidiana',
     title: 'Una domanda al giorno',
-    subtitle: 'Rispondi senza fretta, poi sigilla ciò che hai trovato.',
+    subtitle: 'Rispondi con sincerità e salva ciò che pensi, anche in poche parole.',
     screen: 'home',
   },
   {
     file: '02-risposta-sigillata.png',
     tone: 'dark',
     accent: '#F5C26B',
-    eyebrow: 'Distanza gentile',
-    title: 'La risposta aspetta',
-    subtitle: 'Ritrovala dopo un tempo di silenzio, quando puoi leggerla con occhi nuovi.',
+    eyebrow: 'Riflessione in 20 minuti',
+    title: 'Rileggi la tua risposta',
+    subtitle: 'Dopo 20 minuti ricevi una breve riflessione e puoi tornare su ciò che hai scritto.',
     screen: 'sealed',
   },
   {
@@ -76,7 +76,7 @@ const slides = [
     tone: 'teal',
     accent: '#176B5A',
     eyebrow: 'Archivio privato',
-    title: 'Le tue tracce restano tue',
+    title: 'Le tue risposte restano private',
     subtitle: 'Domande, risposte e riflessioni ordinate in uno spazio personale.',
     screen: 'archive',
   },
@@ -85,8 +85,8 @@ const slides = [
     tone: 'blue',
     accent: '#315E9C',
     eyebrow: 'Percorsi emotivi',
-    title: 'Osserva le maschere che attraversi',
-    subtitle: 'Ogni domanda appartiene a un percorso: controllo, bisogno, desiderio, appartenenza.',
+    title: 'Esplora i temi che contano',
+    subtitle: 'Ogni domanda appartiene a un percorso, come amore, paura, successo o solitudine.',
     screen: 'paths',
   },
   {
@@ -94,7 +94,7 @@ const slides = [
     tone: 'light',
     accent: '#B4234F',
     eyebrow: 'Accessibile e leggibile',
-    title: 'Cinque lingue, due atmosfere',
+    title: 'Cinque lingue, tema chiaro o scuro',
     subtitle: 'Italiano, inglese, ucraino, russo e spagnolo. Tema chiaro o scuro.',
     screen: 'profile',
   },
@@ -102,9 +102,9 @@ const slides = [
     file: '06-condivisione-protetta.png',
     tone: 'darkTeal',
     accent: '#8AE0C3',
-    eyebrow: 'Consenso prima di tutto',
+    eyebrow: 'Condivisione facoltativa',
     title: 'Condividi solo se vuoi',
-    subtitle: 'Le altre risposte si aprono solo dopo la tua, mostrando soltanto le iniziali.',
+    subtitle: 'Le altre persone vedono solo le iniziali e solo dopo aver risposto alla stessa domanda.',
     screen: 'shared',
   },
 ];
@@ -151,15 +151,15 @@ function renderScreen(name) {
         <div class="hero">
           <img src="${logoUrl}" alt="" />
           <p class="kicker">Domanda del giorno</p>
-          <h2>Che cosa stai proteggendo dietro la tua maschera oggi?</h2>
-          <div class="chips"><span>Privato</span><span>24 ore</span></div>
+          <h2>Quale cambiamento stai rimandando, anche se sai che ti farebbe bene?</h2>
+          <div class="chips"><span>Privato</span><span>Riflessione in 20 min</span></div>
         </div>
         <div class="panel ritual">
-          <div class="panel-head"><strong>Specchio del giorno</strong><span>Aperta</span></div>
-          <p class="path"><i></i> Maschera del controllo</p>
-          <div class="textarea">Scrivi qui la tua risposta, con il tempo che merita.</div>
-          <div class="share"><b>Condivisione protetta</b><small>Solo con consenso, solo con iniziali.</small></div>
-          <button>Sigilla la risposta</button>
+          <div class="panel-head"><strong>Domanda di oggi</strong><span>Nuova</span></div>
+          <p class="path"><i></i> Tema: paura</p>
+          <div class="textarea">Scrivi qui la tua risposta…</div>
+          <div class="share"><b>Condividi con la community</b><small>Facoltativo. Saranno visibili solo le iniziali.</small></div>
+          <button>Salva la risposta</button>
         </div>
       </section>`;
   }
@@ -169,17 +169,17 @@ function renderScreen(name) {
       <section class="app-screen dark-screen">
         <div class="hero">
           <img src="${logoUrl}" alt="" />
-          <p class="kicker">Risposta sigillata</p>
-          <h2>Hai lasciato una traccia. Ora può riposare.</h2>
-          <div class="chips"><span>Rilettura</span><span>Domani</span></div>
+          <p class="kicker">Risposta salvata</p>
+          <h2>La tua riflessione sarà presto disponibile.</h2>
+          <div class="chips"><span>Riflessione</span><span>20 minuti</span></div>
         </div>
         <div class="panel sealed">
           <div class="lock">Lock</div>
-          <h3>Si riapre tra 23h</h3>
-          <p>La distanza non cancella: rende più nitido quello che hai scritto.</p>
+          <h3>Sarà disponibile tra 19 min</h3>
+          <p>Tra pochi minuti potrai rileggere la risposta con calma.</p>
           <div class="reflection">
             <strong>Promemoria</strong>
-            <span>Quando torni, leggi con gentilezza. Non devi correggerti, solo ascoltarti.</span>
+            <span>Non devi giudicare ciò che hai scritto: nota cosa ti sembra ancora vero.</span>
           </div>
         </div>
       </section>`;
@@ -191,15 +191,15 @@ function renderScreen(name) {
         <div class="hero archive-hero">
           <img src="${logoUrl}" alt="" />
           <p class="kicker">Archivio</p>
-          <h2>Ritrova le risposte quando sono pronte.</h2>
+          <h2>Tutte le tue risposte, in un unico spazio privato.</h2>
         </div>
         <div class="stats">
           <div><b>12</b><span>risposte</span></div>
-          <div><b>8</b><span>aperte</span></div>
+          <div><b>8</b><span>riflessioni</span></div>
           <div><b>4</b><span>in attesa</span></div>
         </div>
-        <div class="entry"><span>Aperta</span><h3>Che cosa stai evitando di dire?</h3><p>Ho capito che il silenzio, a volte, è una forma di paura.</p></div>
-        <div class="entry muted"><span>Sigillata</span><h3>Quale parte di te chiede spazio?</h3><p>Riflessione disponibile tra 6h.</p></div>
+        <div class="entry"><span>Disponibile</span><h3>Quale cambiamento stai rimandando?</h3><p>Ho capito che la paura mi fa aspettare più del necessario.</p></div>
+        <div class="entry muted"><span>In attesa</span><h3>Quale parte di te chiede spazio?</h3><p>Riflessione disponibile tra 6 min.</p></div>
       </section>`;
   }
 
@@ -209,12 +209,12 @@ function renderScreen(name) {
         <div class="hero paths-hero">
           <img src="${logoUrl}" alt="" />
           <p class="kicker">Percorsi</p>
-          <h2>Ogni domanda illumina una maschera.</h2>
+          <h2>Scegli le domande in base al tema.</h2>
         </div>
         <div class="path-card selected"><i></i><span>18 domande</span><h3>Controllo</h3><p>Quando hai bisogno di tenere tutto in ordine.</p></div>
         <div class="path-card"><i></i><span>15 domande</span><h3>Bisogno</h3><p>Quello che chiedi senza riuscire a nominarlo.</p></div>
         <div class="questions">
-          <strong>Domande da attraversare</strong>
+          <strong>Domande del percorso</strong>
           <p>Che cosa temi accada se lasci andare?</p>
           <p>Dove confondi sicurezza e rigidità?</p>
         </div>
@@ -227,17 +227,17 @@ function renderScreen(name) {
         <div class="hero profile-hero">
           <img src="${logoUrl}" alt="" />
           <p class="kicker">Profilo</p>
-          <h2>Leggibile nella lingua e nella luce giusta.</h2>
+          <h2>Scegli la lingua e l’aspetto più leggibile per te.</h2>
         </div>
         <div class="panel">
-          <h3>Tema</h3>
+          <h3>Aspetto</h3>
           <div class="segments"><span class="active">Chiaro</span><span>Scuro</span></div>
         </div>
         <div class="panel">
           <h3>Lingua</h3>
           <div class="langs"><span>Italiano</span><span>English</span><span>Українська</span><span>Русский</span><span>Español</span></div>
         </div>
-        <div class="privacy-row"><b>Archivio privato</b><p>Accesso Google e Apple per conservare le risposte nel tuo spazio.</p></div>
+        <div class="privacy-row"><b>Archivio privato</b><p>Accedi con Google o Apple per salvare online le tue risposte.</p></div>
       </section>`;
   }
 
@@ -245,13 +245,13 @@ function renderScreen(name) {
     <section class="app-screen dark-screen">
       <div class="hero shared-hero">
         <img src="${logoUrl}" alt="" />
-        <p class="kicker">Stanza condivisa</p>
-        <h2>Prima rispondi. Poi, se vuoi, ascolti gli altri.</h2>
+        <p class="kicker">Community</p>
+        <h2>Condividi solo se vuoi, usando le tue iniziali.</h2>
       </div>
       <div class="panel shared">
         <div class="shared-answer"><b>MR</b><p>Mi sono accorta che cercavo approvazione dove avrei voluto presenza.</p><span>Segnala</span></div>
         <div class="shared-answer"><b>AS</b><p>Ho scritto meno, ma ho capito di più.</p><span>Segnala</span></div>
-        <div class="consent"><strong>Consenso attivo</strong><small>Visibili solo le iniziali. Ogni risposta può essere segnalata.</small></div>
+        <div class="consent"><strong>Condivisione attiva</strong><small>Sono visibili solo le iniziali. Ogni risposta può essere segnalata.</small></div>
       </div>
     </section>`;
 }
@@ -320,7 +320,7 @@ h1 { margin: 0; font-size: 38px; line-height: 1.06; letter-spacing: 0; max-width
 .chips span, .panel-head span, .entry span, .path-card span { border-radius: 999px; padding: 5px 9px; font-size: 10px; font-weight: 700; background: rgba(255,255,255,.17); }
 .panel, .entry, .path-card, .questions, .privacy-row { margin: 12px; padding: 14px; background: #fff; border: 1px solid #E1D7E8; border-radius: 8px; color: #211827; box-shadow: 0 8px 18px rgba(33,24,39,.07); }
 .dark-screen .panel { background: #1B1322; border-color: #40304B; color: #F8F1FF; }
-.panel-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; font-size: 14px; }
+.panel-head { display: flex; justify-content: flex-start; align-items: center; gap: 12px; font-size: 14px; }
 .panel-head span { color: #523071; background: #F0E7F6; }
 .path { display: flex; align-items: center; gap: 8px; margin: 12px 0; color: #176B5A; font-size: 13px; font-weight: 600; }
 i { display: inline-block; width: 36px; height: 10px; background: currentColor; border-radius: 999px; }
@@ -331,7 +331,7 @@ button { width: 100%; height: 46px; margin-top: 12px; border: 0; border-radius: 
 .lock::before { content: "●"; font-size: 20px; }
 .sealed h3, .panel h3 { margin: 8px 0 6px; font-size: 21px; }
 .sealed p, .entry p, .path-card p, .questions p, .privacy-row p { margin: 0; color: #6D6474; font-size: 13px; line-height: 1.45; }
-.dark-screen .sealed p, .dark-screen .consent small { color: #D8CBDF; }
+.dark-screen .sealed p { color: #D8CBDF; }
 .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px; }
 .stats div { padding: 12px 9px; border: 1px solid #E1D7E8; border-radius: 8px; background: #fff; }
 .stats b { display: block; color: #523071; font-size: 27px; line-height: 1; }

@@ -39,7 +39,7 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
       profileTitle: 'Informativa privacy',
       profileText: 'Leggi quali dati possono essere trattati e come vengono usati.',
       intro:
-        'Via la Maschera è un rituale di riflessione personale. Questa pagina spiega in modo chiaro quali dati possono essere salvati e perché.',
+        'Via la Maschera è un’app di riflessione personale. Questa pagina spiega quali dati possono essere salvati, come vengono usati e perché.',
       sections: [
         {
           title: 'Dati che possono essere trattati',
@@ -51,15 +51,15 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
         {
           title: 'Archivio locale e cloud',
           body: [
-            'Senza accesso, le risposte restano sul dispositivo.',
-            'Con accesso e Firebase configurato, le risposte possono essere sincronizzate nel tuo spazio cloud personale.',
+            'Se non accedi, le risposte restano su questo dispositivo.',
+            'Se accedi, le risposte possono essere sincronizzate nel tuo archivio online privato.',
           ],
         },
         {
-          title: 'Stanza condivisa',
+          title: 'Condivisione con la community',
           body: [
             'La condivisione è opzionale e revocabile.',
-            'Gli altri vedono solo le iniziali e solo dopo aver risposto alla stessa domanda.',
+            'Le altre persone vedono solo le tue iniziali e possono leggere la risposta soltanto dopo aver risposto alla stessa domanda.',
           ],
         },
         {
@@ -70,7 +70,9 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
         },
         {
           title: 'Contatti',
-          body: [`Per richieste privacy o cancellazione dati scrivi a ${supportEmail}.`],
+          body: [
+            `Per domande sulla privacy, scrivi a ${supportEmail}. Per eliminare l’account, apri la pagina Cancellazione account e dati nell’app.`,
+          ],
         },
         {
           title: 'Nota importante',
@@ -83,24 +85,24 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
     dataDeletion: {
       kicker: 'Dati',
       title: 'Cancellazione account e dati',
-      updated: 'Ultimo aggiornamento: 5 maggio 2026',
+      updated: 'Ultimo aggiornamento: 8 giugno 2026',
       profileTitle: 'Cancellazione account e dati',
-      profileText: 'Scopri come richiedere la cancellazione dell’account e delle risposte cloud.',
+      profileText: 'Elimina dall’app l’account, le risposte cloud e i dati associati.',
       intro:
-        'Se usi l’accesso Google o Apple, puoi chiedere la cancellazione dell’account app e dei dati associati.',
+        'Se accedi con Google o Apple, puoi eliminare dall’app il tuo account e i dati associati, senza inviare email o contattare l’assistenza.',
       sections: [
         {
-          title: 'Come richiedere la cancellazione',
+          title: 'Come cancellare account e dati',
           body: [
-            `Invia una richiesta a ${supportEmail} con oggetto “Cancellazione Via la Maschera”.`,
-            'Usa l’email collegata al tuo accesso, così possiamo identificare lo spazio corretto.',
+            'Accedi dal Profilo, apri questa pagina e usa il pulsante Elimina account e dati.',
+            'Per evitare eliminazioni accidentali, l’app chiede una conferma prima di completare l’operazione.',
           ],
         },
         {
           title: 'Cosa viene eliminato',
           body: [
-            'Archivio cloud, risposte personali, risposte condivise, iniziali associate e dati di sincronizzazione.',
-            'I dati locali sul dispositivo possono essere rimossi anche cancellando i dati app o disinstallando l’app.',
+            'Account app, archivio cloud, risposte personali, risposte condivise, iniziali associate e dati di sincronizzazione.',
+            'Le risposte locali salvate su questo dispositivo vengono rimosse durante la cancellazione.',
           ],
         },
         {
@@ -121,7 +123,7 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
       profileTitle: 'Privacy Policy',
       profileText: 'Read what data may be processed and how it is used.',
       intro:
-        'Via la Maschera is a personal reflection ritual. This page explains clearly what data may be saved and why.',
+        'Via la Maschera is a personal reflection app. This page explains what data may be saved, how it is used, and why.',
       sections: [
         {
           title: 'Data that may be processed',
@@ -133,15 +135,15 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
         {
           title: 'Local archive and cloud',
           body: [
-            'Without sign-in, answers stay on the device.',
-            'With sign-in and Firebase configured, answers may sync to your personal cloud space.',
+            'If you do not sign in, your answers remain on this device.',
+            'If you sign in, your answers may sync to your private online archive.',
           ],
         },
         {
-          title: 'Shared room',
+          title: 'Sharing with the community',
           body: [
             'Sharing is optional and reversible.',
-            'Others see initials only and only after answering the same question.',
+            'Other people see only your initials and can read the answer only after answering the same question.',
           ],
         },
         {
@@ -152,7 +154,9 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
         },
         {
           title: 'Contact',
-          body: [`For privacy or data deletion requests, write to ${supportEmail}.`],
+          body: [
+            `For privacy questions, write to ${supportEmail}. To delete your account, open the Account and Data Deletion page in the app.`,
+          ],
         },
         {
           title: 'Important note',
@@ -165,24 +169,24 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
     dataDeletion: {
       kicker: 'Data',
       title: 'Account and Data Deletion',
-      updated: 'Last updated: May 5, 2026',
+      updated: 'Last updated: June 8, 2026',
       profileTitle: 'Account and data deletion',
-      profileText: 'Learn how to request deletion of your account and cloud answers.',
+      profileText: 'Delete your account, cloud answers, and associated data from inside the app.',
       intro:
-        'If you use Google or Apple sign-in, you can request deletion of your app account and associated data.',
+        'If you sign in with Google or Apple, you can delete your account and associated data from inside the app without sending an email or contacting support.',
       sections: [
         {
-          title: 'How to request deletion',
+          title: 'How to delete account and data',
           body: [
-            `Send a request to ${supportEmail} with subject “Via la Maschera deletion”.`,
-            'Use the email connected to your sign-in so the correct space can be identified.',
+            'Sign in from Profile, open this page, and use the Delete account and data button.',
+            'To prevent accidental deletion, the app asks for confirmation before completing the operation.',
           ],
         },
         {
           title: 'What is deleted',
           body: [
-            'Cloud archive, personal answers, shared answers, associated initials, and sync data.',
-            'Local device data can also be removed by clearing app data or uninstalling the app.',
+            'App account, cloud archive, personal answers, shared answers, associated initials, and sync data.',
+            'Local answers saved on this device are removed during account deletion.',
           ],
         },
         {
@@ -234,7 +238,9 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
         },
         {
           title: 'Контакти',
-          body: [`Для питань приватності або видалення даних напиши на ${supportEmail}.`],
+          body: [
+            `Для питань приватності напиши на ${supportEmail}. Видалення акаунта запускається зі сторінки Видалення акаунта і даних у додатку.`,
+          ],
         },
         {
           title: 'Важлива примітка',
@@ -247,24 +253,24 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
     dataDeletion: {
       kicker: 'Дані',
       title: 'Видалення акаунта і даних',
-      updated: 'Останнє оновлення: 5 травня 2026',
+      updated: 'Останнє оновлення: 8 червня 2026',
       profileTitle: 'Видалення акаунта і даних',
-      profileText: 'Дізнайся, як надіслати запит на видалення акаунта і хмарних відповідей.',
+      profileText: 'Видали акаунт, хмарні відповіді та пов’язані дані з додатка.',
       intro:
-        'Якщо ти використовуєш вхід Google або Apple, можна надіслати запит на видалення акаунта додатка і пов’язаних даних.',
+        'Якщо ти використовуєш вхід Google або Apple, можна видалити акаунт додатка і пов’язані дані всередині додатка без email або звернення до підтримки.',
       sections: [
         {
-          title: 'Як надіслати запит',
+          title: 'Як видалити акаунт і дані',
           body: [
-            `Надішли запит на ${supportEmail} з темою “Via la Maschera deletion”.`,
-            'Використовуй email, пов’язаний із входом, щоб можна було визначити правильний простір.',
+            'Увійди з Профілю, відкрий цю сторінку і скористайся кнопкою Видалити акаунт і дані.',
+            'Щоб уникнути випадкового видалення, додаток просить підтвердження перед завершенням операції.',
           ],
         },
         {
           title: 'Що видаляється',
           body: [
-            'Хмарний архів, особисті відповіді, спільні відповіді, пов’язані ініціали і дані синхронізації.',
-            'Локальні дані на пристрої можна також видалити, очистивши дані додатка або видаливши додаток.',
+            'Акаунт додатка, хмарний архів, особисті відповіді, спільні відповіді, пов’язані ініціали і дані синхронізації.',
+            'Локальні відповіді на цьому пристрої видаляються під час видалення акаунта.',
           ],
         },
         {
@@ -316,7 +322,9 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
         },
         {
           title: 'Контакты',
-          body: [`По вопросам приватности или удаления данных напиши на ${supportEmail}.`],
+          body: [
+            `По вопросам приватности напиши на ${supportEmail}. Удаление аккаунта запускается со страницы Удаление аккаунта и данных внутри приложения.`,
+          ],
         },
         {
           title: 'Важное примечание',
@@ -329,24 +337,24 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
     dataDeletion: {
       kicker: 'Данные',
       title: 'Удаление аккаунта и данных',
-      updated: 'Последнее обновление: 5 мая 2026',
+      updated: 'Последнее обновление: 8 июня 2026',
       profileTitle: 'Удаление аккаунта и данных',
-      profileText: 'Узнай, как запросить удаление аккаунта и облачных ответов.',
+      profileText: 'Удали аккаунт, облачные ответы и связанные данные из приложения.',
       intro:
-        'Если ты используешь вход через Google или Apple, можно запросить удаление аккаунта приложения и связанных данных.',
+        'Если ты используешь вход через Google или Apple, можно удалить аккаунт приложения и связанные данные внутри приложения без email или обращения в поддержку.',
       sections: [
         {
-          title: 'Как запросить удаление',
+          title: 'Как удалить аккаунт и данные',
           body: [
-            `Отправь запрос на ${supportEmail} с темой “Via la Maschera deletion”.`,
-            'Используй email, связанный со входом, чтобы можно было определить правильное пространство.',
+            'Войди из Профиля, открой эту страницу и используй кнопку Удалить аккаунт и данные.',
+            'Чтобы избежать случайного удаления, приложение просит подтверждение перед завершением операции.',
           ],
         },
         {
           title: 'Что удаляется',
           body: [
-            'Облачный архив, личные ответы, общие ответы, связанные инициалы и данные синхронизации.',
-            'Локальные данные на устройстве можно также удалить, очистив данные приложения или удалив приложение.',
+            'Аккаунт приложения, облачный архив, личные ответы, общие ответы, связанные инициалы и данные синхронизации.',
+            'Локальные ответы на этом устройстве удаляются во время удаления аккаунта.',
           ],
         },
         {
@@ -398,7 +406,9 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
         },
         {
           title: 'Contacto',
-          body: [`Para solicitudes de privacidad o eliminación de datos, escribe a ${supportEmail}.`],
+          body: [
+            `Para solicitudes de privacidad, escribe a ${supportEmail}. La eliminación de cuenta empieza desde la página Eliminación de cuenta y datos dentro de la app.`,
+          ],
         },
         {
           title: 'Nota importante',
@@ -411,24 +421,24 @@ export const legalCopy: Record<AppLanguageCode, LegalContent> = {
     dataDeletion: {
       kicker: 'Datos',
       title: 'Eliminación de cuenta y datos',
-      updated: 'Última actualización: 5 de mayo de 2026',
+      updated: 'Última actualización: 8 de junio de 2026',
       profileTitle: 'Eliminación de cuenta y datos',
-      profileText: 'Descubre cómo solicitar la eliminación de tu cuenta y respuestas cloud.',
+      profileText: 'Elimina desde la app tu cuenta, respuestas cloud y datos asociados.',
       intro:
-        'Si usas acceso con Google o Apple, puedes solicitar la eliminación de la cuenta de la app y los datos asociados.',
+        'Si usas acceso con Google o Apple, puedes eliminar desde la app la cuenta y los datos asociados sin enviar email ni contactar soporte.',
       sections: [
         {
-          title: 'Cómo solicitar la eliminación',
+          title: 'Cómo eliminar cuenta y datos',
           body: [
-            `Envía una solicitud a ${supportEmail} con asunto “Via la Maschera deletion”.`,
-            'Usa el email conectado a tu acceso para identificar el espacio correcto.',
+            'Entra desde Perfil, abre esta página y usa el botón Eliminar cuenta y datos.',
+            'Para evitar eliminaciones accidentales, la app pide confirmación antes de completar la operación.',
           ],
         },
         {
           title: 'Qué se elimina',
           body: [
-            'Archivo cloud, respuestas personales, respuestas compartidas, iniciales asociadas y datos de sincronización.',
-            'Los datos locales del dispositivo también pueden eliminarse borrando los datos de la app o desinstalándola.',
+            'Cuenta de la app, archivo cloud, respuestas personales, respuestas compartidas, iniciales asociadas y datos de sincronización.',
+            'Las respuestas locales guardadas en este dispositivo se eliminan durante la eliminación de cuenta.',
           ],
         },
         {

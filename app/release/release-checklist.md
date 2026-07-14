@@ -3,11 +3,11 @@
 ## Stato app
 
 - Nome app: `Via la Maschera`
-- Versione pubblica: `1.0.0`
+- Versione pubblica: `1.1.0`
 - iOS bundle identifier: `com.vialamaschera.app`
-- iOS build number: `2`
+- iOS build number: `4`
 - Android package: `com.vialamaschera.app`
-- Android version code: `1`
+- Android version code: `2`
 - Web locale: `http://localhost:8082/`
 - Privacy locale: `http://localhost:8082/privacy`
 - Cancellazione dati locale: `http://localhost:8082/delete-account`
@@ -24,9 +24,9 @@
 - Verificare che le regole Firestore siano pubblicate.
 - Email pubblica di supporto: `volodymyr.ilchenko.it@gmail.com`.
 - Pubblicare URL pubblico stabile della privacy policy.
-- Pubblicare URL pubblico stabile per richiesta cancellazione account/dati.
+- Verificare che la cancellazione account/dati sia completabile dall'app, senza email obbligatoria.
 - Sostituire eventuali placeholder `INSERIRE_*` nei file release non pubblici prima dell'invio definitivo.
-- Verificare che le pagine app `privacy` e `delete-account` mostrino l'email pubblica di supporto.
+- Verificare che la pagina app `delete-account` mostri il pulsante `Elimina account e dati` quando l'utente e collegato.
 - Controllare che il logo e le icone siano quelli definitivi.
 - Verificare in GitHub che Pages usi `GitHub Actions` come sorgente.
 - Verificare che la pagina `terms` sia pubblica prima di inviare la build allo store.
@@ -65,7 +65,7 @@ npm.cmd run build:ios:production
 - Compilare App Privacy in App Store Connect.
 - Compilare Data safety in Play Console.
 - Caricare privacy policy pubblica.
-- Caricare URL pubblico per richiesta cancellazione account/dati.
+- Caricare URL pubblico informativo per cancellazione account/dati.
 - Verificare che la scheda store non prometta diagnosi, terapia o consulenza psicologica.
 - Dichiarare che la stanza condivisa mostra solo iniziali, richiede risposta alla stessa domanda, accettazione regole e segnalazione in-app.
 

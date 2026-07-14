@@ -33,6 +33,10 @@ service cloud.firestore {
       match /answeredQuestions/{questionKey} {
         allow read, write: if isOwner(userId);
       }
+
+      match /blockedUsers/{blockedUserId} {
+        allow read, write: if isOwner(userId);
+      }
     }
 
     match /questions/{questionKey}/answers/{answerId} {
@@ -52,15 +56,35 @@ service cloud.firestore {
         );
     }
 
+    match /accountDeletionRequests/{userId} {
+      allow read: if isOwner(userId);
+
+      allow create, update: if isOwner(userId)
+        && request.resource.data.uid == userId
+        && request.resource.data.source == "in-app"
+        && request.resource.data.status == "initiated";
+
+      allow delete: if false;
+    }
+
     match /reports/{reportId} {
       allow read: if false;
 
       allow create: if signedIn()
         && request.resource.data.reporterUid == request.auth.uid
         && request.resource.data.status == "open"
-        && reportId == request.resource.data.questionKey + "_"
-          + request.resource.data.answerId + "_"
-          + request.auth.uid;
+        && (
+          request.resource.data.type == "report"
+          || request.resource.data.type == "block"
+        )
+        && (
+          reportId == request.resource.data.questionKey + "_"
+            + request.resource.data.answerId + "_"
+            + request.auth.uid
+          || reportId == request.resource.data.questionKey + "_"
+            + request.resource.data.answerId + "_"
+            + request.auth.uid + "_block"
+        );
 
       allow update, delete: if false;
     }
